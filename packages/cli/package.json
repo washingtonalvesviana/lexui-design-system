@@ -1,0 +1,14 @@
+{
+  "name": "@lexui/cli",
+  "version": "0.1.0",
+  "description": "Initialize and validate LexUI integration in applications",
+  "license": "MIT",
+  "type": "module",
+  "bin": { "lexui": "./bin/lexui.mjs" },
+  "files": ["bin", "src", "templates", "README.md"],
+  "scripts": {
+    "build": "node ./bin/lexui.mjs --help",
+    "typecheck": "node ./bin/lexui.mjs --help"
+  },
+  "publishConfig": { "access": "public" }
+}

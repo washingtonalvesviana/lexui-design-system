@@ -1,0 +1,30 @@
+{
+  "name": "@lexui/charts",
+  "version": "0.1.0",
+  "description": "Accessible chart components for the LexUI design system",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": ["**/*.css"],
+  "files": ["dist", "README.md"],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "types": "./dist/index.d.ts",
+  "peerDependencies": {
+    "react": ">=19"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "react": "latest"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && node ../../scripts/copy-assets.mjs src/styles.css dist/styles.css",
+    "typecheck": "tsc --noEmit"
+  },
+  "publishConfig": { "access": "public" }
+}

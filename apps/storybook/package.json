@@ -1,0 +1,29 @@
+{
+  "name": "@lexui/storybook",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@lexui/charts": "workspace:*",
+    "@lexui/react": "workspace:*",
+    "@lexui/tokens": "workspace:*",
+    "lucide-react": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "latest",
+    "@storybook/addon-docs": "latest",
+    "@storybook/react-vite": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "storybook": "latest",
+    "typescript": "^6.0.0",
+    "vite": "latest"
+  }
+}

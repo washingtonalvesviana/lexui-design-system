@@ -1,0 +1,14 @@
+{
+  "$schema": "https://lexui.dev/schema/manifest.json",
+  "name": "LexUI",
+  "version": "0.2.0",
+  "status": "complete-catalog",
+  "theme": "lex-default",
+  "brand": {
+    "blue": "#46519E",
+    "orange": "#F45E41",
+    "darkBase": "#1A1A1A"
+  },
+  "packages": ["@lexui/react", "@lexui/tokens", "@lexui/charts"],
+  "documentationEntry": "ai/instructions.md"
+}

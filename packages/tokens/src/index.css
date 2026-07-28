@@ -1,0 +1,143 @@
+@layer lexui.tokens, lexui.base;
+
+@layer lexui.tokens {
+  :root {
+    color-scheme: light;
+
+    /* Brand colors sampled from the supplied LexUI reference. */
+    --lex-brand-blue: #46519e;
+    --lex-brand-orange: #f45e41;
+
+    /* Neutral foundation. Dark starts at 90% black, never pure black. */
+    --lex-neutral-0: #ffffff;
+    --lex-neutral-50: #f7f7f8;
+    --lex-neutral-100: #eeeeef;
+    --lex-neutral-200: #dedee1;
+    --lex-neutral-300: #c9c9ce;
+    --lex-neutral-400: #a3a3aa;
+    --lex-neutral-500: #77777f;
+    --lex-neutral-600: #5c5c63;
+    --lex-neutral-700: #3d3d42;
+    --lex-neutral-800: #29292d;
+    --lex-neutral-900: #202023;
+    --lex-neutral-950: #1a1a1a;
+
+    --lex-blue-300: #aab4f1;
+    --lex-blue-400: #8491df;
+    --lex-blue-500: #6573c4;
+    --lex-blue-600: #46519e;
+    --lex-blue-700: #384183;
+    --lex-blue-800: #2e366d;
+
+    --lex-orange-300: #ffad98;
+    --lex-orange-400: #ff8065;
+    --lex-orange-500: #f45e41;
+    --lex-orange-600: #d94227;
+    --lex-orange-700: #b52d16;
+
+    --lex-green-500: #238b57;
+    --lex-red-500: #d14343;
+    --lex-yellow-500: #c88719;
+
+    --lex-background: var(--lex-neutral-50);
+    --lex-foreground: var(--lex-neutral-950);
+    --lex-surface-1: var(--lex-neutral-0);
+    --lex-surface-2: var(--lex-neutral-100);
+    --lex-surface-3: var(--lex-neutral-200);
+    --lex-border: var(--lex-neutral-200);
+    --lex-border-strong: var(--lex-neutral-300);
+    --lex-muted: var(--lex-neutral-600);
+
+    --lex-primary: var(--lex-brand-blue);
+    --lex-primary-hover: color-mix(in srgb, var(--lex-brand-blue) 82%, var(--lex-neutral-950));
+    --lex-primary-foreground: var(--lex-neutral-0);
+    --lex-accent: color-mix(in srgb, var(--lex-brand-orange) 74%, var(--lex-neutral-950));
+    --lex-accent-fill: var(--lex-brand-orange);
+    --lex-accent-foreground: var(--lex-neutral-0);
+    --lex-focus: color-mix(in srgb, var(--lex-brand-blue) 82%, var(--lex-neutral-0));
+    --lex-success: var(--lex-green-500);
+    --lex-warning: var(--lex-yellow-500);
+    --lex-danger: var(--lex-red-500);
+
+    --lex-chart-1: var(--lex-brand-blue);
+    --lex-chart-2: var(--lex-brand-orange);
+    --lex-chart-3: #238b57;
+    --lex-chart-4: #8b5fbf;
+    --lex-chart-5: #168896;
+    --lex-chart-positive: #238b57;
+    --lex-chart-negative: #d14343;
+    --lex-chart-warning: #c88719;
+    --lex-chart-neutral: #77777f;
+
+    --lex-font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --lex-font-mono: "Geist Mono", "SFMono-Regular", Consolas, monospace;
+    --lex-text-xs: 0.75rem;
+    --lex-text-sm: 0.875rem;
+    --lex-text-md: 1rem;
+    --lex-text-lg: 1.125rem;
+    --lex-text-xl: 1.5rem;
+    --lex-text-2xl: clamp(1.75rem, 1.3rem + 1.25vw, 2.5rem);
+
+    --lex-space-1: 0.25rem;
+    --lex-space-2: 0.5rem;
+    --lex-space-3: 0.75rem;
+    --lex-space-4: 1rem;
+    --lex-space-5: 1.25rem;
+    --lex-space-6: 1.5rem;
+    --lex-space-8: 2rem;
+    --lex-space-10: 2.5rem;
+    --lex-space-12: 3rem;
+
+    --lex-radius-sm: 0.125rem;
+    --lex-radius-md: 0.25rem;
+    --lex-radius-lg: 0.375rem;
+    --lex-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.08);
+    --lex-shadow-md: 0 10px 30px rgb(0 0 0 / 0.12);
+
+    --lex-control-sm: 2rem;
+    --lex-control-md: 2.5rem;
+    --lex-control-lg: 3rem;
+    --lex-content-max: 90rem;
+    --lex-sidebar-width: 16rem;
+  }
+
+  [data-theme="dark"] {
+    color-scheme: dark;
+    --lex-background: var(--lex-neutral-950);
+    --lex-foreground: #f5f5f6;
+    --lex-surface-1: var(--lex-neutral-900);
+    --lex-surface-2: var(--lex-neutral-800);
+    --lex-surface-3: var(--lex-neutral-700);
+    --lex-border: #38383d;
+    --lex-border-strong: #4a4a51;
+    --lex-muted: #aaaab1;
+    --lex-primary: color-mix(in srgb, var(--lex-brand-blue) 70%, var(--lex-neutral-0));
+    --lex-primary-hover: color-mix(in srgb, var(--lex-brand-blue) 55%, var(--lex-neutral-0));
+    --lex-primary-foreground: #17171a;
+    --lex-accent: color-mix(in srgb, var(--lex-brand-orange) 72%, var(--lex-neutral-0));
+    --lex-accent-fill: var(--lex-brand-orange);
+    --lex-accent-foreground: #17171a;
+    --lex-focus: color-mix(in srgb, var(--lex-brand-blue) 55%, var(--lex-neutral-0));
+    --lex-success: #62c991;
+    --lex-warning: #efbd57;
+    --lex-danger: #ff7a78;
+    --lex-chart-1: #8491df;
+    --lex-chart-2: #ff8065;
+    --lex-chart-3: #62c991;
+    --lex-chart-4: #bd8fe8;
+    --lex-chart-5: #62c4cf;
+    --lex-chart-positive: #62c991;
+    --lex-chart-negative: #ff7a78;
+    --lex-chart-warning: #efbd57;
+    --lex-chart-neutral: #aaaab1;
+  }
+}
+
+@layer lexui.base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { font-family: var(--lex-font-sans); background: var(--lex-background); color: var(--lex-foreground); }
+  body { margin: 0; min-width: 20rem; background: var(--lex-background); color: var(--lex-foreground); }
+  button, input, textarea, select { font: inherit; }
+  :focus-visible { outline: 2px solid var(--lex-focus); outline-offset: 2px; }
+  ::selection { background: var(--lex-primary); color: var(--lex-primary-foreground); }
+}

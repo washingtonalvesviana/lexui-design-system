@@ -1,0 +1,17 @@
+{
+  "name": "@lexui/tokens",
+  "version": "0.1.0",
+  "description": "Semantic design tokens and light/dark themes for LexUI",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.css",
+    "./theme.css": "./dist/theme.css"
+  },
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "node ../../scripts/copy-assets.mjs src/index.css dist/index.css src/index.css dist/theme.css",
+    "typecheck": "node -e \"console.log('tokens CSS ready')\""
+  },
+  "publishConfig": { "access": "public" }
+}

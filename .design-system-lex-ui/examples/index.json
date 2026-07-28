@@ -1,0 +1,19 @@
+{
+  "version": "0.1.0",
+  "examples": [
+    { "id": "auth-login", "route": "/login", "source": "apps/demo-saas/app/(auth)/login", "components": ["Button", "Field", "Input"], "tags": ["auth", "login"] },
+    { "id": "auth-register", "route": "/register", "source": "apps/demo-saas/app/(auth)/register", "components": ["Button", "Field", "Input"], "tags": ["auth", "cadastro"] },
+    { "id": "auth-forgot", "route": "/forgot-password", "source": "apps/demo-saas/app/(auth)/forgot-password", "components": ["Alert", "Button", "Field", "Input"], "tags": ["auth", "senha"] },
+    { "id": "auth-mfa", "route": "/mfa", "source": "apps/demo-saas/app/(auth)/mfa", "components": ["Button", "Field", "Input"], "tags": ["auth", "mfa", "otp"] },
+    { "id": "dashboard-overview", "route": "/dashboard", "source": "apps/demo-saas/app/(product)/dashboard", "components": ["BarChart", "LineChart", "AreaChart", "PieChart", "DonutChart", "HorizontalBarChart", "Sparkline", "Badge", "Card", "Table"], "tags": ["dashboard", "metricas", "graficos"] },
+    { "id": "crud-users", "route": "/users", "source": "apps/demo-saas/app/(product)/users", "components": ["Badge", "Button", "Dialog", "Input", "Table"], "tags": ["crud", "lista", "busca", "modal"] },
+    { "id": "profile-form", "route": "/profile", "source": "apps/demo-saas/app/(product)/profile", "components": ["Alert", "Button", "Card", "Field", "Input", "Select", "Textarea"], "tags": ["perfil", "formulario", "configuracoes"] },
+    { "id": "file-upload", "route": "/upload", "source": "apps/demo-saas/app/(product)/upload", "components": ["Badge", "Button", "Card"], "tags": ["upload", "arquivos", "drag-drop"] },
+    { "id": "organization-settings", "route": "/settings", "source": "apps/demo-saas/app/(product)/settings", "components": ["Alert", "Card", "Checkbox", "Progress", "Switch", "Tabs"], "tags": ["configuracoes", "notificacoes", "seguranca"] },
+    { "id": "billing-overview", "route": "/billing", "source": "apps/demo-saas/app/(product)/billing", "components": ["Badge", "Button", "Card", "Progress", "Table"], "tags": ["billing", "plano", "faturas", "pagamento"] },
+    { "id": "calendar-events", "route": "/calendar", "source": "apps/demo-saas/app/(product)/calendar", "components": ["Accordion", "AlertDialog", "Breadcrumb", "Calendar", "DatePicker", "Drawer", "DropdownMenu", "Popover", "Toast"], "tags": ["agenda", "data", "eventos", "overlays"] },
+    { "id": "project-management", "route": "/projects", "source": "apps/demo-saas/app/(product)/projects", "components": ["Combobox", "CommandPalette", "DataTable", "Drawer", "RadioGroup", "Slider", "Toast"], "tags": ["projetos", "tabela", "filtros", "portfolio"] },
+    { "id": "design-system-catalog", "route": "/design-system", "source": "apps/demo-saas/app/(product)/design-system", "components": ["ContextMenu", "ScrollArea", "ToggleGroup", "Typography"], "tags": ["catalogo", "documentacao", "componentes", "patterns"] },
+    { "id": "intelligent-chat", "route": "/chat", "source": "apps/demo-saas/app/(product)/chat", "components": ["Chat", "ChatMessage", "ChatComposer", "AreaChart", "DonutChart", "Popover", "Select"], "tags": ["chat", "agentes", "fontes", "upload", "voz", "markdown"] }
+  ]
+}

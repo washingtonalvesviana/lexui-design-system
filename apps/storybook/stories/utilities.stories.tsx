@@ -1,0 +1,20 @@
+import * as React from "react"
+import type { Meta, StoryObj } from "@storybook/react-vite"
+import { AlignCenter, AlignLeft, AlignRight, Copy, Download, Grid2X2, List, Star, Trash2 } from "lucide-react"
+import {
+  Blockquote, ContextMenu, ContextMenuCheckboxItem, ContextMenuContent, ContextMenuItem, ContextMenuLabel,
+  ContextMenuSeparator, ContextMenuTrigger, Heading, InlineCode, KeyboardKey, Lead, ScrollArea, Text, Toggle,
+  ToggleGroup,
+} from "@lexui/react"
+
+const meta = { title: "Components/Utilitários e tipografia", parameters: { layout: "fullscreen" } } satisfies Meta
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Tipografia: Story = { render: () => <div className="lex-story-form" style={{ maxWidth: "42rem" }}><Heading level={1} size="2xl">Sistema tipográfico LexUI</Heading><Lead>Hierarquia previsível para interfaces operacionais, documentação e conteúdo de produto.</Lead><Heading level={2} size="xl">Título de seção</Heading><Text>Texto padrão para conteúdo principal com leitura confortável em ambos os temas.</Text><Text size="sm" tone="muted">Informação auxiliar com menor ênfase visual.</Text><Text>Execute <InlineCode>npm run lexui:check</InlineCode> ou use <KeyboardKey>Ctrl K</KeyboardKey>.</Text><Blockquote>Componentes públicos devem ser reutilizados antes de uma nova abstração ser criada.</Blockquote></div> }
+
+export const Alternadores: Story = { render: () => <div className="lex-story-form"><div><Text size="sm" weight="semibold">Visualização</Text><ToggleGroup defaultValue={["grid"]}><Toggle value="grid" aria-label="Visualização em grade"><Grid2X2 size={17} /></Toggle><Toggle value="list" aria-label="Visualização em lista"><List size={17} /></Toggle></ToggleGroup></div><div><Text size="sm" weight="semibold">Alinhamento</Text><ToggleGroup defaultValue={["left"]}><Toggle value="left" variant="outline" aria-label="Alinhar à esquerda"><AlignLeft size={17} /></Toggle><Toggle value="center" variant="outline" aria-label="Centralizar"><AlignCenter size={17} /></Toggle><Toggle value="right" variant="outline" aria-label="Alinhar à direita"><AlignRight size={17} /></Toggle></ToggleGroup></div><Toggle defaultPressed><Star size={17} /> Favorito</Toggle></div> }
+
+export const AreaComRolagem: Story = { render: () => <ScrollArea style={{ height: "18rem", width: "24rem", border: "1px solid var(--lex-border)" }}><div style={{ width: "32rem", padding: "var(--lex-space-4)", display: "grid", gap: "var(--lex-space-3)" }}>{Array.from({ length: 18 }, (_, index) => <div key={index}><strong>Atividade {index + 1}</strong><Text size="sm" tone="muted">Registro preservado na área com rolagem customizada.</Text></div>)}</div></ScrollArea> }
+
+export const MenuDeContexto: Story = { render: () => <ContextMenu><ContextMenuTrigger><div style={{ border: "1px dashed var(--lex-border-strong)", padding: "var(--lex-space-10)", maxWidth: "30rem", textAlign: "center" }}><Heading size="md">Clique com o botão direito</Heading><Text size="sm" tone="muted">Em dispositivos touch, mantenha pressionado.</Text></div></ContextMenuTrigger><ContextMenuContent><ContextMenuLabel>Arquivo</ContextMenuLabel><ContextMenuItem><Copy size={15} /> Duplicar</ContextMenuItem><ContextMenuItem><Download size={15} /> Baixar</ContextMenuItem><ContextMenuCheckboxItem defaultChecked>Disponível offline</ContextMenuCheckboxItem><ContextMenuSeparator /><ContextMenuItem data-danger><Trash2 size={15} /> Excluir</ContextMenuItem></ContextMenuContent></ContextMenu> }

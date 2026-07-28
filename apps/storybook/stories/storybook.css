@@ -1,0 +1,8 @@
+.lex-story { background: var(--lex-background); color: var(--lex-foreground); min-height: 100vh; padding: clamp(1rem, 3vw, 3rem); }
+.lex-story-grid { display: grid; gap: var(--lex-space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); }
+.lex-story-stack { display: flex; flex-wrap: wrap; gap: var(--lex-space-3); }
+.lex-story-form { display: grid; gap: var(--lex-space-4); max-width: 28rem; }
+.lex-color-grid { display: grid; gap: var(--lex-space-3); grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); }
+.lex-swatch { background: var(--swatch); border: 1px solid var(--lex-border); color: var(--text, white); display: grid; font-size: var(--lex-text-xs); min-height: 7rem; padding: var(--lex-space-3); place-items: end start; }
+.lex-story-heading { margin: 0 0 var(--lex-space-6); }
+.lex-auth-preview { display: grid; min-height: 36rem; place-items: center; }

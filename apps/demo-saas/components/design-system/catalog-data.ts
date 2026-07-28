@@ -1,0 +1,89 @@
+export type ComponentCategory = "Fundamentos" | "Entradas" | "Ações" | "Feedback" | "Estrutura" | "Dados" | "Overlays"
+
+export type CatalogComponent = {
+  name: string
+  slug: string
+  category: ComponentCategory
+  description: string
+  usage: string
+  interactive: boolean
+}
+
+export const catalogComponents: CatalogComponent[] = [
+  { name: "Typography", slug: "typography", category: "Fundamentos", description: "Hierarquia tipográfica para títulos, textos e conteúdo auxiliar.", usage: "import { Heading, Text, Lead } from \"@lexui/react\"", interactive: false },
+  { name: "ThemeToggle", slug: "theme-toggle", category: "Fundamentos", description: "Alterna o tema global claro e escuro com preferência persistida.", usage: "import { ThemeToggle } from \"@lexui/react\"", interactive: true },
+  { name: "Field", slug: "field", category: "Entradas", description: "Agrupa label, descrição, controle e mensagem de erro acessível.", usage: "import { Field, Input } from \"@lexui/react\"", interactive: true },
+  { name: "Input", slug: "input", category: "Entradas", description: "Entrada textual consistente para formulários e filtros.", usage: "import { Input } from \"@lexui/react\"", interactive: true },
+  { name: "Textarea", slug: "textarea", category: "Entradas", description: "Entrada de texto multilinha com estados semânticos.", usage: "import { Textarea } from \"@lexui/react\"", interactive: true },
+  { name: "Select", slug: "select", category: "Entradas", description: "Seleção nativa estilizada para opções simples.", usage: "import { Select } from \"@lexui/react\"", interactive: true },
+  { name: "Checkbox", slug: "checkbox", category: "Entradas", description: "Seleção booleana com label, descrição e estado parcial.", usage: "import { Checkbox } from \"@lexui/react\"", interactive: true },
+  { name: "RadioGroup", slug: "radio-group", category: "Entradas", description: "Escolha única entre opções mutuamente exclusivas.", usage: "import { RadioGroup, RadioOption } from \"@lexui/react\"", interactive: true },
+  { name: "Switch", slug: "switch", category: "Entradas", description: "Ativa ou desativa uma configuração imediatamente.", usage: "import { Switch } from \"@lexui/react\"", interactive: true },
+  { name: "Slider", slug: "slider", category: "Entradas", description: "Seleciona valor único ou intervalo em uma escala.", usage: "import { Slider, RangeSlider } from \"@lexui/react\"", interactive: true },
+  { name: "Combobox", slug: "combobox", category: "Entradas", description: "Busca e seleciona opções em listas extensas.", usage: "import { Combobox } from \"@lexui/react\"", interactive: true },
+  { name: "DatePicker", slug: "date-picker", category: "Entradas", description: "Seleciona uma data em popover com calendário acessível.", usage: "import { DatePicker } from \"@lexui/react\"", interactive: true },
+  { name: "InputOTP", slug: "input-otp", category: "Entradas", description: "Entrada segmentada para códigos de autenticação.", usage: "import { InputOTP } from \"@lexui/react\"", interactive: true },
+  { name: "Button", slug: "button", category: "Ações", description: "Ação principal com variantes, tamanhos e estado de carregamento.", usage: "import { Button } from \"@lexui/react\"", interactive: true },
+  { name: "Toggle", slug: "toggle", category: "Ações", description: "Controle pressionável para preferências binárias.", usage: "import { Toggle } from \"@lexui/react\"", interactive: true },
+  { name: "ToggleGroup", slug: "toggle-group", category: "Ações", description: "Agrupa toggles relacionados em uma escolha visual.", usage: "import { Toggle, ToggleGroup } from \"@lexui/react\"", interactive: true },
+  { name: "DropdownMenu", slug: "dropdown-menu", category: "Ações", description: "Menu de ações associado a um botão disparador.", usage: "import { DropdownMenu, DropdownMenuItem } from \"@lexui/react\"", interactive: true },
+  { name: "ContextMenu", slug: "context-menu", category: "Ações", description: "Ações contextuais abertas com botão direito ou toque longo.", usage: "import { ContextMenu, ContextMenuItem } from \"@lexui/react\"", interactive: true },
+  { name: "CommandPalette", slug: "command-palette", category: "Ações", description: "Busca rápida de comandos e navegação por teclado.", usage: "import { CommandPalette } from \"@lexui/react\"", interactive: true },
+  { name: "Alert", slug: "alert", category: "Feedback", description: "Mensagem persistente de informação, sucesso, aviso ou erro.", usage: "import { Alert } from \"@lexui/react\"", interactive: false },
+  { name: "Badge", slug: "badge", category: "Feedback", description: "Rótulo compacto para status, categorias e metadados.", usage: "import { Badge } from \"@lexui/react\"", interactive: false },
+  { name: "Toast", slug: "toast", category: "Feedback", description: "Feedback temporário disparado após uma ação.", usage: "import { useToast } from \"@lexui/react\"", interactive: true },
+  { name: "Progress", slug: "progress", category: "Feedback", description: "Comunica progresso mensurável de uma operação.", usage: "import { Progress } from \"@lexui/react\"", interactive: false },
+  { name: "Spinner", slug: "spinner", category: "Feedback", description: "Indica espera breve quando não há progresso mensurável.", usage: "import { Spinner } from \"@lexui/react\"", interactive: false },
+  { name: "Skeleton", slug: "skeleton", category: "Feedback", description: "Reserva a estrutura do conteúdo durante carregamento.", usage: "import { Skeleton } from \"@lexui/react\"", interactive: false },
+  { name: "EmptyState", slug: "empty-state", category: "Feedback", description: "Explica ausência de dados e oferece o próximo passo.", usage: "import { EmptyState } from \"@lexui/react\"", interactive: true },
+  { name: "Tooltip", slug: "tooltip", category: "Feedback", description: "Descrição curta para controles compactos ou somente ícone.", usage: "import { Tooltip, TooltipProvider } from \"@lexui/react\"", interactive: true },
+  { name: "Card", slug: "card", category: "Estrutura", description: "Agrupa conteúdo e ações semanticamente relacionadas.", usage: "import { Card, CardHeader, CardContent } from \"@lexui/react\"", interactive: false },
+  { name: "Tabs", slug: "tabs", category: "Estrutura", description: "Alterna painéis relacionados sem navegar para outra página.", usage: "import { Tabs, TabsList, TabsTrigger } from \"@lexui/react\"", interactive: true },
+  { name: "Accordion", slug: "accordion", category: "Estrutura", description: "Expande e recolhe blocos de conteúdo vertical.", usage: "import { Accordion, AccordionItem } from \"@lexui/react\"", interactive: true },
+  { name: "Breadcrumb", slug: "breadcrumb", category: "Estrutura", description: "Mostra localização e hierarquia dentro da aplicação.", usage: "import { Breadcrumb, BreadcrumbItem } from \"@lexui/react\"", interactive: true },
+  { name: "Pagination", slug: "pagination", category: "Estrutura", description: "Navega por conjuntos extensos de resultados.", usage: "import { Pagination } from \"@lexui/react\"", interactive: true },
+  { name: "Sidebar", slug: "sidebar", category: "Estrutura", description: "Navegação principal recolhível para aplicações operacionais.", usage: "import { Sidebar, SidebarItem } from \"@lexui/react\"", interactive: true },
+  { name: "ScrollArea", slug: "scroll-area", category: "Estrutura", description: "Área com rolagem controlada e visual consistente.", usage: "import { ScrollArea } from \"@lexui/react\"", interactive: true },
+  { name: "Table", slug: "table", category: "Dados", description: "Estrutura semântica para dados tabulares simples.", usage: "import { Table, TableCell, TableHead } from \"@lexui/react\"", interactive: false },
+  { name: "DataTable", slug: "data-table", category: "Dados", description: "Tabela operacional com busca, ordenação e paginação.", usage: "import { DataTable } from \"@lexui/react\"", interactive: true },
+  { name: "Calendar", slug: "calendar", category: "Dados", description: "Visualização mensal e seleção acessível de datas.", usage: "import { Calendar } from \"@lexui/react\"", interactive: true },
+  { name: "BarChart", slug: "bar-chart", category: "Dados", description: "Gráfico de barras acessível com tooltip por categoria.", usage: "import { BarChart } from \"@lexui/charts\"", interactive: true },
+  { name: "Chat", slug: "chat", category: "Estrutura", description: "Primitivos para conversas com mensagens ricas, anexos e composer.", usage: "import { Chat, ChatMessage, ChatComposer } from \"@lexui/react\"", interactive: true },
+  { name: "HorizontalBarChart", slug: "horizontal-bar-chart", category: "Dados", description: "Barras horizontais interativas para rankings e comparação.", usage: "import { HorizontalBarChart } from \"@lexui/charts\"", interactive: true },
+  { name: "LineChart", slug: "line-chart", category: "Dados", description: "Linha temporal com crosshair e tooltip para cada ponto.", usage: "import { LineChart } from \"@lexui/charts\"", interactive: true },
+  { name: "AreaChart", slug: "area-chart", category: "Dados", description: "Área interativa para destacar volume e tendência acumulada.", usage: "import { AreaChart } from \"@lexui/charts\"", interactive: true },
+  { name: "PieChart", slug: "pie-chart", category: "Dados", description: "Distribuição proporcional com destaque e tooltip por segmento.", usage: "import { PieChart } from \"@lexui/charts\"", interactive: true },
+  { name: "DonutChart", slug: "donut-chart", category: "Dados", description: "Composição circular interativa com total e legenda.", usage: "import { DonutChart } from \"@lexui/charts\"", interactive: true },
+  { name: "Sparkline", slug: "sparkline", category: "Dados", description: "Tendência compacta com inspeção de cada ponto.", usage: "import { Sparkline } from \"@lexui/charts\"", interactive: true },
+  { name: "Avatar", slug: "avatar", category: "Dados", description: "Representa pessoas com imagem ou iniciais de fallback.", usage: "import { Avatar } from \"@lexui/react\"", interactive: false },
+  { name: "Dialog", slug: "dialog", category: "Overlays", description: "Tarefa focada que bloqueia temporariamente o conteúdo de fundo.", usage: "import { Dialog, DialogContent } from \"@lexui/react\"", interactive: true },
+  { name: "AlertDialog", slug: "alert-dialog", category: "Overlays", description: "Confirma uma ação crítica ou irreversível.", usage: "import { AlertDialog, AlertDialogContent } from \"@lexui/react\"", interactive: true },
+  { name: "Drawer", slug: "drawer", category: "Overlays", description: "Painel lateral para edição ou criação contextual.", usage: "import { Drawer, DrawerContent } from \"@lexui/react\"", interactive: true },
+  { name: "Popover", slug: "popover", category: "Overlays", description: "Conteúdo complementar ancorado a um controle.", usage: "import { Popover, PopoverContent } from \"@lexui/react\"", interactive: true },
+  { name: "AspectRatio", slug: "aspect-ratio", category: "Estrutura", description: "Preserva proporções de imagens, vídeos e previews responsivos.", usage: "import { AspectRatio } from \"@lexui/react\"", interactive: false },
+  { name: "Attachment", slug: "attachment", category: "Dados", description: "Representa arquivos anexados com metadados e ação de remoção.", usage: "import { Attachment } from \"@lexui/react\"", interactive: true },
+  { name: "Bubble", slug: "bubble", category: "Estrutura", description: "Balão de mensagem reutilizável para usuário, assistente e sistema.", usage: "import { Bubble } from \"@lexui/react\"", interactive: false },
+  { name: "ButtonGroup", slug: "button-group", category: "Ações", description: "Agrupa ações relacionadas sem duplicar bordas ou espaçamento.", usage: "import { ButtonGroup } from \"@lexui/react\"", interactive: true },
+  { name: "Carousel", slug: "carousel", category: "Estrutura", description: "Navegação acessível por uma sequência responsiva de conteúdos.", usage: "import { Carousel, CarouselItem } from \"@lexui/react\"", interactive: true },
+  { name: "Collapsible", slug: "collapsible", category: "Estrutura", description: "Exibe ou oculta uma região preservando contexto e acessibilidade.", usage: "import { Collapsible, CollapsibleTrigger } from \"@lexui/react\"", interactive: true },
+  { name: "Direction", slug: "direction", category: "Fundamentos", description: "Define direção LTR ou RTL para árvores inteiras de interface.", usage: "import { DirectionProvider } from \"@lexui/react\"", interactive: false },
+  { name: "HoverCard", slug: "hover-card", category: "Overlays", description: "Preview rico revelado por hover ou foco de teclado.", usage: "import { HoverCard, HoverCardContent } from \"@lexui/react\"", interactive: true },
+  { name: "InputGroup", slug: "input-group", category: "Entradas", description: "Combina entrada, prefixos, sufixos e ações em um único controle.", usage: "import { InputGroup, InputGroupAddon } from \"@lexui/react\"", interactive: true },
+  { name: "Item", slug: "item", category: "Estrutura", description: "Linha composta para listas com mídia, conteúdo e ações.", usage: "import { Item, ItemContent, ItemActions } from \"@lexui/react\"", interactive: true },
+  { name: "Label", slug: "label", category: "Entradas", description: "Rótulo acessível e consistente para controles de formulário.", usage: "import { Label } from \"@lexui/react\"", interactive: true },
+  { name: "Marker", slug: "marker", category: "Feedback", description: "Indicador visual compacto para estado, presença e legenda.", usage: "import { Marker } from \"@lexui/react\"", interactive: false },
+  { name: "Menubar", slug: "menubar", category: "Ações", description: "Barra de menus para comandos densos em aplicações desktop-like.", usage: "import { Menubar, MenubarMenu } from \"@lexui/react\"", interactive: true },
+  { name: "MessageScroller", slug: "message-scroller", category: "Estrutura", description: "Região rolável e anunciável para fluxos de mensagens.", usage: "import { MessageScroller } from \"@lexui/react\"", interactive: true },
+  { name: "NativeSelect", slug: "native-select", category: "Entradas", description: "Select HTML nativo estilizado, ideal para formulários simples e mobile.", usage: "import { NativeSelect } from \"@lexui/react\"", interactive: true },
+  { name: "NavigationMenu", slug: "navigation-menu", category: "Estrutura", description: "Navegação principal com links, painéis ricos e estado ativo.", usage: "import { NavigationMenu, NavigationMenuLink } from \"@lexui/react\"", interactive: true },
+  { name: "Resizable", slug: "resizable", category: "Estrutura", description: "Painéis redimensionáveis por ponteiro ou teclado.", usage: "import { ResizablePanelGroup, ResizablePanel } from \"@lexui/react\"", interactive: true },
+  { name: "SelectMenu", slug: "select-menu", category: "Entradas", description: "Seletor composto para opções ricas com estado controlado.", usage: "import { SelectMenu } from \"@lexui/react\"", interactive: true },
+  { name: "Separator", slug: "separator", category: "Estrutura", description: "Divisor visual horizontal ou vertical, sem ruído semântico.", usage: "import { Separator } from \"@lexui/react\"", interactive: false },
+  { name: "Sheet", slug: "sheet", category: "Overlays", description: "Painel modal lateral para tarefas contextuais extensas.", usage: "import { Sheet, SheetContent } from \"@lexui/react\"", interactive: true },
+]
+
+export const componentCategories: ComponentCategory[] = ["Fundamentos", "Entradas", "Ações", "Feedback", "Estrutura", "Dados", "Overlays"]
+
+export function getCatalogComponent(slug: string) {
+  return catalogComponents.find((component) => component.slug === slug)
+}

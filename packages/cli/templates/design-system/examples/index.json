@@ -1,0 +1,5 @@
+{
+  "version": "0.1.0",
+  "documentation": "Consulte o catálogo navegável e a aplicação SaaS do LexUI antes de criar novas composições.",
+  "patterns": ["authentication", "dashboard", "crud", "forms", "profile", "upload", "settings", "billing", "calendar", "projects", "design-system-catalog"]
+}

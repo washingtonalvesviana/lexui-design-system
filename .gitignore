@@ -1,0 +1,12 @@
+node_modules
+.pnpm-store
+.next
+dist
+storybook-static
+.turbo
+*.tsbuildinfo
+.DS_Store
+coverage
+artifacts/
+.demo-server.*.log
+.storybook-server.*.log

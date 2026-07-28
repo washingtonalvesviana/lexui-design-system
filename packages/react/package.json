@@ -1,0 +1,37 @@
+{
+  "name": "@lexui/react",
+  "version": "0.1.0",
+  "description": "Accessible React components for the LexUI design system",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": ["**/*.css"],
+  "files": ["dist", "README.md"],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "types": "./dist/index.d.ts",
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.6.0",
+    "lucide-react": "^1.27.0"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && node ../../scripts/copy-assets.mjs src/styles.css dist/styles.css",
+    "typecheck": "tsc --noEmit"
+  },
+  "publishConfig": { "access": "public" }
+}
