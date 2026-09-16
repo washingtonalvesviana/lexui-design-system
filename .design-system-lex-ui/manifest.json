@@ -1,7 +1,7 @@
 {
   "$schema": "https://lexui.dev/schema/manifest.json",
   "name": "LexUI",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "status": "complete-catalog",
   "theme": "lex-default",
   "brand": {

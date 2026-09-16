@@ -41,23 +41,23 @@ npx lexui check
 
 ## Instalar em outro projeto ou servidor
 
-Os tarballs de cada release ficam versionados em `artifacts/npm/` (versão atual **0.4.0**), então a instalação não depende de um registry privado. Instale os pacotes no projeto consumidor, junto dos peers:
+Os tarballs de cada release ficam versionados em `artifacts/npm/` (versão atual **0.5.0**), então a instalação não depende de um registry privado. Instale os pacotes no projeto consumidor, junto dos peers:
 
 ```bash
 npm install react@19 react-dom@19
 npm install \
-  ./lexui/artifacts/npm/lexui-tokens-0.4.0.tgz \
-  ./lexui/artifacts/npm/lexui-react-0.4.0.tgz \
-  ./lexui/artifacts/npm/lexui-charts-0.4.0.tgz \
-  ./lexui/artifacts/npm/lexui-flow-0.4.0.tgz
-npm install --save-dev ./lexui/artifacts/npm/lexui-cli-0.4.0.tgz
+  ./lexui/artifacts/npm/lexui-tokens-0.5.0.tgz \
+  ./lexui/artifacts/npm/lexui-react-0.5.0.tgz \
+  ./lexui/artifacts/npm/lexui-charts-0.5.0.tgz \
+  ./lexui/artifacts/npm/lexui-flow-0.5.0.tgz
+npm install --save-dev ./lexui/artifacts/npm/lexui-cli-0.5.0.tgz
 npx lexui init
 ```
 
 O caminho pode ser local (como acima) ou direto do repositório, por URL:
 
 ```bash
-npm install https://raw.githubusercontent.com/washingtonalvesviana/lexui-design-system/main/artifacts/npm/lexui-react-0.4.0.tgz
+npm install https://raw.githubusercontent.com/washingtonalvesviana/lexui-design-system/main/artifacts/npm/lexui-react-0.5.0.tgz
 ```
 
 Para gerar os tarballs do zero a partir do código: `pnpm install && pnpm build && pnpm pack`. A instalação é autossuficiente: nenhum pacote `@lexui/*` depende dos outros em tempo de resolução, e a fonte Inter (normal e itálica) já vem embutida em `@lexui/tokens`.

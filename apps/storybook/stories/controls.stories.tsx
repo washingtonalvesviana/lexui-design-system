@@ -26,7 +26,7 @@ export const ProgressoECarregamento: Story = {
 }
 
 export const Abas: Story = {
-  render: () => <Tabs defaultValue="overview"><TabsList><TabsTrigger value="overview">Visão geral</TabsTrigger><TabsTrigger value="security">Segurança</TabsTrigger><TabsTrigger value="billing">Cobrança</TabsTrigger></TabsList><TabsContent value="overview">Dados gerais da organização.</TabsContent><TabsContent value="security">Políticas de senha e autenticação.</TabsContent><TabsContent value="billing">Plano, pagamento e faturas.</TabsContent></Tabs>,
+  render: () => <Tabs defaultValue="overview"><TabsList><TabsTrigger value="overview" count={4}>Visão geral</TabsTrigger><TabsTrigger value="security" count={2}>Segurança</TabsTrigger><TabsTrigger value="billing" count={1202}>Cobrança</TabsTrigger></TabsList><TabsContent value="overview">Dados gerais da organização.</TabsContent><TabsContent value="security">Políticas de senha e autenticação.</TabsContent><TabsContent value="billing">Plano, pagamento e faturas.</TabsContent></Tabs>,
 }
 
 export const IdentidadeEContexto: Story = {

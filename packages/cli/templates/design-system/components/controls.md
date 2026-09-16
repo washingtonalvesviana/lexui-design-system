@@ -10,7 +10,12 @@ Use para ativar ou desativar uma configuração com efeito imediato. Nunca rende
 
 ## Tabs
 
-Use para alternar entre painéis relacionados no mesmo contexto. Não use Tabs como substituto para navegação profunda entre páginas. Em mobile, a lista deve permitir rolagem horizontal.
+Use para alternar entre painéis relacionados no mesmo contexto. Não use Tabs como substituto para navegação profunda entre páginas. Em mobile, a lista deve permitir rolagem horizontal (a barra fica oculta; o conteúdo cortado é a dica de rolagem).
+
+- Rótulos são sempre exibidos em maiúsculas com `letter-spacing`, para diferenciar a navegação de painéis do texto de conteúdo.
+- A aba ativa recebe fundo tintado com `color-mix` sobre `--lex-primary` e mantém o indicador inferior; a aba em hover usa `--lex-surface-2`. Não ajuste essas cores na aplicação.
+- `TabsTrigger` aceita `count` para contadores (ex.: `count={1202}`), exibidos em pílula com `--lex-surface-3` e números tabulares. Use para quantidade de itens do painel; para status semântico use `Badge` e para valores use texto.
+- O contador faz parte do conteúdo do botão e é anunciado junto do rótulo ("Cobrança 1202"). Ele não substitui o rótulo: nunca deixe uma aba só com número.
 
 ## Tooltip
 

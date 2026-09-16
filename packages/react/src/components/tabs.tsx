@@ -7,14 +7,17 @@ import { cx } from "../lib/cx.js"
 export const Tabs = BaseTabs.Root
 
 type TabsListProps = Omit<React.ComponentProps<typeof BaseTabs.List>, "className"> & { className?: string }
-type TabsTriggerProps = Omit<React.ComponentProps<typeof BaseTabs.Tab>, "className"> & { className?: string }
+type TabsTriggerProps = Omit<React.ComponentProps<typeof BaseTabs.Tab>, "className"> & { className?: string; count?: React.ReactNode }
 type TabsPanelProps = Omit<React.ComponentProps<typeof BaseTabs.Panel>, "className"> & { className?: string }
 
 export function TabsList({ className, children, ...props }: TabsListProps) {
   return <BaseTabs.List className={cx("lex-tabs__list", className)} {...props}>{children}<BaseTabs.Indicator className="lex-tabs__indicator" /></BaseTabs.List>
 }
-export function TabsTrigger({ className, ...props }: TabsTriggerProps) {
-  return <BaseTabs.Tab className={cx("lex-tabs__trigger", className)} {...props} />
+export function TabsTrigger({ className, count, children, ...props }: TabsTriggerProps) {
+  return <BaseTabs.Tab className={cx("lex-tabs__trigger", className)} {...props}>
+    {children}
+    {count === undefined || count === null ? null : <span className="lex-tabs__count">{count}</span>}
+  </BaseTabs.Tab>
 }
 export function TabsContent({ className, ...props }: TabsPanelProps) {
   return <BaseTabs.Panel className={cx("lex-tabs__content", className)} {...props} />

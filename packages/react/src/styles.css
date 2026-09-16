@@ -121,8 +121,13 @@
   .lex-empty p { font-size: var(--lex-text-sm); margin: var(--lex-space-1) 0 0; max-width: 30rem; }
   .lex-empty__action { margin-top: var(--lex-space-5); }
 
-  .lex-tabs__list { border-bottom: 1px solid var(--lex-border); display: flex; gap: var(--lex-space-1); overflow-x: auto; overflow-y: hidden; position: relative; }
-  .lex-tabs__trigger { background: transparent; border: 0; color: var(--lex-muted); cursor: pointer; flex: none; font-size: var(--lex-text-sm); font-weight: 650; min-height: var(--lex-control-md); padding: 0 var(--lex-space-3); }
+  .lex-tabs__list { border-bottom: 1px solid var(--lex-border); display: flex; gap: var(--lex-space-1); overflow-x: auto; overflow-y: hidden; position: relative; scrollbar-width: none; }
+  .lex-tabs__list::-webkit-scrollbar { display: none; }
+  .lex-tabs__trigger { align-items: center; background: transparent; border: 0; border-radius: var(--lex-radius-sm) var(--lex-radius-sm) 0 0; color: var(--lex-muted); cursor: pointer; display: inline-flex; flex: none; font-size: var(--lex-text-sm); font-weight: 650; gap: var(--lex-space-2); letter-spacing: .04em; min-height: var(--lex-control-md); padding: 0 var(--lex-space-3); text-transform: uppercase; }
+  .lex-tabs__trigger:hover { background: var(--lex-surface-2); color: var(--lex-foreground); }
+  .lex-tabs__trigger[data-active] { background: color-mix(in srgb, var(--lex-primary) 12%, transparent); color: var(--lex-foreground); }
+  .lex-tabs__count { background: var(--lex-surface-3); border-radius: var(--lex-radius-sm); color: var(--lex-muted); font-family: var(--lex-font-mono); font-size: var(--lex-text-xs); font-variant-numeric: tabular-nums; font-weight: 500; padding: 0 var(--lex-space-1); }
+  .lex-tabs__trigger[data-active] .lex-tabs__count { background: color-mix(in srgb, var(--lex-primary) 20%, transparent); color: var(--lex-foreground); }
   .lex-tabs__trigger[data-active] { color: var(--lex-foreground); }
   .lex-tabs__indicator { background: var(--lex-primary); bottom: -1px; height: 2px; left: var(--active-tab-left); pointer-events: none; position: absolute; transition: left var(--lex-duration-slow) var(--lex-ease-standard), width var(--lex-duration-slow) var(--lex-ease-standard); width: var(--active-tab-width); }
   .lex-tabs__content { padding: var(--lex-space-5) 0; }
