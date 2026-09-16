@@ -1,0 +1,5 @@
+interface:
+  display_name: "LexUI Design System"
+  short_description: "Construa interfaces consistentes com o LexUI"
+  brand_color: "#5167C8"
+  default_prompt: "Use $lexui para criar esta interface seguindo os componentes, tokens e padrões oficiais."
