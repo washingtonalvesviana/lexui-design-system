@@ -9,13 +9,14 @@
     "typecheck": "turbo typecheck",
     "storybook": "pnpm --filter @lexui/storybook dev",
     "demo": "pnpm --filter @lexui/demo-saas dev",
-    "lexui:check": "node packages/cli/bin/lexui.mjs check",
+    "lexui:check": "node packages/cli/bin/lexui.mjs check && node scripts/check-demo-classes.mjs",
     "lexui:doctor": "node packages/cli/bin/lexui.mjs doctor",
     "lexui:info": "node packages/cli/bin/lexui.mjs info",
     "lexui:build": "node packages/cli/bin/lexui.mjs build",
     "test": "pnpm --filter @lexui/tokens build && pnpm --filter @lexui/react build && pnpm --filter @lexui/charts build && node --test tests/*.test.mjs",
     "pack": "node scripts/pack-packages.mjs",
-    "icons:reference": "node scripts/collect-icons.mjs"
+    "icons:reference": "node scripts/collect-icons.mjs",
+    "check:demo-classes": "node scripts/check-demo-classes.mjs"
   },
   "devDependencies": {
     "turbo": "latest",

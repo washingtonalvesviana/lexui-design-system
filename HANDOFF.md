@@ -1,6 +1,6 @@
 # Handoff — LexUI (dw-lex-ui)
 
-Última atualização: 2026-09-16 03:15 UTC. Documento de memória para retomar em outra sessão.
+Última atualização: 2026-09-16 03:35 UTC. Documento de memória para retomar em outra sessão.
 
 ## 1. Estado geral
 
@@ -8,13 +8,15 @@
   Pacotes: `@lexui/tokens`, `@lexui/react`, `@lexui/charts`, `@lexui/cli` · Apps: `demo-saas` (Next.js) e `storybook`.
 - Ciclo do mapeamento Bootstrap→LexUI **concluído** (tokens z-index/gutter, 7 módulos novos, Grid, Navbar, ListGroup, Figure/Image, CloseButton, Offcanvas/Drawer, ScrollSpy, FloatingLabel, utilities `lex-utility-*`, docs, stories, registry CLI). Tarballs 0.2.0 em `artifacts/npm/`.
 - Nesta sessão foram corrigidos 11 defeitos visuais do demo/catalogo (lista em §5).
-- Última validação verde: typecheck 9/9 · build 6/6 · lexui:check 198 arquivos, 0 violações.
+- **Sessão seguinte (03:15–03:35)**: working tree commitado (§2) + varredura preventiva de classes concluída (§7).
+- Última validação verde: typecheck 9/9 · build 6/6 · lexui:check 199 arquivos, 0 violações + 183 classes demo-* conferidas.
+- Componentes novos do pacote 0.2.0: `packages/react/src/components/{grid,navbar,list-group,figure,image,close-button}.tsx`, `scrollspy.ts`.
 
-## 2. ⚠️ PRIORIDADE 1 — trabalho sem commit
+## 2. ✅ RESOLVIDO — working tree commitado
 
-- O repositório tem **1 commit de lançamento só**. Tudo o mais (73 arquivos modificados + 24 novos, ~1.940 linhas) está **solto no working tree**. Risco real de perda total.
-- Recomendado: revisitar o `git status` e commitar (ex.: `feat: bootstrap coverage 0.2.0 + demo fixes`). Nunca assumir que "já está salvo".
-- Arquivos novos principais: `packages/react/src/components/{grid,navbar,list-group,figure,image,close-button}.tsx`, `scrollspy.ts`, `foundations/grid.md` (live + template), `iconography.md` (template), `components/design-system/icons-reference.ts` (gerado), `scripts/collect-icons.mjs`.
+- `35f1840` launch → `662d75f` (feat: bootstrap coverage 0.2.0 + demo fixes, 100 arquivos) → `8739057` (fix(demo): demo-chart-card + demo-chat-toolbar-spacer).
+- **Push pendente**: `main` estava à frente de `origin/main`; conferir com `git status -sb` (ver §9).
+- Único item fora do git: `.agents/skills/lexui/` — cópia byte-idêntica de `packages/cli/templates/skills/lexui` (regenerável); decisão sobre versionar ou ignorar segue aberta.
 
 ## 3. Ambiente — armadilhas que já derrubaram sessões
 
@@ -22,7 +24,9 @@
   `export PATH=/root/.nvm/versions/node/v24.21.0/bin:$PATH` (v24.21.0 via nvm).
 - **Produção**: Next.js em `127.0.0.1:3100` (build estático em `apps/demo-saas/.next`), nginx proxy em `/etc/nginx/sites-available/lexui.datawiseservice.com`, site público **https://lexui.datawiseservice.com**.
 - **Reiniciar produção** (se a porta 3100 estiver parada):
-  `ss -tln | grep 3100` → matar o pid → `cd apps/demo-saas && PATH=/root/.nvm/versions/node/v24.21.0/bin:$PATH node_modules/.bin/next start -p 3100` (rodar como processo persistente de background).
+  `ss -tln | grep 3100` → **matar o pid antes** (um `next start` novo falha em silêncio se a porta estiver ocupada; várias tentativas de background já morreram assim) → depois iniciar como processo persistente:
+  `cd apps/demo-saas && PATH=/root/.nvm/versions/node/v24.21.0/bin:$PATH node_modules/.bin/next start -p 3100` (background persistente, com ready na porta 3100). Estado atual: pid 4167113.
+- **Chrome/CDP travado**: se um script CDP pendurar, é o `close()` não encerrando — usar `process.exit(0)` no fim; se der `Promise was collected`, a navegação foi reusada e a promise da página se perdeu (reavaliar sem `awaitPromise`).
 - **Storybook** (só local): `export PATH=...node24... && pnpm storybook` → http://127.0.0.1:6006.
 - Verificação visual rápida via Chrome headless + CDP: `google-chrome --headless=new --no-sandbox --remote-debugging-port=9333 --user-data-dir=/tmp/chrome-prof about:blank` + Node ≥22 (WebSocket nativo). `--force-dark-mode` ou `Emulation.setEmulatedMedia` para dark.
 
@@ -32,7 +36,7 @@
 export PATH=/root/.nvm/versions/node/v24.21.0/bin:$PATH
 pnpm typecheck      # 9 tarefas (turbo)
 pnpm build          # 6 tarefas
-pnpm lexui:check    # CLI valida arquivos do design system
+pnpm lexui:check    # CLI valida arquivos do design system + classes demo-*/lex-utility-* (§7)
 ```
 Depois: rebuild mudou → reiniciar o next (item 3). Usuário precisa de **hard refresh** no navegador (CSS antigo em cache causa falsos positivos).
 
@@ -57,10 +61,14 @@ Depois: rebuild mudou → reiniciar o next (item 3). Usuário precisa de **hard 
 - Referência é **gerada**: `pnpm icons:reference` (→ `scripts/collect-icons.mjs` → `apps/demo-saas/components/design-system/icons-reference.ts`). Rodar sempre que importarem novo ícone.
 - Story `Iconografia` em `apps/storybook/stories/foundations.stories.tsx`.
 
-## 7. Padrão raiz que se repetiu (importante para a próxima sessão)
+## 7. ✅ RESOLVIDO — classes órfãs do demo (guarda automática)
 
-8 dos 11 bugs eram o MESMO: **exemplos do demo referenciavam classes CSS inexistentes** (`demo-grid-cell`, `demo-aspect-preview`, `lex-utility-flex`…) — criadas na sessão anterior apenas no app de teste isolado, nunca no app real.
-**Tarefa preventiva recomendada**: varrer `apps/demo-saas/components/design-system/component-example.tsx` (e `demo.css`) validando toda classe `demo-*` e `lex-utility-*` contra `packages/react/src/styles.css` + `app/demo.css`.
+- 8 dos 11 bugs de §5 eram o MESMO: **exemplos referenciavam classes CSS inexistentes** (`demo-grid-cell`, `demo-aspect-preview`, `lex-utility-flex`…), criadas só no app de teste isolado.
+- Varredura feita: 183 classes `demo-*`/`lex-utility-*` usadas em `apps/demo-saas` + `apps/storybook`, todas definidas. Restavam apenas **2 órfãs** (nenhuma quebrava layout de forma óbvia, mas ambas eram reais):
+  - `demo-chat-toolbar-spacer` → sem `flex: 1 1 auto` o botão Enviar do chat flutuante colava no Anexar (270px de espaço morto). Medido via CDP em 1440px e 390px, claro/escuro.
+  - `demo-chart-card` → sem `min-width: 0` no card/`__content` do gráfico do dashboard (mesmo guard da galeria).
+- **Guarda permanente**: `scripts/check-demo-classes.mjs` (falha com exit 1 e aponta arquivo:linha) agora roda dentro de `pnpm lexui:check`; isolado em `pnpm check:demo-classes`.
+- Nota de implementação: não há `className` dinâmico (`${}`) nem injeção via `classList`/`cx` no demo, então a cobertura estática é total. Cuidado ao usar `\b` no regex de classes — ele casa prefixos (`demo-chat-` em `demo-chat-agent`) e gera falso positivo; o script compara tokens completos e aceita `_` (BEM `__element`).
 
 ## 8. Decisões de design fixadas (não reabrir sem motivo)
 
@@ -71,7 +79,8 @@ Depois: rebuild mudou → reiniciar o next (item 3). Usuário precisa de **hard 
 
 ## 9. Próximos passos sugeridos
 
-1. Commit do working tree (§2).
-2. Varredura preventiva de classes (§7).
+1. `git push` (§2) — os 3 commits locais ainda não subiram para `origin/main`.
+2. Decidir sobre `.agents/` (§2): versionar ou adicionar ao `.gitignore`.
 3. Se houver novos componentes (ex.: outros do mapeamento Bootstrap), seguir o checklist do AGENTS.md: componente + tokens + docs (live/template CLI em par) + story + exemplo no demo + registry do CLI.
 4. Tarballs: `pnpm pack` / `node scripts/pack-packages.mjs` quando a API mudar de novo (bump de versão + `artifacts/npm/`).
+5. Antes de concluir qualquer mudança de UI: `pnpm typecheck && pnpm build && pnpm lexui:check` (agora inclui a guarda de classes) e, se o build mudou, reiniciar o next (§3).
