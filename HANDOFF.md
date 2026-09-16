@@ -9,7 +9,7 @@
 - Ciclo do mapeamento Bootstrap→LexUI **concluído** (tokens z-index/gutter, 7 módulos novos, Grid, Navbar, ListGroup, Figure/Image, CloseButton, Offcanvas/Drawer, ScrollSpy, FloatingLabel, utilities `lex-utility-*`, docs, stories, registry CLI). Tarballs 0.2.0 em `artifacts/npm/`.
 - Nesta sessão foram corrigidos 11 defeitos visuais do demo/catalogo (lista em §5).
 - **Sessão seguinte (03:15–03:52)**: working tree commitado (§2), varredura preventiva de classes concluída (§7) e biblioteca de ícones ampliada com vocabulário jurídico aprovado (§6).
-- Última validação verde: typecheck 9/9 · build 6/6 · lexui:check 202 arquivos, 0 violações + 183 classes demo-* conferidas.
+- Última validação verde: typecheck 9/9 · build 6/6 · lexui:check 203 arquivos, 0 violações + 184 classes demo-* conferidas + 118 ícones sem alias duplicado.
 - Componentes novos do pacote 0.2.0: `packages/react/src/components/{grid,navbar,list-group,figure,image,close-button}.tsx`, `scrollspy.ts`.
 
 ## 2. ✅ RESOLVIDO — working tree commitado
@@ -57,16 +57,16 @@ Depois: rebuild mudou → reiniciar o next (item 3). Usuário precisa de **hard 
 ## 6. Biblioteca de ícones
 
 - **Lucide-react 1.27.0** é a família oficial (2.007 ícones; regras em `foundations/iconography.md`, live+template). Não misturar famílias — Bootstrap Icons foi avaliado e descartado: o caminho para um glifo ausente é equivalente Lucide, composição com componentes existentes ou vendorizar um ícone próprio no `@lexui/react`.
-- Página `/design-system/components/iconography` (Fundamentos): tamanhos, semântica, ações-only e a **referência única e alfabética** com **121 ícones** — 101 em uso e 20 do vocabulário aprovado (marcados `aprovado`, com conceito e orientação no tooltip).
+- Página `/design-system/components/iconography` (Fundamentos): tamanhos, semântica, ações-only e a **referência única e alfabética** com **118 ícones** — 99 em uso e 19 do vocabulário aprovado (marcados `aprovado`, com conceito e orientação no tooltip). Nome do ícone em light 300, 20% menor (`calc(--lex-text-sm * .8)`) e 70% de foreground; glifo em 18px e cor cheia, para o ícone ser o destaque da célula.
 - Duas fontes, manifesto **gerado** por `pnpm icons:reference` (→ `scripts/collect-icons.mjs` → `apps/demo-saas/components/design-system/icons-reference.ts`), nunca editado à mão:
   1. imports de `lucide-react` no repositório (contagem por arquivo);
-  2. `.design-system-lex-ui/foundations/icon-vocabulary.json` (live + template do CLI em par) — vocabulário jurídico aprovado: 24 entradas com `concept` e `use`.
+  2. `.design-system-lex-ui/foundations/icon-vocabulary.json` (live + template do CLI em par) — vocabulário jurídico aprovado: 23 entradas com `concept` e `use`.
 - **Correção no gerador**: o arquivo `icons-reference.ts` era escaneado por ele mesmo, inflando todo contador em +1 (Landmark aparecia como 2). Agora o gerador ignora o próprio artefato, e ícones só-vocabulário ficam em `uses: 0` (sem loop de auto-contagem).
+- **Guarda de aliases**: `node scripts/collect-icons.mjs --check` resolve o nome canônico de cada ícone no `lucide-react` e falha se dois nomes apontarem para o mesmo glifo (roda dentro de `pnpm lexui:check`). Foram corrigidos 3 casos que já existiam: `AlertTriangle`→`TriangleAlert`, `CheckCircle2`→`CircleCheck` (demo, storybook, `[slug]/page.tsx` e `toast.tsx` do pacote react) e `FileSignature`→`FilePenLine` no vocabulário.
 - Uso real no demo: `/calendar` usa `Gavel` (audiência), `Hourglass` (prazo) e `Handshake` (acordo) dentro do `Badge`, junto de cor e texto.
 - Story `Iconografia` em `apps/storybook/stories/foundations.stories.tsx`.
 
 ## 7. ✅ RESOLVIDO — classes órfãs do demo (guarda automática)
-
 - 8 dos 11 bugs de §5 eram o MESMO: **exemplos referenciavam classes CSS inexistentes** (`demo-grid-cell`, `demo-aspect-preview`, `lex-utility-flex`…), criadas só no app de teste isolado.
 - Varredura feita: 183 classes `demo-*`/`lex-utility-*` usadas em `apps/demo-saas` + `apps/storybook`, todas definidas. Restavam apenas **2 órfãs** (nenhuma quebrava layout de forma óbvia, mas ambas eram reais):
   - `demo-chat-toolbar-spacer` → sem `flex: 1 1 auto` o botão Enviar do chat flutuante colava no Anexar (270px de espaço morto). Medido via CDP em 1440px e 390px, claro/escuro.
@@ -80,6 +80,8 @@ Depois: rebuild mudou → reiniciar o next (item 3). Usuário precisa de **hard 
 - Drawer/Sheet: uma primitiva (Sheet é alias), `bottom` é default; mobile <640px colapsa tudo para bottom sheet (media query no `packages/react/src/styles.css`).
 - Ícones: Lucide; 16/18/20px; Avatar para pessoas; `aria-label` obrigatório em ação-only; mesma ícone = mesmo conceito.
 - Tokens: nada de hex/spaços arbitrários em apps demo; variantes tintadas usam `color-mix()` com tokens.
+- Tipografia: uma única família variável (Inter) com pesos `light` 300, `regular` 400, `medium` 500, `semibold` 650, `bold` 750 e `black` 900 expostos por `weight` em `Text`/`Heading`, e `italic` para o estilo. `@lexui/tokens` publica a face **itálica** self-hosted (`inter-latin-italic.woff2`, OFL já coberto pelo `inter.LICENSE`), então light itálico é real — nunca oblíquo sintetizado. Não ajustar `font-weight`/`font-style` por CSS na aplicação.
+- Ícones (reforço): um nome por glifo. Nomes que são alias no Lucide (`AlertTriangle`, `CheckCircle2`, `FileSignature`…) não entram — a guarda de `collect-icons.mjs --check` falha.
 
 ## 9. Próximos passos sugeridos
 
@@ -88,4 +90,4 @@ Depois: rebuild mudou → reiniciar o next (item 3). Usuário precisa de **hard 
 3. Uso real do vocabulário novo nas telas (hoje só `/calendar` usa `Gavel`/`Hourglass`/`Handshake`): candidatos naturais são carteira de processos, autos sigilosos e honorários, quando essas telas existirem.
 4. Se houver novos componentes (ex.: outros do mapeamento Bootstrap), seguir o checklist do AGENTS.md: componente + tokens + docs (live/template CLI em par) + story + exemplo no demo + registry do CLI.
 5. Tarballs: `pnpm pack` / `node scripts/pack-packages.mjs` quando a API mudar de novo (bump de versão + `artifacts/npm/`).
-6. Antes de concluir qualquer mudança de UI: `pnpm typecheck && pnpm build && pnpm lexui:check` (agora inclui a guarda de classes) e, se o build mudou, reiniciar o next (§3).
+6. Antes de concluir qualquer mudança de UI: `pnpm typecheck && pnpm build && pnpm lexui:check` (agora inclui a guarda de classes e a de aliases de ícone) e, se o build mudou, reiniciar o next (§3).

@@ -1,4 +1,5 @@
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from "node:fs"
+import { createRequire } from "node:module"
 import { dirname, join, relative } from "node:path"
 import { fileURLToPath } from "node:url"
 
@@ -69,6 +70,55 @@ const body =
       `  { icon: ${name}, name: "${name}", uses: ${uses}${concept ? `, concept: ${JSON.stringify(concept)}` : ""}${use ? `, use: ${JSON.stringify(use)}` : ""} },`)
     .join("\n") +
   "\n]\n"
+
+function resolveGlyphs(names) {
+  let entryPath
+  try {
+    const require = createRequire(join(repoRoot, "apps/demo-saas/package.json"))
+    entryPath = join(dirname(require.resolve("lucide-react/package.json")), "dist/esm/lucide-react.mjs")
+  } catch {
+    return null
+  }
+  if (!existsSync(entryPath)) return null
+  const canonical = new Map()
+  for (const line of readFileSync(entryPath, "utf8").split("\n")) {
+    const match = line.match(/^export \{([^}]+)\} from ["']\.\/icons\/([^"']+)["']/)
+    if (!match) continue
+    const glyph = match[2].replace(/\.mjs$/, "")
+    for (const part of match[1].split(",")) {
+      const name = part.split(" as ").pop().trim()
+      if (/Icon$/.test(name) || name.startsWith("Lucide")) continue
+      if (!canonical.has(name)) canonical.set(name, glyph)
+    }
+  }
+  const byGlyph = new Map()
+  for (const name of names) {
+    const glyph = canonical.get(name)
+    if (!glyph) continue
+    if (!byGlyph.has(glyph)) byGlyph.set(glyph, [])
+    byGlyph.get(glyph).push(name)
+  }
+  return byGlyph
+}
+
+function reportAliases(names) {
+  const byGlyph = resolveGlyphs(names)
+  if (!byGlyph) return []
+  return [...byGlyph.entries()].filter(([, group]) => group.length > 1)
+}
+
+const aliases = reportAliases(entries.map(({ name }) => name))
+if (aliases.length) {
+  console.error("✗ nomes diferentes apontando para o mesmo glifo do Lucide (use o canônico):")
+  for (const [glyph, group] of aliases) console.error(`  ${glyph}: ${group.join(" | ")}`)
+  console.error("O vocabulário e o repositório devem ter um único nome por conceito.")
+  process.exit(1)
+}
+
+if (process.argv.includes("--check")) {
+  console.log(`✓ ${entries.length} ícones sem nomes duplicados para o mesmo glifo`)
+  process.exit(0)
+}
 
 writeFileSync(outPath, header + imports + body)
 const used = entries.filter((entry) => entry.uses > 0).length

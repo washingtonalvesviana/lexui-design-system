@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Toast as BaseToast } from "@base-ui/react/toast"
-import { CheckCircle2, CircleAlert, Info, X } from "lucide-react"
+import { CircleCheck, CircleAlert, Info, X } from "lucide-react"
 
 export type ToastVariant = "info" | "success" | "warning" | "danger"
 export type ToastOptions = { title: React.ReactNode; description?: React.ReactNode; variant?: ToastVariant; timeout?: number }
@@ -11,7 +11,7 @@ const ToastContext = React.createContext<((options: ToastOptions) => string) | n
 
 function ToastViewport() {
   const manager = BaseToast.useToastManager<{ variant?: ToastVariant }>()
-  const icons = { info: Info, success: CheckCircle2, warning: CircleAlert, danger: CircleAlert }
+  const icons = { info: Info, success: CircleCheck, warning: CircleAlert, danger: CircleAlert }
   return <BaseToast.Portal><BaseToast.Viewport className="lex-toast__viewport">{manager.toasts.map((toast) => { const variant = toast.data?.variant ?? "info"; const Icon = icons[variant]; return <BaseToast.Root key={toast.id} toast={toast} className="lex-toast" data-variant={variant}><Icon className="lex-toast__icon" size={19} aria-hidden="true" /><BaseToast.Content className="lex-toast__content"><BaseToast.Title className="lex-toast__title" />{toast.description && <BaseToast.Description className="lex-toast__description" />}</BaseToast.Content><BaseToast.Close className="lex-toast__close" aria-label="Fechar aviso"><X size={16} /></BaseToast.Close></BaseToast.Root> })}</BaseToast.Viewport></BaseToast.Portal>
 }
 

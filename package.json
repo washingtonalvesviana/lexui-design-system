@@ -9,7 +9,7 @@
     "typecheck": "turbo typecheck",
     "storybook": "pnpm --filter @lexui/storybook dev",
     "demo": "pnpm --filter @lexui/demo-saas dev",
-    "lexui:check": "node packages/cli/bin/lexui.mjs check && node scripts/check-demo-classes.mjs",
+    "lexui:check": "node packages/cli/bin/lexui.mjs check && node scripts/check-demo-classes.mjs && node scripts/collect-icons.mjs --check",
     "lexui:doctor": "node packages/cli/bin/lexui.mjs doctor",
     "lexui:info": "node packages/cli/bin/lexui.mjs info",
     "lexui:build": "node packages/cli/bin/lexui.mjs build",

@@ -22,9 +22,10 @@ Os valores semânticos mudam entre os temas claro e escuro para preservar contra
 
 ## Tipografia e fontes
 
-- `--lex-font-sans`: Inter (variable, latin) — **self-hosted no pacote** (`@font-face` embutido em `theme.css`, OFL 1.1).
-- `--lex-font-mono`: Geist Mono (variable, latin) — também self-hosted (OFL 1.1).
+- `--lex-font-sans`: Inter (variable, latin) — **self-hosted no pacote** (`@font-face` embutido em `theme.css`, OFL 1.1). Publica duas faces: normal e itálica (`inter-latin.woff2` e `inter-latin-italic.woff2`), ambas com pesos 100–900.
+- `--lex-font-mono`: Geist Mono (variable, latin) — também self-hosted (OFL 1.1), somente face normal.
 - Escala: `--lex-text-xs/sm/md/lg/xl/2xl` (a 2xl usa `clamp` fluido).
+- Pesos documentados na API tipográfica: `light` 300, `regular` 400, `medium` 500, `semibold` 650, `bold` 750, `black` 900 (`weight` em `Text`/`Heading`; itálico via `italic`).
 - Importar `@lexui/tokens/theme.css` no entry já ativa as fontes; nenhuma aplicação precisa hospedá-las.
 
 ## Tema

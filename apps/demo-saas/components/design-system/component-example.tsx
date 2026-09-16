@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { AlertTriangle, BarChart3, Bell, CheckCircle2, Copy, FolderKanban, Grid2X2, LayoutDashboard, List, MessageCircle, MoreHorizontal, Plus, Search, Send, Settings, SlidersHorizontal, Star, Trash2, Users, XCircle } from "lucide-react"
+import { TriangleAlert, BarChart3, Bell, CircleCheck, Copy, FolderKanban, Grid2X2, LayoutDashboard, List, MessageCircle, MoreHorizontal, Plus, Search, Send, Settings, SlidersHorizontal, Star, Trash2, Users, XCircle } from "lucide-react"
 import { AreaChart, BarChart, DonutChart, HorizontalBarChart, LineChart, PieChart, Sparkline } from "@lexui/charts"
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger, Alert, AlertDialog, AlertDialogClose,
@@ -44,6 +44,15 @@ const roles = [
   { value: "admin", label: "Administrador", description: "Gerencia pessoas e configurações" },
   { value: "viewer", label: "Visualizador", description: "Acesso somente para leitura" },
 ]
+
+const textVariants = [
+  { weight: "light", label: "Light", spec: "300" },
+  { weight: "regular", label: "Regular", spec: "400" },
+  { weight: "medium", label: "Medium", spec: "500" },
+  { weight: "semibold", label: "Semibold", spec: "650" },
+  { weight: "bold", label: "Bold", spec: "750" },
+  { weight: "black", label: "Black", spec: "900" },
+] as const
 
 const tableRows = [
   { id: "1", project: "Portal financeiro", owner: "Ana", status: "Ativo" },
@@ -90,6 +99,12 @@ export function ComponentExample({ slug }: { slug: string }) {
     case "typography": return <>
       <ExampleFrame title="Hierarquia"><div className="demo-example-stack demo-example-copy"><Heading level={1} size="2xl">Título principal</Heading><Lead>Texto de abertura que apresenta o contexto da página.</Lead><Heading level={2} size="xl">Título de seção</Heading><Text>Conteúdo principal com leitura confortável e contraste consistente.</Text><Text size="sm" tone="muted">Informação auxiliar com menor ênfase visual.</Text></div></ExampleFrame>
       <ExampleFrame title="Conteúdo técnico"><div className="demo-example-stack demo-example-copy"><Text>Execute <InlineCode>npm run lexui:check</InlineCode> antes de concluir.</Text><Text>Atalho principal: <KeyboardKey>Ctrl K</KeyboardKey></Text><Blockquote>Reutilize componentes públicos antes de criar uma nova abstração.</Blockquote></div></ExampleFrame>
+      <ExampleFrame title="Pesos" description="Uma única família variável: light, regular, medium, semibold, bold e black, sem trocar a fonte.">
+        <div className="demo-example-stack demo-example-copy">{textVariants.map(({ weight, label, spec }) => <div className="demo-type-variant" key={weight}><Text size="lg" weight={weight}>{label}</Text><Text size="xs" tone="muted">{spec}</Text></div>)}</div>
+      </ExampleFrame>
+      <ExampleFrame title="Itálico" description="Itálico e light itálico usam a face itálica self-hosted do pacote de tokens.">
+        <div className="demo-example-stack demo-example-copy"><Text size="lg" italic>Referência doutrinária em itálico, no peso regular.</Text><Text size="lg" weight="light" italic>Light itálico para destaque leve, sem competir com o texto.</Text><Heading level={3} size="lg" weight="light" italic>Ementa e citação longa</Heading></div>
+      </ExampleFrame>
     </>
     case "theme-toggle": return <ExampleFrame title="Tema global" description="Clique para alternar toda a aplicação entre claro e escuro."><div className="demo-example-row"><ThemeToggle /><Text size="sm" tone="muted">A escolha é persistida no navegador.</Text></div></ExampleFrame>
     case "field": return <><ExampleFrame title="Campo completo"><div className="demo-example-form"><Field label="E-mail" htmlFor="field-email" description="Usaremos para notificações importantes."><Input id="field-email" type="email" placeholder="nome@empresa.com" /></Field><Field label="Código" htmlFor="field-error" error="O código informado é inválido."><Input id="field-error" aria-invalid="true" defaultValue="123" /></Field></div></ExampleFrame></>
@@ -157,8 +172,8 @@ export function ComponentExample({ slug }: { slug: string }) {
       </ExampleFrame>
       <ExampleFrame title="Estados e entidades" description="Cor, ícone e texto juntos; nunca dependa somente da cor.">
         <div className="demo-example-row">
-          <div className="demo-example-stack"><CheckCircle2 size={18} className="lex-utility-text-success" aria-hidden="true" /><Text size="xs" tone="muted">Concluído</Text></div>
-          <div className="demo-example-stack"><AlertTriangle size={18} className="lex-utility-text-warning" aria-hidden="true" /><Text size="xs" tone="muted">Aguardando</Text></div>
+          <div className="demo-example-stack"><CircleCheck size={18} className="lex-utility-text-success" aria-hidden="true" /><Text size="xs" tone="muted">Concluído</Text></div>
+          <div className="demo-example-stack"><TriangleAlert size={18} className="lex-utility-text-warning" aria-hidden="true" /><Text size="xs" tone="muted">Aguardando</Text></div>
           <div className="demo-example-stack"><XCircle size={18} className="lex-utility-text-danger" aria-hidden="true" /><Text size="xs" tone="muted">Falhou</Text></div>
           <div className="demo-entity-icon"><FolderKanban size={16} aria-hidden="true" /></div>
         </div>

@@ -154,10 +154,11 @@
   .demo-chat-input-row .lex-textarea { min-height: 7rem; }
 }
 
-.demo-icon-ref-grid { display: grid; gap: var(--lex-space-2); grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); }
-.demo-icon-ref { align-items: center; background: var(--lex-surface-2); border: 1px solid var(--lex-border); border-radius: var(--lex-radius-sm); color: var(--lex-foreground); display: flex; font-size: var(--lex-text-sm); font-weight: 400; gap: var(--lex-space-2); min-height: var(--lex-control-md); padding: var(--lex-space-2) var(--lex-space-3); }
-.demo-icon-ref > span { color: color-mix(in srgb, var(--lex-foreground) 70%, transparent); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.demo-icon-ref-grid { display: grid; gap: var(--lex-space-2); grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); }.demo-icon-ref { align-items: center; background: var(--lex-surface-2); border: 1px solid var(--lex-border); border-radius: var(--lex-radius-sm); color: var(--lex-foreground); display: flex; font-size: var(--lex-text-sm); font-weight: 300; gap: var(--lex-space-2); min-height: var(--lex-control-md); padding: var(--lex-space-2) var(--lex-space-3); }
+.demo-icon-ref > span { color: color-mix(in srgb, var(--lex-foreground) 70%, transparent); font-size: calc(var(--lex-text-sm) * .8); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .demo-icon-ref small { color: var(--lex-muted); flex: none; font-weight: 500; margin-left: auto; }
+.demo-type-variant { align-items: baseline; display: flex; gap: var(--lex-space-3); }
+.demo-type-variant > .lex-text:last-child { flex: none; min-width: 2.5rem; text-align: right; }
 .demo-aspect-preview { background: var(--lex-surface-2); border: 1px solid var(--lex-border); border-radius: var(--lex-radius-md); overflow: hidden; }
 .demo-aspect-preview > div { align-items: center; background: color-mix(in srgb, var(--lex-primary) 7%, var(--lex-surface-1)); color: var(--lex-foreground); display: flex; font-size: var(--lex-text-sm); font-weight: 650; gap: var(--lex-space-3); height: 100%; padding: var(--lex-space-5); }
 .demo-grid-cell { background: var(--lex-surface-2); border: 1px solid var(--lex-border); border-radius: var(--lex-radius-sm); color: var(--lex-foreground); display: flex; align-items: center; font-size: var(--lex-text-sm); min-height: var(--lex-control-lg); padding: var(--lex-space-2) var(--lex-space-3); }

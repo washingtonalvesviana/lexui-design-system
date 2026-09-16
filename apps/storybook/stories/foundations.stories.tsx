@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
-import { AlertTriangle, BarChart3, CheckCircle2, FolderKanban, Search, XCircle } from "lucide-react"
+import { TriangleAlert, BarChart3, CircleCheck, FolderKanban, Search, XCircle } from "lucide-react"
 import { Col, Container, Row } from "@lexui/react"
 
 const meta = { title: "Foundations/Identidade", parameters: { layout: "fullscreen" } } satisfies Meta
@@ -73,8 +73,8 @@ export const Iconografia: Story = {
             Semântica de estado (cor + ícone + texto, nunca só a cor)
           </p>
           <div style={{ display: "flex", gap: "var(--lex-space-6)" }}>
-            <CheckCircle2 size={18} style={{ color: "var(--lex-success)" }} aria-hidden="true" />
-            <AlertTriangle size={18} style={{ color: "var(--lex-warning)" }} aria-hidden="true" />
+            <CircleCheck size={18} style={{ color: "var(--lex-success)" }} aria-hidden="true" />
+            <TriangleAlert size={18} style={{ color: "var(--lex-warning)" }} aria-hidden="true" />
             <XCircle size={18} style={{ color: "var(--lex-danger)" }} aria-hidden="true" />
             <Search size={18} style={{ color: "var(--lex-primary)" }} aria-hidden="true" />
           </div>

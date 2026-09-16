@@ -10,7 +10,7 @@
   },
   "files": ["dist", "README.md"],
   "scripts": {
-    "build": "node ../../scripts/copy-assets.mjs src/index.css dist/index.css src/index.css dist/theme.css src/fonts/inter-latin.woff2 dist/fonts/inter-latin.woff2 src/fonts/geist-mono-latin.woff2 dist/fonts/geist-mono-latin.woff2 src/fonts/inter.LICENSE dist/fonts/inter.LICENSE src/fonts/geist-mono.LICENSE dist/fonts/geist-mono.LICENSE",
+    "build": "node ../../scripts/copy-assets.mjs src/index.css dist/index.css src/index.css dist/theme.css src/fonts/inter-latin.woff2 dist/fonts/inter-latin.woff2 src/fonts/inter-latin-italic.woff2 dist/fonts/inter-latin-italic.woff2 src/fonts/geist-mono-latin.woff2 dist/fonts/geist-mono-latin.woff2 src/fonts/inter.LICENSE dist/fonts/inter.LICENSE src/fonts/geist-mono.LICENSE dist/fonts/geist-mono.LICENSE",
     "typecheck": "node -e \"console.log('tokens CSS ready')\""
   },
   "publishConfig": { "access": "public" }
