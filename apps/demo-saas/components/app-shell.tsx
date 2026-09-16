@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { BarChart3, Blocks, CalendarDays, Component, CreditCard, FolderKanban, Menu, MessageCircle, Search, Settings, Upload, UserRound, UsersRound, X } from "lucide-react"
+import { Activity, BarChart3, Blocks, CalendarDays, Component, CreditCard, FolderKanban, Menu, MessageCircle, Search, Settings, Upload, UserRound, UsersRound, X } from "lucide-react"
 import * as React from "react"
 import { Button, CommandPalette, CommandShortcut, ThemeToggle, useCommandShortcut } from "@lexui/react"
 
@@ -13,6 +13,7 @@ const navigation = [
   { href: "/projects", label: "Projetos", icon: FolderKanban },
   { href: "/upload", label: "Arquivos", icon: Upload },
   { href: "/chat", label: "Chat IA", icon: MessageCircle },
+  { href: "/activity", label: "Atividade", icon: Activity },
   { href: "/profile", label: "Perfil", icon: UserRound },
   { href: "/settings", label: "Configurações", icon: Settings },
   { href: "/billing", label: "Cobrança", icon: CreditCard },

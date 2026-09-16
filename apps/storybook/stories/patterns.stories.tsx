@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 import { BarChart } from "@lexui/charts"
+import { Flow, FlowBackground, FlowControls, MarkerType, flowNodeTypes } from "@lexui/flow"
+import type { Edge, Node } from "@lexui/flow"
 import { Badge, Button, Card, CardContent, CardDescription, CardHeader, CardTitle, Field, Input, Table, TableCell, TableContainer, TableHead } from "@lexui/react"
 
 const meta = { title: "Patterns/Referências", parameters: { layout: "fullscreen" } } satisfies Meta
@@ -27,4 +29,36 @@ export const Crud: Story = {
 
 export const Login: Story = {
   render: () => <div className="lex-auth-preview"><Card style={{ width: "min(100%, 26rem)" }}><CardHeader><CardTitle>Entrar</CardTitle><CardDescription>Acesse sua conta LexUI.</CardDescription></CardHeader><CardContent><form className="lex-story-form"><Field label="E-mail" htmlFor="auth-email"><Input id="auth-email" type="email" /></Field><Field label="Senha" htmlFor="auth-password"><Input id="auth-password" type="password" /></Field><Button>Continuar</Button></form></CardContent></Card></div>,
+}
+
+const monitorNodes: Node[] = [
+  { id: "postgres", type: "lex", position: { x: 0, y: 0 }, data: { title: "PostgreSQL", meta: "24 tabelas" } },
+  { id: "arquivos", type: "lex", position: { x: 0, y: 160 }, data: { title: "Arquivos", meta: "PDF e CSV", tone: "accent" } },
+  { id: "consultas", type: "lex", position: { x: 320, y: 80 }, data: { title: "Consultas", description: "camada de acesso", tone: "primary", activity: "active" } },
+]
+
+const monitorEdges: Edge[] = [
+  { id: "postgres-consultas", source: "postgres", target: "consultas", animated: true, markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: "arquivos-consultas", source: "arquivos", target: "consultas", markerEnd: { type: MarkerType.ArrowClosed } },
+]
+
+export const AtividadeAoVivo: Story = {
+  render: () => (
+    <div style={{ display: "grid", gap: "var(--lex-space-4)", padding: "var(--lex-space-6)" }}>
+      <Card>
+        <CardHeader>
+          <CardTitle>Atividade ao vivo</CardTitle>
+          <CardDescription>Aresta animada marca o tráfego; o nó ativo recebe anel e rótulo “Em execução”.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div style={{ border: "1px solid var(--lex-border)", borderRadius: "var(--lex-radius-md)", height: "20rem", overflow: "hidden" }}>
+            <Flow nodes={monitorNodes} edges={monitorEdges} nodeTypes={flowNodeTypes} nodesConnectable={false} aria-label="Consultas em tempo real">
+              <FlowBackground />
+              <FlowControls />
+            </Flow>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  ),
 }

@@ -41,6 +41,8 @@
     --xy-background-pattern-dots-color-default: var(--lex-border);
     --xy-background-pattern-lines-color-default: var(--lex-border);
     --xy-background-pattern-cross-color-default: var(--lex-border);
+    --lex-flow-edge-dash: .375rem;
+    --lex-flow-edge-duration: var(--lex-duration-spin);
     background: var(--lex-surface-1);
     border: 1px solid var(--lex-border);
     border-radius: var(--lex-radius-md);
@@ -68,6 +70,7 @@
   .lex-flow .react-flow__edge-textbg { fill: var(--xy-edge-label-background-color); }
   .lex-flow .react-flow__arrowhead polyline { stroke: var(--xy-edge-stroke); fill: var(--xy-edge-stroke); }
   .lex-flow .react-flow__arrowhead polyline.arrowclosed { fill: var(--xy-edge-stroke); }
+  .lex-flow .react-flow__edge.animated path { animation-duration: var(--lex-flow-edge-duration); stroke-dasharray: var(--lex-flow-edge-dash); }
   .lex-flow .react-flow__connection-path { stroke: var(--xy-connectionline-stroke); stroke-width: var(--xy-connectionline-stroke-width); }
 
   .lex-flow .react-flow__controls { border: 1px solid var(--lex-border); border-radius: var(--lex-radius-md); box-shadow: var(--xy-controls-box-shadow); overflow: hidden; }
@@ -94,9 +97,25 @@
   .lex-flow-node[data-tone="warning"] { border-left-color: var(--lex-warning); }
   .lex-flow-node[data-tone="danger"] { border-left-color: var(--lex-danger); }
   .lex-flow-node[data-selected] { box-shadow: var(--lex-shadow-sm); }
+  .lex-flow-node[data-activity="active"] { border-color: var(--lex-primary); border-left-color: var(--lex-primary); box-shadow: 0 0 0 3px color-mix(in srgb, var(--lex-primary) 22%, transparent); }
+  .lex-flow-node[data-activity="active"] .lex-flow-node__title { color: var(--lex-primary); }
+  .lex-flow-node__header { align-items: center; display: flex; gap: var(--lex-space-2); justify-content: space-between; min-width: 0; }
+  .lex-flow-node__pulse { animation: lex-flow-pulse var(--lex-duration-pulse) var(--lex-ease-standard) infinite; background: var(--lex-primary); border-radius: 50%; flex: none; height: .375rem; width: .375rem; }
+  .lex-flow-node__activity { clip: rect(0, 0, 0, 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; white-space: nowrap; }
   .lex-flow-node__body { display: grid; gap: var(--lex-space-1); min-width: 0; }
   .lex-flow-node__title { font-size: var(--lex-text-sm); font-weight: 650; }
   .lex-flow-node__description { color: var(--lex-muted); font-size: var(--lex-text-xs); }
   .lex-flow-node__meta { color: var(--lex-muted); font-family: var(--lex-font-mono); font-size: var(--lex-text-xs); }
   .lex-flow-node__handle { background: var(--xy-handle-background-color); border: 2px solid var(--xy-handle-border-color); }
+}
+
+/* Pulso de atividade: mantém o anel visível, sem animação, quando o sistema pede menos movimento. */
+@keyframes lex-flow-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .3; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lex-flow .react-flow__edge.animated path { animation: none; stroke-dasharray: var(--lex-flow-edge-dash); }
+  .lex-flow-node__pulse { animation: none; }
 }

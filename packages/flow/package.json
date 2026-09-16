@@ -1,6 +1,6 @@
 {
   "name": "@lexui/flow",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Tokenized React Flow wrappers for the LexUI design system",
   "license": "MIT",
   "type": "module",

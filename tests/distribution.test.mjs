@@ -45,6 +45,9 @@ test("flow embute a estrutura do React Flow e mantém a aparência em tokens", a
   assert.match(css, /--xy-node-background-color:\s*var\(--lex-surface-1\)/)
   assert.match(css, /--xy-edge-stroke:\s*var\(--lex-border-strong\)/)
 
+  assert.match(css, /--lex-flow-edge-duration:\s*var\(--lex-duration-spin\)/)
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)/)
+
   const tokens = await readFile(resolve(root, "packages", "tokens", "src", "index.css"), "utf8")
   assert.match(tokens, /@layer lexui\.tokens, lexui\.base, lexui\.flow-base, lexui\.components;/)
 })

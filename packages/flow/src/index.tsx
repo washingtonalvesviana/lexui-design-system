@@ -30,12 +30,15 @@ import type {
 import { cx } from "./lib/cx.js"
 
 export type FlowNodeTone = "default" | "primary" | "accent" | "success" | "warning" | "danger"
+export type FlowNodeActivity = "idle" | "active"
 
 export interface FlowNodeData extends Record<string, unknown> {
   title: string
   description?: string
   meta?: string
   tone?: FlowNodeTone
+  /** `active` marca o nó que está executando ou recebendo atividade agora. */
+  activity?: FlowNodeActivity
 }
 
 export type FlowProps = ReactFlowProps
@@ -69,11 +72,14 @@ export function FlowMiniMap({ pannable = true, zoomable = true, ariaLabel = "Map
 }
 
 export function FlowNode({ data, selected }: NodeProps) {
-  const { title, description, meta, tone = "default" } = data as FlowNodeData
-  return <article className="lex-flow-node" data-tone={tone} data-selected={selected || undefined}>
+  const { title, description, meta, tone = "default", activity = "idle" } = data as FlowNodeData
+  return <article className="lex-flow-node" data-tone={tone} data-activity={activity} data-selected={selected || undefined}>
     <Handle type="target" position={Position.Left} className="lex-flow-node__handle" />
     <div className="lex-flow-node__body">
-      <strong className="lex-flow-node__title">{title}</strong>
+      <span className="lex-flow-node__header">
+        <strong className="lex-flow-node__title">{title}</strong>
+        {activity === "active" ? <><span className="lex-flow-node__pulse" aria-hidden="true" /><span className="lex-flow-node__activity">Em execução</span></> : null}
+      </span>
       {description ? <span className="lex-flow-node__description">{description}</span> : null}
       {meta ? <span className="lex-flow-node__meta">{meta}</span> : null}
     </div>

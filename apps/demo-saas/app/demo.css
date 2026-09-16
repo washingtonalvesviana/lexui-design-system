@@ -184,3 +184,21 @@
 /* Fluxo: o canvas precisa de altura definida pelo contêiner. */
 .demo-flow-canvas { border-radius: var(--lex-radius-md); height: 26rem; margin-bottom: var(--lex-space-3); overflow: hidden; }
 .demo-flow-skeleton { height: 100%; }
+
+/* Monitor de atividade: legenda, canvas e feed lado a lado, colapsando no mobile. */
+.demo-monitor { display: grid; gap: var(--lex-space-5); grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) minmax(0, 22rem); }
+.demo-monitor__panel { min-width: 0; }
+.demo-monitor__sources { display: grid; gap: var(--lex-space-2); list-style: none; margin: 0; padding: 0; }
+.demo-monitor__sources li { align-items: center; border: 1px solid var(--lex-border); border-radius: var(--lex-radius-sm); color: var(--lex-muted); display: flex; font-size: var(--lex-text-sm); gap: var(--lex-space-2); padding: var(--lex-space-2) var(--lex-space-3); }
+.demo-monitor__sources li[data-active] { background: color-mix(in srgb, var(--lex-primary) 12%, transparent); border-color: var(--lex-primary); color: var(--lex-foreground); }
+.demo-monitor__sources li > span:first-of-type { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.demo-monitor__canvas { border: 1px solid var(--lex-border); border-radius: var(--lex-radius-md); height: 30rem; min-width: 0; overflow: hidden; }
+.demo-monitor__metric { align-items: center; display: flex; gap: var(--lex-space-3); justify-content: space-between; margin-bottom: var(--lex-space-3); }
+.demo-monitor__filters { display: grid; gap: var(--lex-space-3); margin: var(--lex-space-4) 0; }
+.demo-monitor__feed { border: 1px solid var(--lex-border); border-radius: var(--lex-radius-sm); height: 16rem; margin: var(--lex-space-3) 0; }
+.demo-monitor__feed ul { display: grid; gap: var(--lex-space-1); list-style: none; margin: 0; padding: var(--lex-space-2); }
+.demo-monitor__call { align-items: center; display: grid; font-size: var(--lex-text-xs); gap: var(--lex-space-2); grid-template-columns: auto minmax(0, 1fr) auto auto auto; }
+.demo-monitor__call time { color: var(--lex-muted); font-family: var(--lex-font-mono); }
+.demo-monitor__call-title { align-items: center; display: flex; gap: var(--lex-space-1); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.demo-monitor__empty { padding: var(--lex-space-2); }
+@media (max-width: 64rem) { .demo-monitor { grid-template-columns: minmax(0, 1fr); } .demo-monitor__canvas { height: 24rem; } }

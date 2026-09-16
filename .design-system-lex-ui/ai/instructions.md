@@ -11,7 +11,7 @@
 9. Execute `npm run lexui:check` antes de concluir.
 10. Para listas operacionais use DataTable; para navegação principal use Sidebar e mantenha CommandPalette apenas como atalho complementar.
 11. Consulte `/design-system` para descobrir categorias e rotas; consulte o Storybook para estados isolados e APIs.
-12. Para conversas use os primitivos `Chat`; para visualizações escolha um componente de `@lexui/charts` conforme `components/charts.md`.
+12. Para monitores em tempo real use `@lexui/flow` com arestas animadas e siga `patterns/live-activity.md`; para conversas use os primitivos `Chat`; para visualizações escolha um componente de `@lexui/charts` conforme `components/charts.md`.
 13. Siga `foundations/iconography.md`: use Lucide de forma semântica, Avatar para pessoas e `aria-label` em toda ação somente com ícone.
 
 14. Antes de implementar, execute `npx @lexui/cli info --json`, pesquise com `lexui search` e inspecione a API com `lexui view`.
