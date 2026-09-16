@@ -1,5 +1,5 @@
 import * as React from "react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export function Card({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return <section className={cx("lex-card", className)} {...props} />

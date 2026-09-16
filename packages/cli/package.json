@@ -1,6 +1,6 @@
 {
   "name": "@lexui/cli",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Initialize and validate LexUI integration in applications",
   "license": "MIT",
   "type": "module",

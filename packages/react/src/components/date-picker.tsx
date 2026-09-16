@@ -2,9 +2,9 @@
 
 import * as React from "react"
 import { CalendarDays } from "lucide-react"
-import { Calendar } from "./calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "./popover"
-import { cx } from "../lib/cx"
+import { Calendar } from "./calendar.js"
+import { Popover, PopoverContent, PopoverTrigger } from "./popover.js"
+import { cx } from "../lib/cx.js"
 
 const dateFormatter = new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "short", year: "numeric" })
 

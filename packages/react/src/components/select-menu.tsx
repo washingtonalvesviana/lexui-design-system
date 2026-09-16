@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Check, ChevronDown } from "lucide-react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export type SelectMenuOption = { value: string; label: string; disabled?: boolean }
 export function SelectMenu({ options, value: controlled, defaultValue = "", onValueChange, placeholder = "Selecione", label, disabled, className }: { options: SelectMenuOption[]; value?: string; defaultValue?: string; onValueChange?: (value: string) => void; placeholder?: string; label?: string; disabled?: boolean; className?: string }) {

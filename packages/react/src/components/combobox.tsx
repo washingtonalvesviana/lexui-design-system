@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox"
 import { Check, ChevronDown, X } from "lucide-react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export interface ComboboxOption { value: string; label: string; description?: string; disabled?: boolean }
 export interface ComboboxProps {

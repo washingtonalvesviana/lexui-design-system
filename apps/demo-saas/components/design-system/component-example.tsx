@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { BarChart3, Bell, Copy, FolderKanban, Grid2X2, LayoutDashboard, List, MessageCircle, MoreHorizontal, Plus, Search, Send, Settings, SlidersHorizontal, Star, Trash2, Users } from "lucide-react"
+import { AlertTriangle, BarChart3, Bell, CheckCircle2, Copy, FolderKanban, Grid2X2, LayoutDashboard, List, MessageCircle, MoreHorizontal, Plus, Search, Send, Settings, SlidersHorizontal, Star, Trash2, Users, XCircle } from "lucide-react"
 import { AreaChart, BarChart, DonutChart, HorizontalBarChart, LineChart, PieChart, Sparkline } from "@lexui/charts"
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger, Alert, AlertDialog, AlertDialogClose,
@@ -21,6 +21,7 @@ import {
   Skeleton, Slider, Spinner, Switch, Table, TableCell, TableContainer, TableHead, Tabs, TabsContent, TabsList,
   TabsTrigger, Text, Textarea, ThemeToggle, Toggle, ToggleGroup, Tooltip, TooltipProvider, useToast,
 } from "@lexui/react"
+import { iconsReference } from "./icons-reference"
 import {
   AspectRatio, Attachment, Bubble, ButtonGroup, Carousel, CarouselContent, CarouselDots, CarouselItem,
   CarouselNext, CarouselPrevious, Collapsible, CollapsibleContent, CollapsibleTrigger, DirectionProvider,
@@ -29,7 +30,9 @@ import {
   MenubarMenu, MenubarShortcut, MenubarTrigger, MessageScroller, NativeSelect, NavigationMenu,
   NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger,
   ResizablePanel, ResizablePanelGroup, SelectMenu, Separator, Sheet, SheetClose, SheetContent, SheetDescription,
-  SheetFooter, SheetHeader, SheetTitle, SheetTrigger,
+  SheetFooter, SheetHeader, SheetTitle, SheetTrigger, CloseButton, Col, Container, Fieldset, Figure,
+  FigureCaption, FigureImage, FloatingLabel, Image, ListGroup, ListGroupItem, Navbar, NavbarBrand,
+  NavbarContent, NavbarToggle, Row, useScrollSpy,
 } from "@lexui/react"
 
 function ExampleFrame({ title, description, children }: { title: string; description?: string; children: React.ReactNode }) {
@@ -50,6 +53,30 @@ const tableRows = [
   { id: "5", project: "Novo checkout", owner: "Lia", status: "Revisão" },
   { id: "6", project: "Central de ajuda", owner: "Bia", status: "Ativo" },
 ]
+
+const demoImageSrc = "data:image/svg+xml;utf8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300"><rect width="640" height="300" fill="gainsboro"/><circle cx="150" cy="150" r="80" fill="slateblue"/><rect x="290" y="70" width="130" height="160" rx="14" fill="orangered"/><rect x="470" y="110" width="130" height="120" rx="14" fill="teal"/></svg>')
+
+function ScrollSpyDemo() {
+  const active = useScrollSpy({ ids: ["spy-um", "spy-dois", "spy-tres"], offset: 120 })
+  const sections: [string, string, string][] = [
+    ["spy-um", "Seção 1", "Conteúdo da primeira seção. A navegação ao lado destaca este bloco enquanto ele estiver visível na viewport."],
+    ["spy-dois", "Seção 2", "Role a página: o destaque segue a seção que ocupa o topo da área visível."],
+    ["spy-tres", "Seção 3", "O hook useScrollSpy devolve o id da seção ativa para qualquer navegação própria."],
+  ]
+  return <>
+    <nav className="lex-utility-display-flex lex-utility-gap-6 lex-utility-justify-center lex-utility-my-4" aria-label="Seções da página">
+      {sections.map(([id, label]) => <a key={id} href={`#${id}`} style={{ fontWeight: active === id ? 700 : 400, color: active === id ? "var(--lex-primary)" : "var(--lex-muted)" }}>{label}</a>)}
+    </nav>
+    <div className="demo-example-stack">
+      {sections.map(([id, title, body]) => (
+        <section key={id} id={id} style={{ minHeight: "100vh" }}>
+          <Heading size="md">{title}</Heading>
+          <Text>{body}</Text>
+        </section>
+      ))}
+    </div>
+  </>
+}
 
 export function ComponentExample({ slug }: { slug: string }) {
   const toast = useToast()
@@ -110,7 +137,7 @@ export function ComponentExample({ slug }: { slug: string }) {
     case "avatar": return <ExampleFrame title="Tamanhos e fallback"><div className="demo-example-row"><Avatar name="Ana Lima" size="sm" /><Avatar name="Rafael Costa" /><Avatar name="Marina Souza" size="lg" /><Text size="sm" tone="muted">Iniciais são geradas automaticamente.</Text></div></ExampleFrame>
     case "dialog": return <ExampleFrame title="Modal de tarefa"><Dialog><DialogTrigger render={<Button />}>Convidar pessoa</DialogTrigger><DialogContent><DialogHeader><DialogTitle>Convidar pessoa</DialogTitle><DialogDescription>Envie um convite para participar da organização.</DialogDescription></DialogHeader><div className="demo-example-form demo-dialog-form"><Field label="E-mail" htmlFor="dialog-email"><Input id="dialog-email" type="email" placeholder="nome@empresa.com" /></Field></div><DialogFooter><DialogClose render={<Button variant="ghost" />}>Cancelar</DialogClose><DialogClose render={<Button />}>Enviar convite</DialogClose></DialogFooter></DialogContent></Dialog></ExampleFrame>
     case "alert-dialog": return <ExampleFrame title="Confirmação crítica"><AlertDialog><AlertDialogTrigger render={<Button variant="destructive" />}>Excluir projeto</AlertDialogTrigger><AlertDialogContent><AlertDialogTitle>Excluir este projeto?</AlertDialogTitle><AlertDialogDescription>Esta ação é permanente e removerá os dados associados.</AlertDialogDescription><AlertDialogFooter><AlertDialogClose render={<Button variant="outline" />}>Cancelar</AlertDialogClose><AlertDialogClose render={<Button variant="destructive" />}>Excluir</AlertDialogClose></AlertDialogFooter></AlertDialogContent></AlertDialog></ExampleFrame>
-    case "drawer": return <ExampleFrame title="Painel lateral"><Drawer><DrawerTrigger render={<Button />}>Novo evento</DrawerTrigger><DrawerContent><DrawerHeader><DrawerTitle>Criar evento</DrawerTitle><DrawerDescription>Preencha os dados essenciais e confirme.</DrawerDescription></DrawerHeader><div className="demo-example-form demo-drawer-form"><Field label="Título" htmlFor="drawer-title"><Input id="drawer-title" placeholder="Reunião de planejamento" /></Field><Field label="Data" htmlFor="drawer-date"><Input id="drawer-date" type="date" /></Field></div><DrawerFooter><DrawerClose render={<Button variant="outline" />}>Cancelar</DrawerClose><DrawerClose render={<Button />}>Criar evento</DrawerClose></DrawerFooter></DrawerContent></Drawer></ExampleFrame>
+    case "drawer": return <ExampleFrame title="Painel lateral" description={'position "end" ancora à direita; sem position o padrão é bottom sheet. Abaixo de 640px toda posição vira bottom sheet.'}><Drawer><DrawerTrigger render={<Button />}>Novo evento</DrawerTrigger><DrawerContent position="end"><DrawerHeader><DrawerTitle>Criar evento</DrawerTitle><DrawerDescription>Preencha os dados essenciais e confirme.</DrawerDescription></DrawerHeader><div className="demo-example-form demo-drawer-form"><Field label="Título" htmlFor="drawer-title"><Input id="drawer-title" placeholder="Reunião de planejamento" /></Field><Field label="Data" htmlFor="drawer-date"><Input id="drawer-date" type="date" /></Field></div><DrawerFooter><DrawerClose render={<Button variant="outline" />}>Cancelar</DrawerClose><DrawerClose render={<Button />}>Criar evento</DrawerClose></DrawerFooter></DrawerContent></Drawer></ExampleFrame>
     case "popover": return <ExampleFrame title="Conteúdo ancorado"><Popover><PopoverTrigger render={<Button variant="secondary" />}><SlidersHorizontal size={17} /> Filtros</PopoverTrigger><PopoverContent><PopoverTitle>Filtros rápidos</PopoverTitle><PopoverDescription>Refine a lista sem perder o contexto atual.</PopoverDescription><div className="demo-example-form demo-popover-form"><Checkbox label="Somente ativos" defaultChecked /><Checkbox label="Meus projetos" /></div></PopoverContent></Popover></ExampleFrame>
     case "chat": return <ExampleFrame title="Conversa básica"><div className="demo-example-narrow"><Chat><ChatHeader><strong>Assistente Lex</strong><Badge variant="success">Online</Badge></ChatHeader><ChatMessages><ChatMessage author="Assistente" avatar={<Avatar name="Lex IA" size="sm" />}>Olá! Posso analisar seus dados e documentos.</ChatMessage><ChatMessage role="user" author="Você">Mostre o resumo da semana.</ChatMessage></ChatMessages><ChatComposer onSubmit={(event) => event.preventDefault()}><Textarea rows={2} placeholder="Digite uma mensagem…" aria-label="Mensagem" /><ChatToolbar><Button size="sm"><Send size={15} /> Enviar</Button><a className="demo-inline-link" href="/chat"><MessageCircle size={15} /> Ver exemplo completo</a></ChatToolbar></ChatComposer></Chat></div></ExampleFrame>
     case "aspect-ratio": return <ExampleFrame title="Mídia responsiva"><div className="demo-example-narrow"><AspectRatio ratio={16 / 9} className="demo-aspect-preview"><div><BarChart3 size={36} /><strong>Preview 16:9</strong></div></AspectRatio></div></ExampleFrame>
@@ -120,9 +147,34 @@ export function ComponentExample({ slug }: { slug: string }) {
     case "carousel": return <ExampleFrame title="Destaques navegáveis"><Carousel><CarouselContent>{["Receita cresceu 18%", "42 novos clientes", "Churn caiu para 1,8%"].map((text, index) => <CarouselItem key={text}><Card><CardHeader><CardDescription>Destaque {index + 1}</CardDescription><CardTitle>{text}</CardTitle></CardHeader></Card></CarouselItem>)}</CarouselContent><CarouselPrevious /><CarouselNext /><CarouselDots /></Carousel></ExampleFrame>
     case "collapsible": return <ExampleFrame title="Detalhes sob demanda"><Collapsible><CollapsibleTrigger>Ver fontes e metodologia</CollapsibleTrigger><CollapsibleContent><Text size="sm">Dados consolidados da base comercial e meta trimestral.</Text></CollapsibleContent></Collapsible></ExampleFrame>
     case "direction": return <ExampleFrame title="Direção do conteúdo"><div className="demo-example-grid"><DirectionProvider dir="ltr"><Card><CardContent>Interface LTR →</CardContent></Card></DirectionProvider><DirectionProvider dir="rtl"><Card><CardContent>واجهة RTL ←</CardContent></Card></DirectionProvider></div></ExampleFrame>
+    case "iconography": return <>
+      <ExampleFrame title="Tamanhos padrão" description="16px em controles, 18px em entidades e títulos, 20px em destaques.">
+        <div className="demo-example-row">
+          <div className="demo-example-stack"><Search size={16} aria-hidden="true" /><Text size="xs" tone="muted">16 · controle</Text></div>
+          <div className="demo-example-stack"><FolderKanban size={18} aria-hidden="true" /><Text size="xs" tone="muted">18 · entidade</Text></div>
+          <div className="demo-example-stack"><BarChart3 size={20} aria-hidden="true" /><Text size="xs" tone="muted">20 · destaque</Text></div>
+        </div>
+      </ExampleFrame>
+      <ExampleFrame title="Estados e entidades" description="Cor, ícone e texto juntos; nunca dependa somente da cor.">
+        <div className="demo-example-row">
+          <div className="demo-example-stack"><CheckCircle2 size={18} className="lex-utility-text-success" aria-hidden="true" /><Text size="xs" tone="muted">Concluído</Text></div>
+          <div className="demo-example-stack"><AlertTriangle size={18} className="lex-utility-text-warning" aria-hidden="true" /><Text size="xs" tone="muted">Aguardando</Text></div>
+          <div className="demo-example-stack"><XCircle size={18} className="lex-utility-text-danger" aria-hidden="true" /><Text size="xs" tone="muted">Falhou</Text></div>
+          <div className="demo-entity-icon"><FolderKanban size={16} aria-hidden="true" /></div>
+        </div>
+      </ExampleFrame>
+      <ExampleFrame title="Ação somente com ícone" description="aria-label é obrigatório; o Button expõe o nome como tooltip nativo no hover.">
+        <div className="demo-example-row"><Button variant="outline" size="icon" aria-label="Buscar"><Search size={16} /></Button><Button variant="outline" size="icon" aria-label="Configurações"><Settings size={16} /></Button><Button variant="outline" size="icon" aria-label="Excluir item"><Trash2 size={16} /></Button><Text size="sm" tone="muted">Pessoas usam Avatar, nunca um ícone genérico.</Text></div>
+      </ExampleFrame>
+      <ExampleFrame title={`Referência de ícones em uso (${iconsReference.length})`} description="Escaneado do repositório; regenere com pnpm icons:reference. O número é a quantidade de arquivos que utilizam o ícone.">
+        <div className="demo-icon-ref-grid">
+          {iconsReference.map(({ icon: Icon, name, uses }) => <div key={name} className="demo-icon-ref" title={`${name} · ${uses} arquivo${uses > 1 ? "s" : ""}`}><Icon size={16} aria-hidden="true" /><span>{name}</span><small>{uses}</small></div>)}
+        </div>
+      </ExampleFrame>
+    </>
     case "hover-card": return <ExampleFrame title="Preview por hover ou foco"><Text>Responsável: <HoverCard><HoverCardTrigger>Ana Lima</HoverCardTrigger><HoverCardContent><Avatar name="Ana Lima" /><strong>Ana Lima</strong><Text as="span" size="sm" tone="muted">Product Designer · Online</Text></HoverCardContent></HoverCard></Text></ExampleFrame>
     case "input-group": return <ExampleFrame title="Prefixos e ações"><div className="demo-example-form"><InputGroup><InputGroupAddon>https://</InputGroupAddon><Input defaultValue="lexui.dev" aria-label="Domínio" /><InputGroupAddon align="end">.com</InputGroupAddon></InputGroup><InputGroup><Input placeholder="Buscar projeto" aria-label="Busca" /><Button size="icon" aria-label="Buscar"><Search size={16} /></Button></InputGroup></div></ExampleFrame>
-    case "item": return <ExampleFrame title="Lista composta"><div className="demo-example-form">{["Portal financeiro", "Central de conhecimento"].map((name) => <Item variant="outline" key={name}><ItemMedia><FolderKanban size={20} /></ItemMedia><ItemContent><ItemTitle>{name}</ItemTitle><ItemDescription>Atualizado hoje por Ana Lima</ItemDescription></ItemContent><ItemActions><Button size="icon" variant="ghost" aria-label={`Abrir ações de ${name}`}><MoreHorizontal size={17} /></Button></ItemActions></Item>)}</div></ExampleFrame>
+    case "item": return <ExampleFrame title="Lista composta" description="O menu de três pontos abre as ações ativas do item."><div className="demo-example-form">{["Portal financeiro", "Central de conhecimento"].map((name) => <DropdownMenu key={name}><Item variant="outline"><ItemMedia><FolderKanban size={20} /></ItemMedia><ItemContent><ItemTitle>{name}</ItemTitle><ItemDescription>Atualizado hoje por Ana Lima</ItemDescription></ItemContent><ItemActions><DropdownMenuTrigger render={<Button size="icon" variant="ghost" aria-label={`Abrir ações de ${name}`}><MoreHorizontal size={17} /></Button>} /></ItemActions></Item><DropdownMenuContent align="end"><DropdownMenuLabel>{name}</DropdownMenuLabel><DropdownMenuSeparator /><DropdownMenuItem onClick={() => toast({ title: "Visualizar", description: `“${name}” abriria em uma nova aba.`, variant: "info" })}>Visualizar</DropdownMenuItem><DropdownMenuItem onClick={() => toast({ title: "Editar", description: `As configurações de “${name}” foram abertas.`, variant: "success" })}>Editar</DropdownMenuItem><DropdownMenuSeparator /><DropdownMenuItem data-danger onClick={() => toast({ title: "Exclusão confirmada", description: `“${name}” seria excluído permanentemente.`, variant: "danger" })}>Excluir</DropdownMenuItem></DropdownMenuContent></DropdownMenu>)}</div></ExampleFrame>
     case "label": return <ExampleFrame title="Rótulo explícito"><div className="demo-example-form"><Label htmlFor="label-example">Nome da organização</Label><Input id="label-example" placeholder="LexUI Labs" /></div></ExampleFrame>
     case "marker": return <ExampleFrame title="Estados compactos"><div className="demo-example-row"><Marker tone="positive" pulse>Online</Marker><Marker tone="warning">Aguardando</Marker><Marker tone="negative">Falhou</Marker><Marker tone="primary">Em revisão</Marker></div></ExampleFrame>
     case "menubar": return <ExampleFrame title="Comandos da aplicação"><Menubar><MenubarMenu><MenubarTrigger>Arquivo</MenubarTrigger><MenubarContent><MenubarItem>Novo projeto<MenubarShortcut>Ctrl N</MenubarShortcut></MenubarItem><MenubarItem>Exportar<MenubarShortcut>Ctrl E</MenubarShortcut></MenubarItem></MenubarContent></MenubarMenu><MenubarMenu><MenubarTrigger>Editar</MenubarTrigger><MenubarContent><MenubarItem>Desfazer<MenubarShortcut>Ctrl Z</MenubarShortcut></MenubarItem></MenubarContent></MenubarMenu></Menubar></ExampleFrame>
@@ -132,7 +184,104 @@ export function ComponentExample({ slug }: { slug: string }) {
     case "resizable": return <ExampleFrame title="Painéis ajustáveis"><ResizablePanelGroup><ResizablePanel><Heading size="md">Navegação</Heading><Text size="sm" tone="muted">Arraste o divisor ou use as setas.</Text></ResizablePanel><ResizablePanel><Heading size="md">Conteúdo</Heading><Text>Área principal redimensionável.</Text></ResizablePanel></ResizablePanelGroup></ExampleFrame>
     case "select-menu": return <ExampleFrame title="Seleção composta"><SelectMenu label="Selecionar agente" placeholder="Escolha um agente" defaultValue="analyst" options={[{ value: "analyst", label: "Analista de dados" }, { value: "support", label: "Especialista de suporte" }, { value: "writer", label: "Redator" }]} /></ExampleFrame>
     case "separator": return <ExampleFrame title="Divisores"><div className="demo-example-stack"><Text>Conteúdo acima</Text><Separator /><div className="demo-example-row"><Text>Esquerda</Text><Separator orientation="vertical" /><Text>Direita</Text></div></div></ExampleFrame>
-    case "sheet": return <ExampleFrame title="Painel modal lateral"><Sheet><SheetTrigger render={<Button />}>Abrir detalhes</SheetTrigger><SheetContent><SheetHeader><SheetTitle>Detalhes do projeto</SheetTitle><SheetDescription>Revise informações sem sair da página.</SheetDescription></SheetHeader><div className="demo-example-form demo-drawer-form"><Field label="Nome" htmlFor="sheet-project"><Input id="sheet-project" defaultValue="Portal financeiro" /></Field></div><SheetFooter><SheetClose render={<Button />}>Concluir</SheetClose></SheetFooter></SheetContent></Sheet></ExampleFrame>
+    case "sheet": return <ExampleFrame title="Painel modal lateral" description={'Sheet é o alias de Drawer para painéis laterais; aqui position "start" ancora à esquerda.'}><Sheet><SheetTrigger render={<Button />}>Abrir detalhes</SheetTrigger><SheetContent position="start"><SheetHeader><SheetTitle>Detalhes do projeto</SheetTitle><SheetDescription>Revise informações sem sair da página.</SheetDescription></SheetHeader><div className="demo-example-form demo-drawer-form"><Field label="Nome" htmlFor="sheet-project"><Input id="sheet-project" defaultValue="Portal financeiro" /></Field></div><SheetFooter><SheetClose render={<Button />}>Concluir</SheetClose></SheetFooter></SheetContent></Sheet></ExampleFrame>
+    case "grid": return <>
+      <ExampleFrame title="Container · Row · Col" description="Base empilha; sm a partir de 641px; md a partir de 1025px. O gutter é o token --lex-gutter.">
+        <Container style={{ padding: 0 }}>
+          <Row>
+            <Col span={12}><div className="demo-grid-cell">span 12 (mobile)</div></Col>
+            <Col span={6} md={4}><div className="demo-grid-cell demo-grid-cell--alt">6 / 4 / —</div></Col>
+            <Col span={6} md={4}><div className="demo-grid-cell demo-grid-cell--alt">6 / 4 / —</div></Col>
+            <Col md={4}><div className="demo-grid-cell">total no md</div></Col>
+            <Col span={12} sm={6} md={3}><div className="demo-grid-cell demo-grid-cell--accent">12 / 6 / 3</div></Col>
+            <Col sm={6} md={9}><div className="demo-grid-cell">6 / 9</div></Col>
+          </Row>
+        </Container>
+      </ExampleFrame>
+      <ExampleFrame title="Container fluid" description="Ocupa 100% da largura, sem limite de --lex-content-max.">
+        <Container fluid style={{ padding: 0 }}><div className="demo-grid-cell">Fluido de ponta a ponta</div></Container>
+      </ExampleFrame>
+    </>
+    case "navbar": return <ExampleFrame title="Barra de navegação" description="Sticky opcional; no mobile o NavbarToggle revela o conteúdo.">
+      <div style={{ border: "1px solid var(--lex-border)", borderRadius: "var(--lex-radius-md)" }}>
+        <Navbar sticky>
+          <NavbarBrand href="#component-preview"><span style={{ fontWeight: 800 }}>LexUI</span><Badge variant="success">SaaS</Badge></NavbarBrand>
+          <NavbarContent>
+            <Button variant="ghost" size="sm">Dashboard</Button>
+            <Button variant="ghost" size="sm">Projetos</Button>
+            <Button variant="ghost" size="sm">Configurações</Button>
+          </NavbarContent>
+          <NavbarToggle />
+        </Navbar>
+      </div>
+    </ExampleFrame>
+    case "utilities": return <>
+      <ExampleFrame title="Texto e exibição">
+        <div className="demo-example-row">
+          <span className="lex-utility-text-muted lex-utility-text-sm">lex-utility-text-muted</span>
+          <span className="lex-utility-text-primary lex-utility-font-semibold">lex-utility-text-primary</span>
+          <span className="lex-utility-text-success">lex-utility-text-success</span>
+          <span className="lex-utility-text-danger">lex-utility-text-danger</span>
+          <span className="lex-utility-display-none" aria-hidden>invisível</span>
+        </div>
+      </ExampleFrame>
+      <ExampleFrame title="Flex e espaçamento">
+        <div className="lex-utility-display-flex lex-utility-justify-between lex-utility-items-center lex-utility-gap-4" style={{ border: "1px dashed var(--lex-border-strong)", borderRadius: "var(--lex-radius-md)", padding: "var(--lex-space-4)" }}>
+          <span className="lex-utility-flex-1 lex-utility-text-sm" style={{ background: "var(--lex-surface-2)", padding: "var(--lex-space-3)", borderRadius: "var(--lex-radius-md)" }}>flex-1</span>
+          <span className="lex-utility-text-sm lex-utility-p-3" style={{ background: "var(--lex-surface-2)", borderRadius: "var(--lex-radius-md)" }}>p-3</span>
+          <span className="lex-utility-text-sm lex-utility-px-4 lex-utility-py-2" style={{ background: "var(--lex-surface-2)", borderRadius: "var(--lex-radius-md)" }}>px-4 py-2</span>
+        </div>
+      </ExampleFrame>
+    </>
+    case "list-group": return <ExampleFrame title="Lista com estados">
+      <ListGroup>
+        <ListGroupItem icon={<span aria-hidden>●</span>} active><strong>Contrato ativo</strong><span className="lex-list-group__meta">Renovação em 12 dias</span></ListGroupItem>
+        <ListGroupItem icon={<span aria-hidden>○</span>}>Fatura 2048 — emitida<span className="lex-list-group__meta">R$ 1.290,00 · em dia</span></ListGroupItem>
+        <ListGroupItem icon={<span aria-hidden>–</span>}>Fatura 2047 — arquivada<span className="lex-list-group__meta">Jun/2026</span></ListGroupItem>
+        <ListGroupItem disabled>Item desabilitado</ListGroupItem>
+      </ListGroup>
+    </ExampleFrame>
+    case "figure": return <ExampleFrame title="Mídia com legenda" description="figcaption associa a legenda semanticamente à mídia; gráficos usam os próprios componentes LexUI Chart.">
+      <Figure>
+        <FigureImage><Image src={demoImageSrc} alt="Ilustração com formas geométricas coloridas" rounded /></FigureImage>
+        <FigureCaption>Figura 1 · Ilustração de exemplo com legenda semanticamente associada.</FigureCaption>
+      </Figure>
+    </ExampleFrame>
+    case "image": return <>
+      <ExampleFrame title="Imagem responsiva">
+        <div className="demo-example-grid">
+          <figure style={{ margin: 0 }}><Image src={demoImageSrc} alt="Ilustração com formas" rounded /><Text size="xs" tone="muted">rounded</Text></figure>
+          <figure style={{ margin: 0 }}><Image src={demoImageSrc} alt="Ilustração sem raio" /><Text size="xs" tone="muted">padrão</Text></figure>
+        </div>
+      </ExampleFrame>
+    </>
+    case "close-button": return <ExampleFrame title="Botão de fechar" description="Acessível por padrão: aria-label e foco visível.">
+      <div className="demo-example-row"><CloseButton /><CloseButton disabled /><div style={{ border: "1px solid var(--lex-border)", borderRadius: "var(--lex-radius-md)", padding: "var(--lex-space-3)", display: "flex", justifyContent: "flex-end" }}><CloseButton closeLabel="Fechar cartão" /></div></div>
+    </ExampleFrame>
+    case "floating-label": return <>
+      <ExampleFrame title="Rótulo flutuante" description="O label acompanha foco e conteúdo do campo.">
+        <div className="demo-example-form">
+          <FloatingLabel htmlFor="fl-email" label="E-mail corporativo"><Input id="fl-email" type="email" /></FloatingLabel>
+          <FloatingLabel htmlFor="fl-plan" label="Plano"><Select id="fl-plan" defaultValue="es"><option value="es" hidden>—</option><option value="essencial">Essencial</option><option value="pro">Profissional</option></Select></FloatingLabel>
+        </div>
+      </ExampleFrame>
+      <ExampleFrame title="Fieldset e campo horizontal">
+        <div className="demo-example-form">
+          <Fieldset legend="Contato">
+            <Field label="Telefone" htmlFor="fs-phone" horizontal optional><Input id="fs-phone" type="tel" placeholder="(11) 90000-0000" /></Field>
+            <Field label="Observações" htmlFor="fs-notes" horizontal description="Visível apenas para a equipe."><Textarea id="fs-notes" /></Field>
+          </Fieldset>
+        </div>
+      </ExampleFrame>
+    </>
+    case "offcanvas": return <ExampleFrame title="Painel em posições" description="DrawerContent com position start, end ou top; abaixo de 640px vira bottom sheet.">
+      <div className="demo-example-row">
+        <Drawer><DrawerTrigger render={<Button variant="outline" />}>Lateral esquerda</DrawerTrigger><DrawerContent position="start"><DrawerHeader><DrawerTitle>Painel esquerdo</DrawerTitle><DrawerDescription>Offcanvas ancorado à esquerda.</DrawerDescription></DrawerHeader><DrawerFooter><DrawerClose render={<Button />}>Concluir</DrawerClose></DrawerFooter></DrawerContent></Drawer>
+        <Drawer><DrawerTrigger render={<Button variant="outline" />}>Lateral direita</DrawerTrigger><DrawerContent position="end"><DrawerHeader><DrawerTitle>Painel direito</DrawerTitle><DrawerDescription>Offcanvas ancorado à direita.</DrawerDescription></DrawerHeader><DrawerFooter><DrawerClose render={<Button />}>Concluir</DrawerClose></DrawerFooter></DrawerContent></Drawer>
+        <Drawer><DrawerTrigger render={<Button variant="outline" />}>Superior</DrawerTrigger><DrawerContent position="top"><DrawerHeader><DrawerTitle>Painel superior</DrawerTitle><DrawerDescription>Âncora no topo da viewport.</DrawerDescription></DrawerHeader><DrawerFooter><DrawerClose render={<Button />}>Concluir</DrawerClose></DrawerFooter></DrawerContent></Drawer>
+      </div>
+    </ExampleFrame>
+    case "scrollspy": return <ExampleFrame title="Navegação por seção" description="Role a página e observe o destaque acompanhar a seção visível."><ScrollSpyDemo /></ExampleFrame>
     default: return <Alert variant="warning" title="Exemplo indisponível">Este componente ainda não possui demonstração registrada.</Alert>
   }
 }

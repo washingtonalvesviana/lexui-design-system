@@ -2,11 +2,11 @@
 
 import * as React from "react"
 import { ArrowDown, ArrowUp, ArrowUpDown, Search } from "lucide-react"
-import { Button } from "./button"
-import { Input } from "./field"
-import { Pagination } from "./pagination"
-import { Table, TableCell, TableContainer, TableHead } from "./table"
-import { cx } from "../lib/cx"
+import { Button } from "./button.js"
+import { Input } from "./field.js"
+import { Pagination } from "./pagination.js"
+import { Table, TableCell, TableContainer, TableHead } from "./table.js"
+import { cx } from "../lib/cx.js"
 
 export interface DataTableColumn<T> {
   id: string

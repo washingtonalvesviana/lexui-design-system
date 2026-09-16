@@ -1,7 +1,7 @@
 "use client"
 
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { Button } from "./button"
+import { Button } from "./button.js"
 
 export interface PaginationProps {
   page: number

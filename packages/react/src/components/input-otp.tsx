@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { OTPField } from "@base-ui/react/otp-field"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export interface InputOTPProps extends Omit<React.ComponentProps<typeof OTPField.Root>, "className" | "children"> {
   className?: string

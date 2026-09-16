@@ -1,1 +1,1 @@
-export { Drawer as Sheet, DrawerTrigger as SheetTrigger, DrawerClose as SheetClose, DrawerContent as SheetContent, DrawerHeader as SheetHeader, DrawerTitle as SheetTitle, DrawerDescription as SheetDescription, DrawerFooter as SheetFooter } from "./drawer"
+export { Drawer as Sheet, DrawerTrigger as SheetTrigger, DrawerClose as SheetClose, DrawerContent as SheetContent, DrawerHeader as SheetHeader, DrawerTitle as SheetTitle, DrawerDescription as SheetDescription, DrawerFooter as SheetFooter } from "./drawer.js"

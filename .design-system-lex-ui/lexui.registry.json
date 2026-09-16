@@ -127,12 +127,13 @@
       "package": "@lexui/charts",
       "category": "data-visualization",
       "exports": [
+        "AreaChart",
         "BarChart",
+        "CHART_SERIES_COUNT",
+        "DonutChart",
         "HorizontalBarChart",
         "LineChart",
-        "AreaChart",
         "PieChart",
-        "DonutChart",
         "Sparkline"
       ]
     },
@@ -152,6 +153,14 @@
       "category": "input",
       "exports": [
         "Checkbox"
+      ]
+    },
+    {
+      "name": "close-button",
+      "package": "@lexui/react",
+      "category": "action",
+      "exports": [
+        "CloseButton"
       ]
     },
     {
@@ -254,7 +263,29 @@
       "package": "@lexui/react",
       "category": "input",
       "exports": [
-        "Field"
+        "Field",
+        "Fieldset",
+        "FloatingLabel"
+      ]
+    },
+    {
+      "name": "figure",
+      "package": "@lexui/react",
+      "category": "content",
+      "exports": [
+        "Figure",
+        "FigureImage",
+        "FigureCaption"
+      ]
+    },
+    {
+      "name": "grid",
+      "package": "@lexui/react",
+      "category": "layout",
+      "exports": [
+        "Container",
+        "Row",
+        "Col"
       ]
     },
     {
@@ -264,6 +295,14 @@
       "exports": [
         "HoverCard",
         "HoverCardContent"
+      ]
+    },
+    {
+      "name": "image",
+      "package": "@lexui/react",
+      "category": "content",
+      "exports": [
+        "Image"
       ]
     },
     {
@@ -319,6 +358,15 @@
       ]
     },
     {
+      "name": "list-group",
+      "package": "@lexui/react",
+      "category": "data-display",
+      "exports": [
+        "ListGroup",
+        "ListGroupItem"
+      ]
+    },
+    {
       "name": "marker",
       "package": "@lexui/react",
       "category": "feedback",
@@ -359,6 +407,17 @@
       "category": "input",
       "exports": [
         "NativeSelect"
+      ]
+    },
+    {
+      "name": "navbar",
+      "package": "@lexui/react",
+      "category": "navigation",
+      "exports": [
+        "Navbar",
+        "NavbarBrand",
+        "NavbarContent",
+        "NavbarToggle"
       ]
     },
     {
@@ -419,6 +478,14 @@
       "category": "layout",
       "exports": [
         "ScrollArea"
+      ]
+    },
+    {
+      "name": "scrollspy",
+      "package": "@lexui/react",
+      "category": "navigation",
+      "exports": [
+        "useScrollSpy"
       ]
     },
     {
@@ -509,6 +576,18 @@
       ]
     },
     {
+      "name": "theme",
+      "package": "@lexui/react",
+      "category": "system",
+      "exports": [
+        "ThemeProvider",
+        "useTheme",
+        "ThemeToggle",
+        "themePreloadScript",
+        "LEXUI_THEME_STORAGE_KEY"
+      ]
+    },
+    {
       "name": "toast",
       "package": "@lexui/react",
       "category": "feedback",
@@ -543,7 +622,15 @@
         "Text",
         "Lead"
       ]
+    },
+    {
+      "name": "utilities",
+      "package": "@lexui/react",
+      "category": "layout",
+      "exports": [
+        "lex-utility-* (classes CSS baseadas em tokens)"
+      ]
     }
   ],
-  "generatedAt": "2026-07-28T13:29:21.797Z"
+  "generatedAt": "2026-09-16T00:12:22.015Z"
 }

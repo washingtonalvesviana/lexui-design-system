@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { GripVertical } from "lucide-react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export function AspectRatio({ ratio = 16 / 9, className, style, ...props }: React.HTMLAttributes<HTMLDivElement> & { ratio?: number }) {
   return <div className={cx("lex-aspect-ratio", className)} style={{ aspectRatio: ratio, ...style }} {...props} />

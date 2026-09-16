@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Inbox } from "lucide-react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export interface EmptyStateProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string

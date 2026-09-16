@@ -4,15 +4,29 @@
 
 O LexUI cobre os conceitos do catálogo shadcn/ui atual com APIs próprias, compatíveis com React e prontas para Next.js. A referência navegável está em `/design-system/components` e os estados isolados no Storybook.
 
+### Layout e estrutura de página
+
+- Grid: Container, Row e Col (12 trilhas, spans responsivos, gutter por token)
+- Utilities CSS baseadas em tokens: display, flex, texto, alinhamento e espaçamento
+- Escala de z-index semântica (`--lex-z-*`) para empilhamento previsível
+- Navbar, NavbarBrand, NavbarContent e NavbarToggle (sticky opcional, mobile-first)
+- Sidebar e NavigationMenu
+
 ### Fundamentos e conteúdo
 
 - DirectionProvider, ThemeProvider e ThemeToggle
 - Typography: Heading, Text, Lead, Blockquote, InlineCode e KeyboardKey
 - AspectRatio, Separator, Skeleton, Spinner e ScrollArea
+- Image, Figure, FigureImage e FigureCaption
+- ListGroup e ListGroupItem
+- CloseButton
+- useScrollSpy (hook de seção ativa por rolagem)
+- Ícones: lucide-react (tamanhos e semântica em foundations/iconography.md)
 
 ### Entradas
 
-- Field, Label, Input, Textarea e InputGroup
+- Field (com variação horizontal), Label, Input, Textarea e InputGroup
+- FloatingLabel e Fieldset
 - NativeSelect e SelectMenu
 - Checkbox, RadioGroup, Switch, Slider e RangeSlider
 - Combobox, DatePicker, Calendar e InputOTP
@@ -31,7 +45,7 @@ O LexUI cobre os conceitos do catálogo shadcn/ui atual com APIs próprias, comp
 
 ### Overlays e feedback
 
-- Dialog, AlertDialog, Sheet, Drawer, Popover, HoverCard e Tooltip
+- Dialog, AlertDialog, Sheet, Drawer (offcanvas em posições `bottom/start/end/top`), Popover, HoverCard e Tooltip
 - Alert, Toast e useToast
 
 ### Conversa e IA

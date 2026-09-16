@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { ChevronDown } from "lucide-react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 type CollapsibleContextValue = { open: boolean; setOpen: (open: boolean) => void; contentId: string }
 const CollapsibleContext = React.createContext<CollapsibleContextValue | null>(null)

@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Tabs as BaseTabs } from "@base-ui/react/tabs"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export const Tabs = BaseTabs.Root
 

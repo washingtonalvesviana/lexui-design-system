@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Switch as BaseSwitch } from "@base-ui/react/switch"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 type BaseSwitchProps = Omit<React.ComponentProps<typeof BaseSwitch.Root>, "className" | "children"> & {
   className?: string

@@ -14,7 +14,8 @@
     "lexui:info": "node packages/cli/bin/lexui.mjs info",
     "lexui:build": "node packages/cli/bin/lexui.mjs build",
     "test": "pnpm --filter @lexui/tokens build && pnpm --filter @lexui/react build && pnpm --filter @lexui/charts build && node --test tests/*.test.mjs",
-    "pack": "node scripts/pack-packages.mjs"
+    "pack": "node scripts/pack-packages.mjs",
+    "icons:reference": "node scripts/collect-icons.mjs"
   },
   "devDependencies": {
     "turbo": "latest",

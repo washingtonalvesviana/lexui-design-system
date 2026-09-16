@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Checkbox as BaseCheckbox } from "@base-ui/react/checkbox"
 import { Check, Minus } from "lucide-react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 type BaseCheckboxProps = Omit<React.ComponentProps<typeof BaseCheckbox.Root>, "className" | "children"> & {
   className?: string

@@ -1,6 +1,6 @@
 import * as React from "react"
 import { ChevronRight, MoreHorizontal } from "lucide-react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export function Breadcrumb({ className, ...props }: React.ComponentProps<"nav">) { return <nav aria-label="Breadcrumb" className={cx("lex-breadcrumb", className)} {...props} /> }
 export function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) { return <ol className={cx("lex-breadcrumb__list", className)} {...props} /> }

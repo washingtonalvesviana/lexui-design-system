@@ -11,7 +11,8 @@ import {
 import { catalogComponents, componentCategories, type ComponentCategory } from "../../../components/design-system/catalog-data"
 
 const descriptions: Record<ComponentCategory, string> = {
-  Fundamentos: "Tema, tokens e conteúdo", Entradas: "Formulários e seleção", Ações: "Comandos e controles",
+  Fundamentos: "Tema, tokens e conteúdo", Layout: "Grid, containers e estrutura de página",
+  Entradas: "Formulários e seleção", Ações: "Comandos e controles",
   Feedback: "Estados e comunicação", Estrutura: "Layout e navegação", Dados: "Listas, tabelas e visualização",
   Overlays: "Camadas e tarefas focadas",
 }

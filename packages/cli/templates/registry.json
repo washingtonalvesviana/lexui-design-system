@@ -2,67 +2,634 @@
   "$schema": "https://lexui.dev/schema/registry.json",
   "version": "0.2.0",
   "components": [
-    { "name": "accordion", "package": "@lexui/react", "category": "disclosure", "exports": ["Accordion", "AccordionItem", "AccordionTrigger", "AccordionContent"] },
-    { "name": "alert", "package": "@lexui/react", "category": "feedback", "exports": ["Alert"] },
-    { "name": "alert-dialog", "package": "@lexui/react", "category": "overlay", "exports": ["AlertDialog", "AlertDialogContent"] },
-    { "name": "aspect-ratio", "package": "@lexui/react", "category": "layout", "exports": ["AspectRatio"] },
-    { "name": "attachment", "package": "@lexui/react", "category": "conversation", "exports": ["Attachment"] },
-    { "name": "avatar", "package": "@lexui/react", "category": "data-display", "exports": ["Avatar"] },
-    { "name": "badge", "package": "@lexui/react", "category": "feedback", "exports": ["Badge"] },
-    { "name": "breadcrumb", "package": "@lexui/react", "category": "navigation", "exports": ["Breadcrumb", "BreadcrumbItem"] },
-    { "name": "bubble", "package": "@lexui/react", "category": "conversation", "exports": ["Bubble"] },
-    { "name": "button", "package": "@lexui/react", "category": "action", "exports": ["Button"] },
-    { "name": "button-group", "package": "@lexui/react", "category": "action", "exports": ["ButtonGroup"] },
-    { "name": "calendar", "package": "@lexui/react", "category": "data-display", "exports": ["Calendar"] },
-    { "name": "card", "package": "@lexui/react", "category": "layout", "exports": ["Card", "CardHeader", "CardContent"] },
-    { "name": "carousel", "package": "@lexui/react", "category": "layout", "exports": ["Carousel", "CarouselItem"] },
-    { "name": "charts", "package": "@lexui/charts", "category": "data-visualization", "exports": ["BarChart", "HorizontalBarChart", "LineChart", "AreaChart", "PieChart", "DonutChart", "Sparkline"] },
-    { "name": "chat", "package": "@lexui/react", "category": "conversation", "exports": ["Chat", "ChatMessage", "ChatComposer"] },
-    { "name": "checkbox", "package": "@lexui/react", "category": "input", "exports": ["Checkbox"] },
-    { "name": "collapsible", "package": "@lexui/react", "category": "disclosure", "exports": ["Collapsible", "CollapsibleTrigger", "CollapsibleContent"] },
-    { "name": "combobox", "package": "@lexui/react", "category": "input", "exports": ["Combobox"] },
-    { "name": "command", "package": "@lexui/react", "category": "action", "exports": ["CommandPalette"] },
-    { "name": "context-menu", "package": "@lexui/react", "category": "action", "exports": ["ContextMenu", "ContextMenuItem"] },
-    { "name": "data-table", "package": "@lexui/react", "category": "data-display", "exports": ["DataTable"] },
-    { "name": "date-picker", "package": "@lexui/react", "category": "input", "exports": ["DatePicker"] },
-    { "name": "dialog", "package": "@lexui/react", "category": "overlay", "exports": ["Dialog", "DialogContent"] },
-    { "name": "direction", "package": "@lexui/react", "category": "foundation", "exports": ["DirectionProvider", "useDirection"] },
-    { "name": "drawer", "package": "@lexui/react", "category": "overlay", "exports": ["Drawer", "DrawerContent"] },
-    { "name": "dropdown-menu", "package": "@lexui/react", "category": "action", "exports": ["DropdownMenu", "DropdownMenuItem"] },
-    { "name": "empty", "package": "@lexui/react", "category": "feedback", "exports": ["EmptyState"] },
-    { "name": "field", "package": "@lexui/react", "category": "input", "exports": ["Field"] },
-    { "name": "hover-card", "package": "@lexui/react", "category": "overlay", "exports": ["HoverCard", "HoverCardContent"] },
-    { "name": "input", "package": "@lexui/react", "category": "input", "exports": ["Input", "Textarea"] },
-    { "name": "input-group", "package": "@lexui/react", "category": "input", "exports": ["InputGroup", "InputGroupAddon"] },
-    { "name": "input-otp", "package": "@lexui/react", "category": "input", "exports": ["InputOTP"] },
-    { "name": "item", "package": "@lexui/react", "category": "layout", "exports": ["Item", "ItemContent", "ItemActions"] },
-    { "name": "kbd", "package": "@lexui/react", "category": "typography", "exports": ["KeyboardKey"] },
-    { "name": "label", "package": "@lexui/react", "category": "input", "exports": ["Label"] },
-    { "name": "marker", "package": "@lexui/react", "category": "feedback", "exports": ["Marker"] },
-    { "name": "menubar", "package": "@lexui/react", "category": "action", "exports": ["Menubar", "MenubarMenu", "MenubarItem"] },
-    { "name": "message", "package": "@lexui/react", "category": "conversation", "exports": ["ChatMessage", "Bubble"] },
-    { "name": "message-scroller", "package": "@lexui/react", "category": "conversation", "exports": ["MessageScroller"] },
-    { "name": "native-select", "package": "@lexui/react", "category": "input", "exports": ["NativeSelect"] },
-    { "name": "navigation-menu", "package": "@lexui/react", "category": "navigation", "exports": ["NavigationMenu", "NavigationMenuLink"] },
-    { "name": "pagination", "package": "@lexui/react", "category": "navigation", "exports": ["Pagination"] },
-    { "name": "popover", "package": "@lexui/react", "category": "overlay", "exports": ["Popover", "PopoverContent"] },
-    { "name": "progress", "package": "@lexui/react", "category": "feedback", "exports": ["Progress"] },
-    { "name": "radio-group", "package": "@lexui/react", "category": "input", "exports": ["RadioGroup", "RadioOption"] },
-    { "name": "resizable", "package": "@lexui/react", "category": "layout", "exports": ["ResizablePanelGroup", "ResizablePanel"] },
-    { "name": "scroll-area", "package": "@lexui/react", "category": "layout", "exports": ["ScrollArea"] },
-    { "name": "select", "package": "@lexui/react", "category": "input", "exports": ["SelectMenu"] },
-    { "name": "separator", "package": "@lexui/react", "category": "layout", "exports": ["Separator"] },
-    { "name": "sheet", "package": "@lexui/react", "category": "overlay", "exports": ["Sheet", "SheetContent"] },
-    { "name": "sidebar", "package": "@lexui/react", "category": "navigation", "exports": ["Sidebar", "SidebarItem"] },
-    { "name": "skeleton", "package": "@lexui/react", "category": "feedback", "exports": ["Skeleton"] },
-    { "name": "slider", "package": "@lexui/react", "category": "input", "exports": ["Slider", "RangeSlider"] },
-    { "name": "spinner", "package": "@lexui/react", "category": "feedback", "exports": ["Spinner"] },
-    { "name": "switch", "package": "@lexui/react", "category": "input", "exports": ["Switch"] },
-    { "name": "table", "package": "@lexui/react", "category": "data-display", "exports": ["Table", "TableCell", "TableHead"] },
-    { "name": "tabs", "package": "@lexui/react", "category": "navigation", "exports": ["Tabs", "TabsList", "TabsContent"] },
-    { "name": "toast", "package": "@lexui/react", "category": "feedback", "exports": ["useToast"] },
-    { "name": "toggle", "package": "@lexui/react", "category": "action", "exports": ["Toggle", "ToggleGroup"] },
-    { "name": "tooltip", "package": "@lexui/react", "category": "overlay", "exports": ["Tooltip", "TooltipProvider"] },
-    { "name": "typography", "package": "@lexui/react", "category": "foundation", "exports": ["Heading", "Text", "Lead"] }
+    {
+      "name": "accordion",
+      "package": "@lexui/react",
+      "category": "disclosure",
+      "exports": [
+        "Accordion",
+        "AccordionItem",
+        "AccordionTrigger",
+        "AccordionContent"
+      ]
+    },
+    {
+      "name": "alert",
+      "package": "@lexui/react",
+      "category": "feedback",
+      "exports": [
+        "Alert"
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "package": "@lexui/react",
+      "category": "overlay",
+      "exports": [
+        "AlertDialog",
+        "AlertDialogContent"
+      ]
+    },
+    {
+      "name": "aspect-ratio",
+      "package": "@lexui/react",
+      "category": "layout",
+      "exports": [
+        "AspectRatio"
+      ]
+    },
+    {
+      "name": "attachment",
+      "package": "@lexui/react",
+      "category": "conversation",
+      "exports": [
+        "Attachment"
+      ]
+    },
+    {
+      "name": "avatar",
+      "package": "@lexui/react",
+      "category": "data-display",
+      "exports": [
+        "Avatar"
+      ]
+    },
+    {
+      "name": "badge",
+      "package": "@lexui/react",
+      "category": "feedback",
+      "exports": [
+        "Badge"
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "package": "@lexui/react",
+      "category": "navigation",
+      "exports": [
+        "Breadcrumb",
+        "BreadcrumbItem"
+      ]
+    },
+    {
+      "name": "bubble",
+      "package": "@lexui/react",
+      "category": "conversation",
+      "exports": [
+        "Bubble"
+      ]
+    },
+    {
+      "name": "button",
+      "package": "@lexui/react",
+      "category": "action",
+      "exports": [
+        "Button"
+      ]
+    },
+    {
+      "name": "button-group",
+      "package": "@lexui/react",
+      "category": "action",
+      "exports": [
+        "ButtonGroup"
+      ]
+    },
+    {
+      "name": "calendar",
+      "package": "@lexui/react",
+      "category": "data-display",
+      "exports": [
+        "Calendar"
+      ]
+    },
+    {
+      "name": "card",
+      "package": "@lexui/react",
+      "category": "layout",
+      "exports": [
+        "Card",
+        "CardHeader",
+        "CardContent"
+      ]
+    },
+    {
+      "name": "carousel",
+      "package": "@lexui/react",
+      "category": "layout",
+      "exports": [
+        "Carousel",
+        "CarouselItem"
+      ]
+    },
+    {
+      "name": "charts",
+      "package": "@lexui/charts",
+      "category": "data-visualization",
+      "exports": [
+        "AreaChart",
+        "BarChart",
+        "CHART_SERIES_COUNT",
+        "DonutChart",
+        "HorizontalBarChart",
+        "LineChart",
+        "PieChart",
+        "Sparkline"
+      ]
+    },
+    {
+      "name": "chat",
+      "package": "@lexui/react",
+      "category": "conversation",
+      "exports": [
+        "Chat",
+        "ChatMessage",
+        "ChatComposer"
+      ]
+    },
+    {
+      "name": "checkbox",
+      "package": "@lexui/react",
+      "category": "input",
+      "exports": [
+        "Checkbox"
+      ]
+    },
+    {
+      "name": "close-button",
+      "package": "@lexui/react",
+      "category": "action",
+      "exports": [
+        "CloseButton"
+      ]
+    },
+    {
+      "name": "collapsible",
+      "package": "@lexui/react",
+      "category": "disclosure",
+      "exports": [
+        "Collapsible",
+        "CollapsibleTrigger",
+        "CollapsibleContent"
+      ]
+    },
+    {
+      "name": "combobox",
+      "package": "@lexui/react",
+      "category": "input",
+      "exports": [
+        "Combobox"
+      ]
+    },
+    {
+      "name": "command",
+      "package": "@lexui/react",
+      "category": "action",
+      "exports": [
+        "CommandPalette"
+      ]
+    },
+    {
+      "name": "context-menu",
+      "package": "@lexui/react",
+      "category": "action",
+      "exports": [
+        "ContextMenu",
+        "ContextMenuItem"
+      ]
+    },
+    {
+      "name": "data-table",
+      "package": "@lexui/react",
+      "category": "data-display",
+      "exports": [
+        "DataTable"
+      ]
+    },
+    {
+      "name": "date-picker",
+      "package": "@lexui/react",
+      "category": "input",
+      "exports": [
+        "DatePicker"
+      ]
+    },
+    {
+      "name": "dialog",
+      "package": "@lexui/react",
+      "category": "overlay",
+      "exports": [
+        "Dialog",
+        "DialogContent"
+      ]
+    },
+    {
+      "name": "direction",
+      "package": "@lexui/react",
+      "category": "foundation",
+      "exports": [
+        "DirectionProvider",
+        "useDirection"
+      ]
+    },
+    {
+      "name": "drawer",
+      "package": "@lexui/react",
+      "category": "overlay",
+      "exports": [
+        "Drawer",
+        "DrawerContent"
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "package": "@lexui/react",
+      "category": "action",
+      "exports": [
+        "DropdownMenu",
+        "DropdownMenuItem"
+      ]
+    },
+    {
+      "name": "empty",
+      "package": "@lexui/react",
+      "category": "feedback",
+      "exports": [
+        "EmptyState"
+      ]
+    },
+    {
+      "name": "field",
+      "package": "@lexui/react",
+      "category": "input",
+      "exports": [
+        "Field",
+        "Fieldset",
+        "FloatingLabel"
+      ]
+    },
+    {
+      "name": "figure",
+      "package": "@lexui/react",
+      "category": "content",
+      "exports": [
+        "Figure",
+        "FigureImage",
+        "FigureCaption"
+      ]
+    },
+    {
+      "name": "grid",
+      "package": "@lexui/react",
+      "category": "layout",
+      "exports": [
+        "Container",
+        "Row",
+        "Col"
+      ]
+    },
+    {
+      "name": "hover-card",
+      "package": "@lexui/react",
+      "category": "overlay",
+      "exports": [
+        "HoverCard",
+        "HoverCardContent"
+      ]
+    },
+    {
+      "name": "image",
+      "package": "@lexui/react",
+      "category": "content",
+      "exports": [
+        "Image"
+      ]
+    },
+    {
+      "name": "input",
+      "package": "@lexui/react",
+      "category": "input",
+      "exports": [
+        "Input",
+        "Textarea"
+      ]
+    },
+    {
+      "name": "input-group",
+      "package": "@lexui/react",
+      "category": "input",
+      "exports": [
+        "InputGroup",
+        "InputGroupAddon"
+      ]
+    },
+    {
+      "name": "input-otp",
+      "package": "@lexui/react",
+      "category": "input",
+      "exports": [
+        "InputOTP"
+      ]
+    },
+    {
+      "name": "item",
+      "package": "@lexui/react",
+      "category": "layout",
+      "exports": [
+        "Item",
+        "ItemContent",
+        "ItemActions"
+      ]
+    },
+    {
+      "name": "kbd",
+      "package": "@lexui/react",
+      "category": "typography",
+      "exports": [
+        "KeyboardKey"
+      ]
+    },
+    {
+      "name": "label",
+      "package": "@lexui/react",
+      "category": "input",
+      "exports": [
+        "Label"
+      ]
+    },
+    {
+      "name": "list-group",
+      "package": "@lexui/react",
+      "category": "data-display",
+      "exports": [
+        "ListGroup",
+        "ListGroupItem"
+      ]
+    },
+    {
+      "name": "marker",
+      "package": "@lexui/react",
+      "category": "feedback",
+      "exports": [
+        "Marker"
+      ]
+    },
+    {
+      "name": "menubar",
+      "package": "@lexui/react",
+      "category": "action",
+      "exports": [
+        "Menubar",
+        "MenubarMenu",
+        "MenubarItem"
+      ]
+    },
+    {
+      "name": "message",
+      "package": "@lexui/react",
+      "category": "conversation",
+      "exports": [
+        "ChatMessage",
+        "Bubble"
+      ]
+    },
+    {
+      "name": "message-scroller",
+      "package": "@lexui/react",
+      "category": "conversation",
+      "exports": [
+        "MessageScroller"
+      ]
+    },
+    {
+      "name": "native-select",
+      "package": "@lexui/react",
+      "category": "input",
+      "exports": [
+        "NativeSelect"
+      ]
+    },
+    {
+      "name": "navbar",
+      "package": "@lexui/react",
+      "category": "navigation",
+      "exports": [
+        "Navbar",
+        "NavbarBrand",
+        "NavbarContent",
+        "NavbarToggle"
+      ]
+    },
+    {
+      "name": "navigation-menu",
+      "package": "@lexui/react",
+      "category": "navigation",
+      "exports": [
+        "NavigationMenu",
+        "NavigationMenuLink"
+      ]
+    },
+    {
+      "name": "pagination",
+      "package": "@lexui/react",
+      "category": "navigation",
+      "exports": [
+        "Pagination"
+      ]
+    },
+    {
+      "name": "popover",
+      "package": "@lexui/react",
+      "category": "overlay",
+      "exports": [
+        "Popover",
+        "PopoverContent"
+      ]
+    },
+    {
+      "name": "progress",
+      "package": "@lexui/react",
+      "category": "feedback",
+      "exports": [
+        "Progress"
+      ]
+    },
+    {
+      "name": "radio-group",
+      "package": "@lexui/react",
+      "category": "input",
+      "exports": [
+        "RadioGroup",
+        "RadioOption"
+      ]
+    },
+    {
+      "name": "resizable",
+      "package": "@lexui/react",
+      "category": "layout",
+      "exports": [
+        "ResizablePanelGroup",
+        "ResizablePanel"
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "package": "@lexui/react",
+      "category": "layout",
+      "exports": [
+        "ScrollArea"
+      ]
+    },
+    {
+      "name": "scrollspy",
+      "package": "@lexui/react",
+      "category": "navigation",
+      "exports": [
+        "useScrollSpy"
+      ]
+    },
+    {
+      "name": "select",
+      "package": "@lexui/react",
+      "category": "input",
+      "exports": [
+        "SelectMenu"
+      ]
+    },
+    {
+      "name": "separator",
+      "package": "@lexui/react",
+      "category": "layout",
+      "exports": [
+        "Separator"
+      ]
+    },
+    {
+      "name": "sheet",
+      "package": "@lexui/react",
+      "category": "overlay",
+      "exports": [
+        "Sheet",
+        "SheetContent"
+      ]
+    },
+    {
+      "name": "sidebar",
+      "package": "@lexui/react",
+      "category": "navigation",
+      "exports": [
+        "Sidebar",
+        "SidebarItem"
+      ]
+    },
+    {
+      "name": "skeleton",
+      "package": "@lexui/react",
+      "category": "feedback",
+      "exports": [
+        "Skeleton"
+      ]
+    },
+    {
+      "name": "slider",
+      "package": "@lexui/react",
+      "category": "input",
+      "exports": [
+        "Slider",
+        "RangeSlider"
+      ]
+    },
+    {
+      "name": "spinner",
+      "package": "@lexui/react",
+      "category": "feedback",
+      "exports": [
+        "Spinner"
+      ]
+    },
+    {
+      "name": "switch",
+      "package": "@lexui/react",
+      "category": "input",
+      "exports": [
+        "Switch"
+      ]
+    },
+    {
+      "name": "table",
+      "package": "@lexui/react",
+      "category": "data-display",
+      "exports": [
+        "Table",
+        "TableCell",
+        "TableHead"
+      ]
+    },
+    {
+      "name": "tabs",
+      "package": "@lexui/react",
+      "category": "navigation",
+      "exports": [
+        "Tabs",
+        "TabsList",
+        "TabsContent"
+      ]
+    },
+    {
+      "name": "theme",
+      "package": "@lexui/react",
+      "category": "system",
+      "exports": [
+        "ThemeProvider",
+        "useTheme",
+        "ThemeToggle",
+        "themePreloadScript",
+        "LEXUI_THEME_STORAGE_KEY"
+      ]
+    },
+    {
+      "name": "toast",
+      "package": "@lexui/react",
+      "category": "feedback",
+      "exports": [
+        "useToast"
+      ]
+    },
+    {
+      "name": "toggle",
+      "package": "@lexui/react",
+      "category": "action",
+      "exports": [
+        "Toggle",
+        "ToggleGroup"
+      ]
+    },
+    {
+      "name": "tooltip",
+      "package": "@lexui/react",
+      "category": "overlay",
+      "exports": [
+        "Tooltip",
+        "TooltipProvider"
+      ]
+    },
+    {
+      "name": "typography",
+      "package": "@lexui/react",
+      "category": "foundation",
+      "exports": [
+        "Heading",
+        "Text",
+        "Lead"
+      ]
+    },
+    {
+      "name": "utilities",
+      "package": "@lexui/react",
+      "category": "layout",
+      "exports": [
+        "lex-utility-* (classes CSS baseadas em tokens)"
+      ]
+    }
   ]
 }

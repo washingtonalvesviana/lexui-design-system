@@ -1,5 +1,22 @@
 @layer lexui.tokens, lexui.base;
 
+/* Self-hosted fonts (latin subset, SIL OFL 1.1 — see src/fonts/*.LICENSE). */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("./fonts/inter-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("./fonts/geist-mono-latin.woff2") format("woff2");
+}
+
 @layer lexui.tokens {
   :root {
     color-scheme: light;
@@ -64,6 +81,11 @@
     --lex-chart-3: #238b57;
     --lex-chart-4: #8b5fbf;
     --lex-chart-5: #168896;
+    --lex-chart-6: #8a8f3c;
+    --lex-chart-7: #c25b8c;
+    --lex-chart-8: #9c6b3f;
+    --lex-chart-9: #5c6b7a;
+    --lex-chart-10: #6f9d3f;
     --lex-chart-positive: #238b57;
     --lex-chart-negative: #d14343;
     --lex-chart-warning: #c88719;
@@ -99,6 +121,46 @@
     --lex-control-lg: 3rem;
     --lex-content-max: 90rem;
     --lex-sidebar-width: 16rem;
+
+    /* Z-index (escala semântica em ordem de empilhamento). */
+    --lex-z-content: 100;
+    --lex-z-navbar: 1030;
+    --lex-z-dropdown: 1040;
+    --lex-z-backdrop: 1050;
+    --lex-z-modal: 1060;
+    --lex-z-popover: 1070;
+    --lex-z-tooltip: 1080;
+    --lex-z-toast: 1090;
+
+    /* Grid. */
+    --lex-gutter: var(--lex-space-6);
+
+    /* Motion. */
+    --lex-duration-fast: 100ms;
+    --lex-duration-base: 150ms;
+    --lex-duration-slow: 180ms;
+    --lex-duration-slower: 240ms;
+    --lex-duration-entrance: 300ms;
+    --lex-duration-spin: 800ms;
+    --lex-duration-pulse: 1.6s;
+    --lex-ease-standard: ease;
+    --lex-ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+
+    /* Breakpoints (referência para JS/TS; media queries CSS não aceitam variáveis). */
+    --lex-bp-sm: 640px;
+    --lex-bp-md: 1024px;
+  }
+
+  [data-density="compact"] {
+    --lex-control-sm: 1.75rem;
+    --lex-control-md: 2.25rem;
+    --lex-control-lg: 2.75rem;
+  }
+
+  [data-density="comfortable"] {
+    --lex-control-sm: 2.25rem;
+    --lex-control-md: 2.75rem;
+    --lex-control-lg: 3.25rem;
   }
 
   [data-theme="dark"] {
@@ -126,6 +188,11 @@
     --lex-chart-3: #62c991;
     --lex-chart-4: #bd8fe8;
     --lex-chart-5: #62c4cf;
+    --lex-chart-6: #b5ba6e;
+    --lex-chart-7: #e88bb3;
+    --lex-chart-8: #d19a68;
+    --lex-chart-9: #8fa0b0;
+    --lex-chart-10: #9ec96e;
     --lex-chart-positive: #62c991;
     --lex-chart-negative: #ff7a78;
     --lex-chart-warning: #efbd57;
@@ -140,4 +207,13 @@
   button, input, textarea, select { font: inherit; }
   :focus-visible { outline: 2px solid var(--lex-focus); outline-offset: 2px; }
   ::selection { background: var(--lex-primary); color: var(--lex-primary-foreground); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }

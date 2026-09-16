@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Dialog as BaseDialog } from "@base-ui/react/dialog"
 import { X } from "lucide-react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export const Dialog = BaseDialog.Root
 export const DialogTrigger = BaseDialog.Trigger

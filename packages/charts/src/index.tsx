@@ -6,7 +6,8 @@ export type ChartTone = "categorical" | "positive" | "negative" | "warning" | "n
 export interface ChartDatum { label: string; value: number }
 export interface BaseChartProps { data: ChartDatum[]; label: string; tone?: ChartTone; valueFormatter?: (value: number) => string }
 
-const chartColor = (tone: ChartTone, index = 0) => tone === "categorical" ? `var(--lex-chart-${(index % 5) + 1})` : `var(--lex-chart-${tone})`
+export const CHART_SERIES_COUNT = 10
+const chartColor = (tone: ChartTone, index = 0) => tone === "categorical" ? `var(--lex-chart-${(index % CHART_SERIES_COUNT) + 1})` : `var(--lex-chart-${tone})`
 const pointsFor = (data: ChartDatum[], width: number, height: number, padX: number, padY: number) => {
   const values = data.map((item) => item.value)
   const max = Math.max(...values, 1)
@@ -20,7 +21,7 @@ export function BarChart({ data, label, tone = "categorical", valueFormatter = S
   return <figure className="lex-chart" aria-label={label}>
     <div className="lex-chart__plot" role="img" aria-label={label}>{data.map((item, index) => <div className="lex-chart__column" key={item.label} tabIndex={0} aria-label={`${item.label}: ${valueFormatter(item.value)}`}>
       <span className="lex-chart__value">{valueFormatter(item.value)}</span>
-      <span className="lex-chart__bar" data-tone={tone} data-series={(index % 5) + 1} style={{ height: `${Math.max((item.value / max) * 100, 4)}%` }} />
+      <span className="lex-chart__bar" data-tone={tone} data-series={(index % CHART_SERIES_COUNT) + 1} style={{ height: `${Math.max((item.value / max) * 100, 4)}%` }} />
       <span className="lex-chart__label">{item.label}</span>
       <ChartTooltip label={item.label} value={valueFormatter(item.value)} />
     </div>)}</div>

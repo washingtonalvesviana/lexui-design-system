@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 type CarouselContextValue = { index: number; count: number; register: (count: number) => void; go: (index: number) => void }
 const CarouselContext = React.createContext<CarouselContextValue | null>(null)

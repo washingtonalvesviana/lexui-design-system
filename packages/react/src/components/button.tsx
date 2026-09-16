@@ -1,6 +1,6 @@
 import * as React from "react"
 import { LoaderCircle } from "lucide-react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export type ButtonVariant = "primary" | "accent" | "secondary" | "outline" | "ghost" | "destructive"
 export type ButtonSize = "sm" | "md" | "lg" | "icon"

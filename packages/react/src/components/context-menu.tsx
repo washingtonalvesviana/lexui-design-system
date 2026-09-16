@@ -3,7 +3,7 @@
 import * as React from "react"
 import { ContextMenu as BaseContextMenu } from "@base-ui/react/context-menu"
 import { Check } from "lucide-react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export const ContextMenu = BaseContextMenu.Root
 export function ContextMenuTrigger({ className, ...props }: Omit<React.ComponentProps<typeof BaseContextMenu.Trigger>, "className"> & { className?: string }) { return <BaseContextMenu.Trigger className={cx("lex-context-trigger", className)} {...props} /> }

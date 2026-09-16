@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { AlertDialog as BaseAlertDialog } from "@base-ui/react/alert-dialog"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export const AlertDialog = BaseAlertDialog.Root
 export const AlertDialogTrigger = BaseAlertDialog.Trigger

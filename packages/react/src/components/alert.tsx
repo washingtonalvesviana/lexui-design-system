@@ -1,6 +1,6 @@
 import * as React from "react"
 import { CircleAlert, CircleCheck, Info, TriangleAlert } from "lucide-react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export type AlertVariant = "info" | "success" | "warning" | "danger"
 

@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 type SidebarContextValue = { collapsed: boolean; setCollapsed: (value: boolean) => void }
 const SidebarContext = React.createContext<SidebarContextValue | null>(null)

@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Popover as BasePopover } from "@base-ui/react/popover"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export const Popover = BasePopover.Root
 export const PopoverTrigger = BasePopover.Trigger

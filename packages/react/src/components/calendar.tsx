@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 const weekdays = ["seg", "ter", "qua", "qui", "sex", "sáb", "dom"]
 const monthFormatter = new Intl.DateTimeFormat("pt-BR", { month: "long", year: "numeric" })

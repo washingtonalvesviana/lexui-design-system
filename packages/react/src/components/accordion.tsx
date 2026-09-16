@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Accordion as BaseAccordion } from "@base-ui/react/accordion"
 import { ChevronDown } from "lucide-react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export const Accordion = BaseAccordion.Root
 

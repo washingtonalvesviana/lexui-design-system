@@ -3,7 +3,7 @@
 import * as React from "react"
 import { RadioGroup as BaseRadioGroup } from "@base-ui/react/radio-group"
 import { Radio } from "@base-ui/react/radio"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export function RadioGroup<T = string>({ className, ...props }: Omit<React.ComponentProps<typeof BaseRadioGroup<T>>, "className"> & { className?: string }) {
   return <BaseRadioGroup<T> className={cx("lex-radio-group", className)} {...props} />

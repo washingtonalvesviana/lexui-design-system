@@ -1,5 +1,5 @@
 import * as React from "react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export function Chat({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
   return <section className={cx("lex-chat", className)} {...props} />

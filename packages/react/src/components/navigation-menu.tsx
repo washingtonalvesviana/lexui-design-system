@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { ChevronDown } from "lucide-react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export function NavigationMenu({ className, ...props }: React.HTMLAttributes<HTMLElement>) { return <nav className={cx("lex-navigation-menu", className)} {...props} /> }
 export function NavigationMenuList({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) { return <ul className={cx("lex-navigation-menu__list", className)} {...props} /> }

@@ -2,8 +2,8 @@
 
 import * as React from "react"
 import { Search } from "lucide-react"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./dialog"
-import { cx } from "../lib/cx"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./dialog.js"
+import { cx } from "../lib/cx.js"
 
 export interface CommandItem { id: string; label: string; description?: string; keywords?: string[]; icon?: React.ReactNode; shortcut?: string; disabled?: boolean; onSelect: () => void }
 export interface CommandGroup { label?: string; items: CommandItem[] }

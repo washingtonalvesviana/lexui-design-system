@@ -1,5 +1,5 @@
 import * as React from "react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export function TableContainer({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return <div className={cx("lex-table-container", className)} {...props} />

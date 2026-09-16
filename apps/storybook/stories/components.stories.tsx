@@ -2,7 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import {
   Alert, Badge, Button, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle,
   Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle,
-  DialogTrigger, Field, Input, Select, Textarea,
+  DialogTrigger, Field, Fieldset, FloatingLabel, Input, Navbar, NavbarBrand, NavbarContent, NavbarToggle, Select, Textarea,
+  CloseButton, Figure, FigureCaption, FigureImage, Image, Col, Container, ListGroup, ListGroupItem, Row,
 } from "@lexui/react"
 
 const meta = { title: "Components/Visão geral", parameters: { layout: "fullscreen" } } satisfies Meta
@@ -45,4 +46,57 @@ export const Modal: Story = {
       <DialogFooter><DialogClose className="lex-button" data-variant="ghost" data-size="md">Cancelar</DialogClose><Button>Enviar convite</Button></DialogFooter>
     </DialogContent>
   </Dialog>,
+}
+
+export const BarraDeNavegacao: Story = {
+  render: () => (
+    <div style={{ border: "1px dashed var(--lex-border-strong)", borderRadius: "var(--lex-radius-md)" }}>
+      <Navbar sticky>
+        <NavbarBrand href="#lexui">LexUI SaaS</NavbarBrand>
+        <NavbarContent>
+          <Button variant="ghost" size="sm">Dashboard</Button>
+          <Button variant="ghost" size="sm">Projetos</Button>
+          <Button variant="ghost" size="sm">Configurações</Button>
+        </NavbarContent>
+        <NavbarToggle />
+      </Navbar>
+    </div>
+  ),
+}
+
+export const ListaDeItens: Story = {
+  render: () => <div className="lex-story-form" style={{ maxWidth: "28rem" }}>
+    <ListGroup>
+      <ListGroupItem icon={<span>●</span>} active><strong>Contrato ativo</strong><span className="lex-list-group__meta">Renova em 12 dias</span></ListGroupItem>
+      <ListGroupItem icon={<span>○</span>}>Fatura 2048 — emitida<span className="lex-list-group__meta">R$ 1.290,00 · em dia</span></ListGroupItem>
+      <ListGroupItem disabled>Fatura 2047 — arquivada</ListGroupItem>
+    </ListGroup>
+  </div>,
+}
+
+export const FiguraEImagem: Story = {
+  render: () => <div className="lex-story-form" style={{ maxWidth: "30rem" }}>
+    <Figure>
+      <FigureImage><Image src="https://placehold.co/640x280/46519e/ffffff?text=LexUI" alt="Exemplo de imagem" rounded fit="cover" /></FigureImage>
+      <FigureCaption>Figura 1 · Composição com tokens de cor e raio.</FigureCaption>
+    </Figure>
+  </div>,
+}
+
+export const BotaoDeFechar: Story = {
+  render: () => <div className="lex-story-stack">
+    <CloseButton /><CloseButton disabled /><CloseButton closeLabel="Fechar painel" aria-label="Fechar painel" />
+  </div>,
+}
+
+export const FormAvancado: Story = {
+  render: () => <form className="lex-story-form" style={{ maxWidth: "30rem" }}>
+    <FloatingLabel htmlFor="fl-email" label="E-mail corporativo"><Input id="fl-email" type="email" /></FloatingLabel>
+    <Field label="Plano" htmlFor="fl-plan" horizontal><Select id="fl-plan"><option>Essencial</option><option>Profissional</option></Select></Field>
+    <Fieldset legend="Preferências de contato">
+      <Field label="Telefone" htmlFor="fs-phone" optional><Input id="fs-phone" type="tel" /></Field>
+      <Field label="Observações" htmlFor="fs-notes" description="Visível apenas para a equipe."><Textarea id="fs-notes" /></Field>
+    </Fieldset>
+    <Button type="submit" variant="outline">Salvar</Button>
+  </form>,
 }

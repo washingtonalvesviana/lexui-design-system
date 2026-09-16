@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Slider as BaseSlider } from "@base-ui/react/slider"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export interface SliderProps extends Omit<React.ComponentProps<typeof BaseSlider.Root<number>>, "className"> {
   label: string

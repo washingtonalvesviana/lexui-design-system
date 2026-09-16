@@ -1,5 +1,5 @@
 import * as React from "react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export type BadgeVariant = "neutral" | "primary" | "accent" | "success" | "warning" | "danger"
 

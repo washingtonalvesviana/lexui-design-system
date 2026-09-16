@@ -3,15 +3,15 @@
 import * as React from "react"
 import { Menu as BaseMenu } from "@base-ui/react/menu"
 import { Check } from "lucide-react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export const DropdownMenu = BaseMenu.Root
 export const DropdownMenuTrigger = BaseMenu.Trigger
 export const DropdownMenuGroup = BaseMenu.Group
 export const DropdownMenuRadioGroup = BaseMenu.RadioGroup
 
-export function DropdownMenuContent({ className, sideOffset = 8, ...props }: Omit<React.ComponentProps<typeof BaseMenu.Popup>, "className"> & { className?: string; sideOffset?: number }) {
-  return <BaseMenu.Portal><BaseMenu.Positioner sideOffset={sideOffset}><BaseMenu.Popup className={cx("lex-menu__popup", className)} {...props} /></BaseMenu.Positioner></BaseMenu.Portal>
+export function DropdownMenuContent({ className, sideOffset = 8, align, ...props }: Omit<React.ComponentProps<typeof BaseMenu.Popup>, "className"> & { className?: string; sideOffset?: number; align?: "start" | "center" | "end" }) {
+  return <BaseMenu.Portal><BaseMenu.Positioner sideOffset={sideOffset} align={align}><BaseMenu.Popup className={cx("lex-menu__popup", className)} {...props} /></BaseMenu.Positioner></BaseMenu.Portal>
 }
 
 export function DropdownMenuItem({ className, ...props }: Omit<React.ComponentProps<typeof BaseMenu.Item>, "className"> & { className?: string }) {

@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Toggle as BaseToggle } from "@base-ui/react/toggle"
 import { ToggleGroup as BaseToggleGroup } from "@base-ui/react/toggle-group"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export type ToggleVariant = "default" | "outline"
 export interface ToggleProps extends Omit<React.ComponentProps<typeof BaseToggle<string>>, "className"> { variant?: ToggleVariant; className?: string }

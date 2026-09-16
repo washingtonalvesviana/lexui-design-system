@@ -1,5 +1,5 @@
 import * as React from "react"
-import { cx } from "../lib/cx"
+import { cx } from "../lib/cx.js"
 
 export interface ProgressProps extends React.ProgressHTMLAttributes<HTMLProgressElement> {
   label: string
