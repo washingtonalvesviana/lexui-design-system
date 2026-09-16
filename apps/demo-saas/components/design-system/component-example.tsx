@@ -168,7 +168,7 @@ export function ComponentExample({ slug }: { slug: string }) {
       </ExampleFrame>
       <ExampleFrame title={`Referência de ícones (${iconsReference.length})`} description="Em uso no repositório e vocabulário aprovado do design system; regenere com pnpm icons:reference. O número indica em quantos arquivos o ícone aparece.">
         <div className="demo-icon-ref-grid">
-          {iconsReference.map(({ icon: Icon, name, uses, concept, use }) => <div key={name} className="demo-icon-ref" title={`${name}${concept ? ` · ${concept}` : ""} · ${uses ? `${uses} arquivo${uses > 1 ? "s" : ""}` : "aprovado, sem uso"}${use ? ` · ${use}` : ""}`}><Icon size={16} aria-hidden="true" /><span>{name}</span><small>{uses || "aprovado"}</small></div>)}
+          {iconsReference.map(({ icon: Icon, name, uses, concept, use }) => <div key={name} className="demo-icon-ref" title={`${name}${concept ? ` · ${concept}` : ""} · ${uses ? `${uses} arquivo${uses > 1 ? "s" : ""}` : "aprovado, sem uso"}${use ? ` · ${use}` : ""}`}><Icon size={18} aria-hidden="true" /><span>{name}</span><small>{uses || "aprovado"}</small></div>)}
         </div>
       </ExampleFrame>
     </>
