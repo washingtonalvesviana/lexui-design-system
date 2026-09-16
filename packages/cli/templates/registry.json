@@ -1,6 +1,6 @@
 {
   "$schema": "https://lexui.dev/schema/registry.json",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "components": [
     {
       "name": "accordion",

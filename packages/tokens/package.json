@@ -1,6 +1,6 @@
 {
   "name": "@lexui/tokens",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Semantic design tokens and light/dark themes for LexUI",
   "license": "MIT",
   "type": "module",

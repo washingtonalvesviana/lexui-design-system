@@ -6,12 +6,12 @@
 
 - Design System **LexUI** (fonte canônica em `/home/ubuntu/dw-lex-ui`): monorepo pnpm + turbo.
   Pacotes: `@lexui/tokens`, `@lexui/react`, `@lexui/charts`, `@lexui/cli` · Apps: `demo-saas` (Next.js) e `storybook`.
-- Ciclo do mapeamento Bootstrap→LexUI **concluído** (tokens z-index/gutter, 7 módulos novos, Grid, Navbar, ListGroup, Figure/Image, CloseButton, Offcanvas/Drawer, ScrollSpy, FloatingLabel, utilities `lex-utility-*`, docs, stories, registry CLI). Tarballs 0.2.0 em `artifacts/npm/`.
+- Ciclo do mapeamento Bootstrap→LexUI **concluído** (tokens z-index/gutter, 7 módulos novos, Grid, Navbar, ListGroup, Figure/Image, CloseButton, Offcanvas/Drawer, ScrollSpy, FloatingLabel, utilities `lex-utility-*`, docs, stories, registry CLI). Tarballs em `artifacts/npm/`.
+- **Versão atual: 0.3.0** (bump de 0.2.0 nesta sessão, por causa da API tipográfica nova). Os tarballs 0.3.0 estão **versionados no git** em `artifacts/npm/` (só `artifacts/.npm-cache` fica fora), então outro projeto/servidor instala sem registry — ver README §"Instalar em outro projeto ou servidor" e `.design-system-lex-ui/release.md`. Smoke test feito em projeto isolado: `npm install` dos 4 tarballs + peers, `tsc` com `weight`/`italic`, `lexui init`/`doctor`/`check` verdes.
 - Nesta sessão foram corrigidos 11 defeitos visuais do demo/catalogo (lista em §5).
 - **Sessão seguinte (03:15–04:15)**: working tree commitado (§2), varredura preventiva de classes concluída (§7), biblioteca de ícones ampliada com vocabulário jurídico aprovado (§6) e fundamentos completados com tipografia variável (pesos + itálico real) e **paleta de cores viva** (`/design-system/components/palette`, doc `foundations/colors.md` live + template).
 - Última validação verde: typecheck 9/9 · build 6/6 · lexui:check 206 arquivos, 0 violações + 197 classes demo-* conferidas + 118 ícones sem alias duplicado.
 - Componentes novos do pacote 0.2.0: `packages/react/src/components/{grid,navbar,list-group,figure,image,close-button}.tsx`, `scrollspy.ts`.
-
 ## 2. ✅ RESOLVIDO — working tree commitado
 
 - `35f1840` launch → `662d75f` (feat: bootstrap coverage 0.2.0 + demo fixes, 100 arquivos) → `8739057` (fix(demo): demo-chart-card + demo-chat-toolbar-spacer) → `b0b8cd3` (chore: guarda de classes no lexui:check). Todos já em `origin/main`.

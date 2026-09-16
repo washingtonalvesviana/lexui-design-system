@@ -7,6 +7,7 @@ storybook-static
 *.tsbuildinfo
 .DS_Store
 coverage
-artifacts/
+artifacts/.npm-cache/
+artifacts/*.log
 .demo-server.*.log
 .storybook-server.*.log
