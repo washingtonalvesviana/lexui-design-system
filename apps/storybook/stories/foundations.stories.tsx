@@ -40,7 +40,7 @@ export const Cores: Story = {
                   <code style={{ fontFamily: "var(--lex-font-mono)", fontSize: "var(--lex-text-xs)" }}>{token}</code>
                   <div style={{ display: "grid", gap: "var(--lex-space-2)", gridTemplateColumns: "1fr 1fr" }}>
                     {(["light", "dark"] as const).map((theme) => (
-                      <div key={theme} data-theme={theme} style={{ background: "var(--lex-surface-1)", border: "1px solid var(--lex-border)", borderRadius: "var(--lex-radius-sm)", display: "grid", gap: "var(--lex-space-1)", padding: "var(--lex-space-2)" }}>
+                      <div key={theme} data-theme={theme} style={{ background: "var(--lex-surface-1)", border: "1px solid var(--lex-border)", borderRadius: "var(--lex-radius-sm)", color: "var(--lex-foreground)", display: "grid", gap: "var(--lex-space-1)", padding: "var(--lex-space-2)" }}>
                         <span style={{ background: `var(${token})`, border: "1px solid var(--lex-border-strong)", borderRadius: "var(--lex-radius-sm)", display: "block", height: "2rem" }} />
                         <small style={{ color: "var(--lex-muted)", fontSize: "var(--lex-text-xs)" }}>{theme === "light" ? "Claro" : "Escuro"}</small>
                       </div>
