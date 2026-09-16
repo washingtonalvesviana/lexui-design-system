@@ -5,13 +5,14 @@
 ## 1. Estado geral
 
 - Design System **LexUI** (fonte canônica em `/home/ubuntu/dw-lex-ui`): monorepo pnpm + turbo.
-  Pacotes: `@lexui/tokens`, `@lexui/react`, `@lexui/charts`, `@lexui/cli` · Apps: `demo-saas` (Next.js) e `storybook`.
+  Pacotes: `@lexui/tokens`, `@lexui/react`, `@lexui/charts`, `@lexui/flow`, `@lexui/cli` · Apps: `demo-saas` (Next.js) e `storybook`.
 - Ciclo do mapeamento Bootstrap→LexUI **concluído** (tokens z-index/gutter, 7 módulos novos, Grid, Navbar, ListGroup, Figure/Image, CloseButton, Offcanvas/Drawer, ScrollSpy, FloatingLabel, utilities `lex-utility-*`, docs, stories, registry CLI). Tarballs em `artifacts/npm/`.
-- **Versão atual: 0.3.0** (bump de 0.2.0 nesta sessão, por causa da API tipográfica nova). Os tarballs 0.3.0 estão **versionados no git** em `artifacts/npm/` (só `artifacts/.npm-cache` fica fora), então outro projeto/servidor instala sem registry — ver README §"Instalar em outro projeto ou servidor" e `.design-system-lex-ui/release.md`. Smoke test feito em projeto isolado: `npm install` dos 4 tarballs + peers, `tsc` com `weight`/`italic`, `lexui init`/`doctor`/`check` verdes.
+- **Versão atual: 0.4.0** (0.2.0 → 0.3.0 por causa da API tipográfica; 0.4.0 com o pacote `@lexui/flow`). Os cinco tarballs estão **versionados no git** em `artifacts/npm/` (só `artifacts/.npm-cache` fica fora), então outro projeto/servidor instala sem registry — ver README §"Instalar em outro projeto ou servidor" e `.design-system-lex-ui/release.md`. Smoke test em projeto isolado: `npm install` dos 5 tarballs + peers, `tsc` de `weight`/`italic` e de `Flow`, `lexui init`/`doctor`/`search`/`view`/`check` verdes — inclusive o guard que barra `@xyflow/react` direto.
 - Nesta sessão foram corrigidos 11 defeitos visuais do demo/catalogo (lista em §5).
 - **Sessão seguinte (03:15–04:15)**: working tree commitado (§2), varredura preventiva de classes concluída (§7), biblioteca de ícones ampliada com vocabulário jurídico aprovado (§6) e fundamentos completados com tipografia variável (pesos + itálico real) e **paleta de cores viva** (`/design-system/components/palette`, doc `foundations/colors.md` live + template).
-- Última validação verde: typecheck 9/9 · build 6/6 · lexui:check 206 arquivos, 0 violações + 197 classes demo-* conferidas + 118 ícones sem alias duplicado.
+- Última validação verde: typecheck 11/11 · build 7/7 · tests 6/6 · lexui:check 218 arquivos, 0 violações + 199 classes demo-* conferidas + 118 ícones sem alias duplicado.
 - Componentes novos do pacote 0.2.0: `packages/react/src/components/{grid,navbar,list-group,figure,image,close-button}.tsx`, `scrollspy.ts`.
+
 ## 2. ✅ RESOLVIDO — working tree commitado
 
 - `35f1840` launch → `662d75f` (feat: bootstrap coverage 0.2.0 + demo fixes, 100 arquivos) → `8739057` (fix(demo): demo-chart-card + demo-chat-toolbar-spacer) → `b0b8cd3` (chore: guarda de classes no lexui:check). Todos já em `origin/main`.
@@ -66,6 +67,17 @@ Depois: rebuild mudou → reiniciar o next (item 3). Usuário precisa de **hard 
 - Uso real no demo: `/calendar` usa `Gavel` (audiência), `Hourglass` (prazo) e `Handshake` (acordo) dentro do `Badge`, junto de cor e texto.
 - Story `Iconografia` em `apps/storybook/stories/foundations.stories.tsx`.
 
+## 6b. `@lexui/flow` (React Flow) — entrega desta sessão
+
+- Pacote novo `packages/flow` (0.4.0) que embrulha `@xyflow/react@12` (MIT, peer react >=17) e expõe `Flow`, `FlowProvider`, `FlowBackground`, `FlowControls`, `FlowMiniMap`, `FlowNode` + `flowNodeTypes`, `FlowEdge` e reexporta `Position`, `MarkerType`, `BackgroundVariant`, `Handle`, `addEdge`, `getBezierPath`, `useNodesState`, `useEdgesState`, `useReactFlow` e os tipos (`Node`, `Edge`, `NodeProps`, `EdgeProps`, `Connection`, `OnConnect`, `NodeTypes`). Assim a aplicação nunca importa `@xyflow/react`.
+- **Aparência 100% por tokens**: o `base.css` do React Flow (estrutura, zero aparência) entra no `dist/styles.css` dentro da layer `lexui.flow-base` via `packages/flow/scripts/build-styles.mjs`; o tema em `src/styles.css` (`lexui.components`) mapeia ~30 variáveis `--xy-*` para tokens (`--xy-node-background-color: var(--lex-surface-1)`, `--xy-edge-stroke: var(--lex-border-strong)`, `--xy-handle-background-color: var(--lex-primary)`…). Sem `style.css` do vendor: nenhuma cor padrão dele aparece.
+- Ordem de layers passou a ser `lexui.tokens, lexui.base, lexui.flow-base, lexui.components` (declarada em `packages/tokens/src/index.css`).
+- O contêiner precisa de altura (`style={{ height }}`, prop `height` numérica ou pai dimensionado); o exemplo do demo usa `.demo-flow-canvas` com 26rem.
+- Guard do CLI generalizado: `@base-ui/react` só em `packages/react/` e `@xyflow/react` só em `packages/flow/` (mensagem "importe o fluxo somente através de @lexui/flow"), com exit 1 — validado no projeto consumidor.
+- Superfícies atualizadas: registry (3 arquivos, entry `flow` com `keywords` PT: fluxo, diagrama, processo, organograma…), `search` do CLI agora casa `keywords`, `components/flow.md` (live + template), `catalog.md`, `ai/instructions.md`, `SKILL.md` + `component-selection.md`, `manifest.json`, `AGENTS.md`, `README.md`, `release.md`, `next.config.ts` e preview do Storybook.
+- Demo: `/design-system/components/flow` (categoria Estrutura) com fluxo jurídico de 6 nós e 5 arestas, tons, labels de aresta, controles e minimapa; montagem client-only (o build do demo é estático) e verificado por CDP em claro e escuro (nó/aresta/controles lendo os tokens, sem overflow).
+- Também sincronizei o `.design-system-lex-ui/registry.json` (estava com 63 componentes, faltavam os 9 módulos do ciclo Bootstrap) — agora igual ao template e ao `lexui.registry.json` (72).
+
 ## 7. ✅ RESOLVIDO — classes órfãs do demo (guarda automática)
 - 8 dos 11 bugs de §5 eram o MESMO: **exemplos referenciavam classes CSS inexistentes** (`demo-grid-cell`, `demo-aspect-preview`, `lex-utility-flex`…), criadas só no app de teste isolado.
 - Varredura feita: 183 classes `demo-*`/`lex-utility-*` usadas em `apps/demo-saas` + `apps/storybook`, todas definidas. Restavam apenas **2 órfãs** (nenhuma quebrava layout de forma óbvia, mas ambas eram reais):
@@ -78,6 +90,7 @@ Depois: rebuild mudou → reiniciar o next (item 3). Usuário precisa de **hard 
 
 - Cascade: `@layer lexui.tokens → lexui.base → lexui.components` (declarado no topo de `packages/tokens/src/index.css`). CSS de app demo sem layer só deve usar seletores específicos; reboots entram em `lexui.base`.
 - Drawer/Sheet: uma primitiva (Sheet é alias), `bottom` é default; mobile <640px colapsa tudo para bottom sheet (media query no `packages/react/src/styles.css`).
+- Terceiros: biblioteca externa entra embrulhada em pacote do DS, nunca importada pela aplicação. `@base-ui/react` só em `packages/react/`; `@xyflow/react` só em `packages/flow/`, com o CSS estrutural do vendor em `lexui.flow-base` e a aparência em tokens em `lexui.components`.
 - Ícones: Lucide; 16/18/20px; Avatar para pessoas; `aria-label` obrigatório em ação-only; mesma ícone = mesmo conceito.
 - Tokens: nada de hex/spaços arbitrários em apps demo; variantes tintadas usam `color-mix()` com tokens.
 - Paleta: três níveis (marca → semântico → consumo), documentados em `foundations/colors.md`. O tema claro são os valores de `:root, [data-theme="light"]` e o escuro de `[data-theme="dark"]` — como o seletor casa **qualquer** elemento (não só o `<html>`), um bloco pode ser renderizado no tema oposto: é o que a página de paleta usa para mostrar claro e escuro lado a lado, e o que previews embutidos devem fazer. Não redefinir tokens semânticos na aplicação; cor nova entra primeiro em `@lexui/tokens`.
@@ -91,5 +104,6 @@ Depois: rebuild mudou → reiniciar o next (item 3). Usuário precisa de **hard 
 3. Uso real do vocabulário novo nas telas (hoje só `/calendar` usa `Gavel`/`Hourglass`/`Handshake`): candidatos naturais são carteira de processos, autos sigilosos e honorários, quando essas telas existirem.
 4. Paleta: se algum valor for ajustado, atualize `foundations/colors.md` junto e confira contraste (4.5:1 texto, 3:1 limites) nos dois temas pela página `/design-system/components/palette`, que lê os valores do CSS em tempo real.
 5. Se houver novos componentes (ex.: outros do mapeamento Bootstrap), seguir o checklist do AGENTS.md: componente + tokens + docs (live/template CLI em par) + story + exemplo no demo + registry do CLI.
+6. `pnpm pack` já empacota os cinco pacotes (a lista estava fixa em quatro — corrigida); qualquer bump exige repack e commit dos `.tgz`.
 6. Tarballs: `pnpm pack` / `node scripts/pack-packages.mjs` quando a API mudar de novo (bump de versão + `artifacts/npm/`).
 7. Antes de concluir qualquer mudança de UI: `pnpm typecheck && pnpm build && pnpm lexui:check` (agora inclui a guarda de classes e a de aliases de ícone) e, se o build mudou, reiniciar o next (§3).

@@ -1,7 +1,7 @@
 {
-  "name": "@lexui/charts",
+  "name": "@lexui/flow",
   "version": "0.4.0",
-  "description": "Accessible chart components for the LexUI design system",
+  "description": "Tokenized React Flow wrappers for the LexUI design system",
   "license": "MIT",
   "type": "module",
   "sideEffects": ["**/*.css"],
@@ -16,14 +16,20 @@
   },
   "types": "./dist/index.d.ts",
   "peerDependencies": {
-    "react": ">=19"
+    "react": ">=19",
+    "react-dom": ">=19"
+  },
+  "dependencies": {
+    "@xyflow/react": "^12.11.6"
   },
   "devDependencies": {
     "@types/react": "latest",
-    "react": "latest"
+    "@types/react-dom": "latest",
+    "react": "latest",
+    "react-dom": "latest"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && node ../../scripts/copy-assets.mjs src/styles.css dist/styles.css",
+    "build": "tsc -p tsconfig.build.json && node ./scripts/build-styles.mjs",
     "typecheck": "tsc --noEmit"
   },
   "publishConfig": { "access": "public" }

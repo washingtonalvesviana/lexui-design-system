@@ -1,0 +1,102 @@
+/* Tema do fluxo. Toda a aparência vem dos tokens do LexUI; a estrutura (posicionamento,
+   pan/zoom, cursores) vem do base.css do @xyflow/react, embutido no dist pela layer
+   lexui.flow-base. As variáveis --xy-* ficam expostas para a aplicação ajustar sem CSS local. */
+@layer lexui.components {
+  .lex-flow {
+    --xy-node-background-color: var(--lex-surface-1);
+    --xy-node-color: var(--lex-foreground);
+    --xy-node-border: 1px solid var(--lex-border);
+    --xy-node-border-radius: var(--lex-radius-md);
+    --xy-node-boxshadow-hover: var(--lex-shadow-sm);
+    --xy-node-boxshadow-selected: var(--lex-shadow-sm);
+    --xy-node-group-background-color: color-mix(in srgb, var(--lex-primary) 10%, var(--lex-surface-1));
+    --xy-handle-background-color: var(--lex-primary);
+    --xy-handle-border-color: var(--lex-surface-1);
+    --xy-edge-stroke: var(--lex-border-strong);
+    --xy-edge-stroke-selected: var(--lex-primary);
+    --xy-edge-stroke-width: 1.5;
+    --xy-edge-label-background-color: var(--lex-surface-2);
+    --xy-edge-label-color: var(--lex-foreground);
+    --xy-connectionline-stroke: var(--lex-primary);
+    --xy-connectionline-stroke-width: 1.5;
+    --xy-controls-button-background-color: var(--lex-surface-1);
+    --xy-controls-button-background-color-hover: var(--lex-surface-3);
+    --xy-controls-button-border-color: var(--lex-border);
+    --xy-controls-button-color: var(--lex-foreground);
+    --xy-controls-button-color-hover: var(--lex-primary);
+    --xy-controls-box-shadow: var(--lex-shadow-sm);
+    --xy-minimap-background-color: var(--lex-surface-1);
+    --xy-minimap-mask-background-color: color-mix(in srgb, var(--lex-background) 72%, transparent);
+    --xy-minimap-mask-stroke-color: var(--lex-border);
+    --xy-minimap-mask-stroke-width: 1;
+    --xy-minimap-node-background-color: var(--lex-surface-3);
+    --xy-minimap-node-stroke-color: var(--lex-border);
+    --xy-minimap-node-stroke-width: 1;
+    --xy-attribution-background-color: color-mix(in srgb, var(--lex-surface-1) 82%, transparent);
+    --xy-selection-background-color: color-mix(in srgb, var(--lex-primary) 12%, transparent);
+    --xy-selection-border: 1px dashed var(--lex-primary);
+    --xy-resize-background-color: var(--lex-primary);
+    --xy-background-color: var(--lex-surface-1);
+    --xy-background-pattern-color: var(--lex-border);
+    --xy-background-pattern-dots-color-default: var(--lex-border);
+    --xy-background-pattern-lines-color-default: var(--lex-border);
+    --xy-background-pattern-cross-color-default: var(--lex-border);
+    background: var(--lex-surface-1);
+    border: 1px solid var(--lex-border);
+    border-radius: var(--lex-radius-md);
+    color: var(--lex-foreground);
+    height: 100%;
+    min-height: 20rem;
+    width: 100%;
+  }
+
+  .lex-flow .react-flow__background-pattern { color: var(--lex-border); }
+
+  .lex-flow .react-flow__node { background: var(--xy-node-background-color); border: var(--xy-node-border); border-radius: var(--xy-node-border-radius); color: var(--xy-node-color); font-size: var(--lex-text-sm); }
+  .lex-flow .react-flow__node.selectable:hover { box-shadow: var(--xy-node-boxshadow-hover); }
+  .lex-flow .react-flow__node.selected { box-shadow: var(--xy-node-boxshadow-selected); }
+  .lex-flow .react-flow__node.selectable:focus-visible { box-shadow: var(--xy-node-boxshadow-selected); outline: 2px solid var(--lex-focus); outline-offset: 2px; }
+  .lex-flow .react-flow__node-group { background: var(--xy-node-group-background-color); border: 1px dashed var(--lex-border-strong); border-radius: var(--lex-radius-lg); }
+
+  .lex-flow .react-flow__handle { background: var(--xy-handle-background-color); border: 2px solid var(--xy-handle-border-color); height: .6rem; width: .6rem; }
+  .lex-flow .react-flow__handle.connectionindicator { cursor: crosshair; }
+
+  .lex-flow .react-flow__edge-path { stroke: var(--xy-edge-stroke); stroke-width: var(--xy-edge-stroke-width); }
+  .lex-flow .react-flow__edge.selected .react-flow__edge-path { stroke: var(--xy-edge-stroke-selected); }
+  .lex-flow .react-flow__edge.selectable:focus-visible { outline: 2px solid var(--lex-focus); outline-offset: 2px; }
+  .lex-flow .react-flow__edge-text { fill: var(--xy-edge-label-color); font-size: var(--lex-text-xs); }
+  .lex-flow .react-flow__edge-textbg { fill: var(--xy-edge-label-background-color); }
+  .lex-flow .react-flow__arrowhead polyline { stroke: var(--xy-edge-stroke); fill: var(--xy-edge-stroke); }
+  .lex-flow .react-flow__arrowhead polyline.arrowclosed { fill: var(--xy-edge-stroke); }
+  .lex-flow .react-flow__connection-path { stroke: var(--xy-connectionline-stroke); stroke-width: var(--xy-connectionline-stroke-width); }
+
+  .lex-flow .react-flow__controls { border: 1px solid var(--lex-border); border-radius: var(--lex-radius-md); box-shadow: var(--xy-controls-box-shadow); overflow: hidden; }
+  .lex-flow .react-flow__controls-button { background: var(--xy-controls-button-background-color); border: 0; border-bottom: 1px solid var(--xy-controls-button-border-color); color: var(--xy-controls-button-color); cursor: pointer; height: var(--lex-control-sm); width: var(--lex-control-sm); }
+  .lex-flow .react-flow__controls-button:hover { background: var(--xy-controls-button-background-color-hover); color: var(--xy-controls-button-color-hover); }
+  .lex-flow .react-flow__controls-button:disabled { color: var(--lex-muted); cursor: not-allowed; }
+  .lex-flow .react-flow__controls-button:last-child { border-bottom: 0; }
+
+  .lex-flow .react-flow__minimap { background: var(--xy-minimap-background-color); border: 1px solid var(--lex-border); border-radius: var(--lex-radius-sm); }
+  .lex-flow .react-flow__minimap-mask { fill: var(--xy-minimap-mask-background-color); stroke: var(--xy-minimap-mask-stroke-color); stroke-width: var(--xy-minimap-mask-stroke-width); }
+  .lex-flow .react-flow__minimap-node { fill: var(--xy-minimap-node-background-color); stroke: var(--xy-minimap-node-stroke-color); stroke-width: var(--xy-minimap-node-stroke-width); }
+
+  .lex-flow .react-flow__attribution { background: var(--xy-attribution-background-color); border-radius: var(--lex-radius-sm); color: var(--lex-muted); font-size: var(--lex-text-xs); padding: 0 var(--lex-space-1); }
+  .lex-flow .react-flow__attribution a { color: var(--lex-muted); }
+
+  .lex-flow .react-flow__selection { background: var(--xy-selection-background-color); border: var(--xy-selection-border); }
+  .lex-flow .react-flow__resize-control.line { border-color: var(--lex-primary); }
+  .lex-flow .react-flow__resize-control.handle { background: var(--xy-resize-background-color); border-color: var(--lex-surface-1); }
+
+  .lex-flow-node { background: var(--xy-node-background-color); border: var(--xy-node-border); border-left: 3px solid var(--lex-border-strong); border-radius: var(--xy-node-border-radius); color: var(--xy-node-color); display: grid; gap: var(--lex-space-1); min-width: 11rem; padding: var(--lex-space-3); }
+  .lex-flow-node[data-tone="primary"] { border-left-color: var(--lex-primary); }
+  .lex-flow-node[data-tone="accent"] { border-left-color: var(--lex-accent); }
+  .lex-flow-node[data-tone="success"] { border-left-color: var(--lex-success); }
+  .lex-flow-node[data-tone="warning"] { border-left-color: var(--lex-warning); }
+  .lex-flow-node[data-tone="danger"] { border-left-color: var(--lex-danger); }
+  .lex-flow-node[data-selected] { box-shadow: var(--lex-shadow-sm); }
+  .lex-flow-node__body { display: grid; gap: var(--lex-space-1); min-width: 0; }
+  .lex-flow-node__title { font-size: var(--lex-text-sm); font-weight: 650; }
+  .lex-flow-node__description { color: var(--lex-muted); font-size: var(--lex-text-xs); }
+  .lex-flow-node__meta { color: var(--lex-muted); font-family: var(--lex-font-mono); font-size: var(--lex-text-xs); }
+  .lex-flow-node__handle { background: var(--xy-handle-background-color); border: 2px solid var(--xy-handle-border-color); }
+}

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@lexui/charts": "workspace:*",
+    "@lexui/flow": "workspace:*",
     "@lexui/react": "workspace:*",
     "@lexui/tokens": "workspace:*",
     "lucide-react": "latest",

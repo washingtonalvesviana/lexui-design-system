@@ -14,11 +14,11 @@ Antes de criar ou modificar interfaces, leia:
 
 ## Regras de implementação
 
-- Use componentes públicos de `@lexui/react` e `@lexui/charts`.
+- Use componentes públicos de `@lexui/react`, `@lexui/charts` e `@lexui/flow`.
 - Não replique um componente ou pattern já existente.
 - Não use cores hexadecimais, espaçamentos arbitrários ou sombras diretamente em aplicações.
 - Componentes devem consumir tokens semânticos, nunca cores de marca diretamente.
-- Não importe primitivas Base UI em aplicações consumidoras.
+- Não importe primitivas Base UI nem `@xyflow/react` em aplicações consumidoras.
 - Toda nova API pública precisa de documentação, story e exemplo de estado vazio, carregando, erro e sucesso quando aplicável.
 - Preserve acessibilidade, navegação por teclado, tema claro/escuro e responsividade.
 - Execute `pnpm typecheck`, `pnpm build` e `pnpm lexui:check` antes de concluir alterações.

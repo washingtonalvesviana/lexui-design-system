@@ -2,6 +2,7 @@ import type { Preview } from "@storybook/react-vite"
 import "@lexui/tokens/theme.css"
 import "@lexui/react/styles.css"
 import "@lexui/charts/styles.css"
+import "@lexui/flow/styles.css"
 import "../stories/storybook.css"
 
 const preview: Preview = {

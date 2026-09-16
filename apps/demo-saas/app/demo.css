@@ -180,3 +180,7 @@
 .demo-palette-ramps { display: grid; gap: var(--lex-space-4); }
 .demo-palette-ramp { display: grid; gap: var(--lex-space-2); }.demo-palette-ramp > code { font-family: var(--lex-font-mono); font-size: var(--lex-text-xs); }
 .demo-palette-ramp__steps { display: flex; gap: var(--lex-space-1); }.demo-palette-ramp__steps > span { border: 1px solid var(--lex-border); border-radius: var(--lex-radius-sm); flex: 1 1 0; height: 2.25rem; min-width: 1.5rem; }
+
+/* Fluxo: o canvas precisa de altura definida pelo contêiner. */
+.demo-flow-canvas { border-radius: var(--lex-radius-md); height: 26rem; margin-bottom: var(--lex-space-3); overflow: hidden; }
+.demo-flow-skeleton { height: 100%; }

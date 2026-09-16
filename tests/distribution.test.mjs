@@ -7,14 +7,14 @@ import test from "node:test"
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..")
 
 test("pacotes públicos exportam somente artefatos de dist", async () => {
-  for (const name of ["tokens", "react", "charts", "cli"]) {
+  for (const name of ["tokens", "react", "charts", "flow", "cli"]) {
     const packageJson = JSON.parse(await readFile(resolve(root, "packages", name, "package.json"), "utf8"))
     assert.notEqual(packageJson.private, true, `${packageJson.name} não pode ser privado`)
     assert.equal(packageJson.license, "MIT")
     assert.equal(packageJson.publishConfig?.access, "public")
   }
 
-  for (const name of ["react", "charts"]) {
+  for (const name of ["react", "charts", "flow"]) {
     const packageJson = JSON.parse(await readFile(resolve(root, "packages", name, "package.json"), "utf8"))
     assert.equal(packageJson.exports["."].types, "./dist/index.d.ts")
     assert.equal(packageJson.exports["."].import, "./dist/index.js")
@@ -33,6 +33,20 @@ test("tokens de marca e temas fazem parte do pacote compilado", async () => {
   assert.match(css, /--lex-chart-1:\s*var\(--lex-brand-blue\)/)
   assert.match(css, /--lex-chart-2:\s*var\(--lex-brand-orange\)/)
   assert.match(css, /\[data-theme="dark"\]/)
+})
+
+test("flow embute a estrutura do React Flow e mantém a aparência em tokens", async () => {
+  const source = await readFile(resolve(root, "packages", "flow", "src", "styles.css"), "utf8")
+  assert.doesNotMatch(source, /#[0-9a-f]{3,8}\b/i, "o CSS autoral do flow não pode ter cor literal")
+
+  const css = await readFile(resolve(root, "packages", "flow", "dist", "styles.css"), "utf8")
+  assert.match(css, /@layer lexui\.flow-base \{/)
+  assert.match(css, /@layer lexui\.components \{/)
+  assert.match(css, /--xy-node-background-color:\s*var\(--lex-surface-1\)/)
+  assert.match(css, /--xy-edge-stroke:\s*var\(--lex-border-strong\)/)
+
+  const tokens = await readFile(resolve(root, "packages", "tokens", "src", "index.css"), "utf8")
+  assert.match(tokens, /@layer lexui\.tokens, lexui\.base, lexui\.flow-base, lexui\.components;/)
 })
 
 test("catálogo público mantém cobertura ampla", async () => {

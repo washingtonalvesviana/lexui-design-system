@@ -15,6 +15,7 @@ O LexUI cobre os conceitos do catálogo shadcn/ui atual com APIs próprias, comp
 ### Fundamentos e conteúdo
 
 - DirectionProvider, ThemeProvider e ThemeToggle
+- Flow: nós, arestas, controles e minimapa para processos e diagramas (`@lexui/flow`)
 - Typography: Heading, Text, Lead, Blockquote, InlineCode e KeyboardKey
 - AspectRatio, Separator, Skeleton, Spinner e ScrollArea
 - Image, Figure, FigureImage e FigureCaption

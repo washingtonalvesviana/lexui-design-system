@@ -1,14 +1,14 @@
 # Distribuição e releases
 
-Os pacotes públicos são `@lexui/tokens`, `@lexui/react`, `@lexui/charts` e `@lexui/cli`. O workspace e as aplicações de demonstração permanecem privados.
+Os pacotes públicos são `@lexui/tokens`, `@lexui/react`, `@lexui/charts`, `@lexui/flow` e `@lexui/cli`. O workspace e as aplicações de demonstração permanecem privados.
 
 ## Checklist
 
-1. Escolha uma versão SemVer única para os quatro pacotes.
+1. Escolha uma versão SemVer única para os cinco pacotes.
 2. Execute `pnpm install --frozen-lockfile`, `pnpm build`, `pnpm typecheck`, `pnpm test` e `pnpm lexui:check`.
 3. Execute `pnpm run pack` e instale os arquivos de `artifacts/npm` em uma aplicação React isolada.
 4. Revise o conteúdo com `npm pack --dry-run` e registre as mudanças.
-5. Publique na ordem: tokens, React, charts e CLI.
+5. Publique na ordem: tokens, React, charts, flow e CLI.
 
 Os tarballs de `artifacts/npm` são **versionados no git** (o `.gitignore` bloqueia apenas `artifacts/.npm-cache`), de modo que qualquer projeto ou servidor instala a release sem registry privado. Ao publicar uma versão nova, rode `pnpm run pack` e commite os `.tgz` junto do bump.
 

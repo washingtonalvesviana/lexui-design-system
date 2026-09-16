@@ -2,10 +2,10 @@
 
 1. Procure primeiro uma referência em `examples/index.json`.
 2. Procure depois um pattern documentado.
-3. Use somente a API pública de `@lexui/react` e `@lexui/charts`.
+3. Use somente a API pública de `@lexui/react`, `@lexui/charts` e `@lexui/flow`.
 4. Não recrie Button, Input, Dialog, Card, Table, DataTable, Sidebar, CommandPalette, Chart ou qualquer componente existente.
 5. Não use cores hexadecimais, RGB, OKLCH, sombras ou espaçamentos diretamente nas aplicações.
-6. Não importe `@base-ui/react` fora do pacote LexUI.
+6. Não importe `@base-ui/react` nem `@xyflow/react` fora do pacote LexUI.
 7. Preserve tema claro/escuro, teclado, foco, labels, contraste e layout mobile-first.
 8. Para novos componentes, documente propósito, quando usar, quando não usar, estados, API, acessibilidade e exemplos.
 9. Execute `npm run lexui:check` antes de concluir.

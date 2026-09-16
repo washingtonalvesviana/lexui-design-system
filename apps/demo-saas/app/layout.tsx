@@ -3,6 +3,7 @@ import Script from "next/script"
 import "@lexui/tokens/theme.css"
 import "@lexui/react/styles.css"
 import "@lexui/charts/styles.css"
+import "@lexui/flow/styles.css"
 import "./demo.css"
 import { ThemeProvider, ToastProvider, themePreloadScript } from "@lexui/react"
 

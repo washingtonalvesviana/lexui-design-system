@@ -5,7 +5,7 @@ import { dirname, resolve } from "node:path"
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..")
 const output = resolve(root, "artifacts", "npm")
-const packages = ["tokens", "react", "charts", "cli"]
+const packages = ["tokens", "react", "charts", "flow", "cli"]
 const npmCommand = process.platform === "win32" ? process.execPath : "npm"
 const npmArguments = process.platform === "win32"
   ? [resolve(dirname(process.execPath), "node_modules", "npm", "bin", "npm-cli.js")]

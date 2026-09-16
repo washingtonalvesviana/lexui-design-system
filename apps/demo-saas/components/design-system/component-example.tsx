@@ -23,6 +23,7 @@ import {
 } from "@lexui/react"
 import { iconsReference } from "./icons-reference"
 import { PaletteDemo } from "./palette-demo"
+import { FlowDemo } from "./flow-demo"
 import {
   AspectRatio, Attachment, Bubble, ButtonGroup, Carousel, CarouselContent, CarouselDots, CarouselItem,
   CarouselNext, CarouselPrevious, Collapsible, CollapsibleContent, CollapsibleTrigger, DirectionProvider,
@@ -164,6 +165,7 @@ export function ComponentExample({ slug }: { slug: string }) {
     case "collapsible": return <ExampleFrame title="Detalhes sob demanda"><Collapsible><CollapsibleTrigger>Ver fontes e metodologia</CollapsibleTrigger><CollapsibleContent><Text size="sm">Dados consolidados da base comercial e meta trimestral.</Text></CollapsibleContent></Collapsible></ExampleFrame>
     case "direction": return <ExampleFrame title="Direção do conteúdo"><div className="demo-example-grid"><DirectionProvider dir="ltr"><Card><CardContent>Interface LTR →</CardContent></Card></DirectionProvider><DirectionProvider dir="rtl"><Card><CardContent>واجهة RTL ←</CardContent></Card></DirectionProvider></div></ExampleFrame>
     case "palette": return <PaletteDemo />
+    case "flow": return <FlowDemo />
     case "iconography": return <>
       <ExampleFrame title="Tamanhos padrão" description="16px em controles, 18px em entidades e títulos, 20px em destaques.">
         <div className="demo-example-row">

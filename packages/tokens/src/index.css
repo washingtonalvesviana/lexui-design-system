@@ -1,4 +1,4 @@
-@layer lexui.tokens, lexui.base;
+@layer lexui.tokens, lexui.base, lexui.flow-base, lexui.components;
 
 /* Self-hosted fonts (latin subset, SIL OFL 1.1 — see src/fonts/*.LICENSE). */
 @font-face {

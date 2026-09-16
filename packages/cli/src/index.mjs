@@ -57,7 +57,7 @@ async function init(project) {
   await mkdir(skillTarget, { recursive: true })
   await cp(skillRoot, skillTarget, { recursive: true, force: true })
   const agents = join(project, "AGENTS.md")
-  const instruction = "# LexUI\n\nAntes de alterar interfaces, leia `.design-system-lex-ui/ai/instructions.md` e use a Skill `$lexui`. Use somente `@lexui/react`, `@lexui/charts` e os tokens oficiais. Execute `npm run lexui:check` antes de concluir.\n"
+  const instruction = "# LexUI\n\nAntes de alterar interfaces, leia `.design-system-lex-ui/ai/instructions.md` e use a Skill `$lexui`. Use somente `@lexui/react`, `@lexui/charts`, `@lexui/flow` e os tokens oficiais. Execute `npm run lexui:check` antes de concluir.\n"
   try {
     const current = await readFile(agents, "utf8")
     if (!current.includes(".design-system-lex-ui")) await writeFile(agents, `${current.trim()}\n\n${instruction}`)
@@ -81,7 +81,7 @@ async function info(project, json = false) {
   const result = {
     project: pkg.name || project.split(/[\\/]/).pop(), framework,
     theme: manifest.theme || null, brand: manifest.brand || null,
-    packages: ["@lexui/react", "@lexui/charts", "@lexui/tokens"].filter((name) => dependencies[name]),
+    packages: ["@lexui/react", "@lexui/charts", "@lexui/flow", "@lexui/tokens"].filter((name) => dependencies[name]),
     selectedComponents: selection.components || [],
     documentation: join(project, ".design-system-lex-ui"),
     skill: join(project, ".agents", "skills", "lexui", "SKILL.md"),
@@ -93,7 +93,7 @@ async function info(project, json = false) {
 async function search(query, json = false) {
   const source = await registry()
   const words = query.toLowerCase().split(/\s+/).filter(Boolean)
-  const results = source.components.filter((item) => !words.length || words.every((word) => `${item.name} ${item.category} ${item.exports.join(" ")}`.toLowerCase().includes(word)))
+  const results = source.components.filter((item) => !words.length || words.every((word) => `${item.name} ${item.category} ${item.exports.join(" ")} ${(item.keywords || []).join(" ")}`.toLowerCase().includes(word)))
   if (json) return console.log(JSON.stringify(results, null, 2))
   if (!results.length) return console.log("Nenhum componente encontrado.")
   results.forEach((item) => console.log(`${item.name.padEnd(20)} ${item.category.padEnd(20)} ${item.package}`))
@@ -172,11 +172,17 @@ async function doctor(project) {
 async function check(project) {
   const files = await walk(project)
   const violations = []
+  const restricted = [
+    { name: "@base-ui/react", owner: "packages/react/", hint: "importe primitivas somente através de @lexui/react" },
+    { name: "@xyflow/react", owner: "packages/flow/", hint: "importe o fluxo somente através de @lexui/flow" },
+  ]
   for (const file of files) {
     const rel = relative(project, file).replaceAll("\\", "/")
     if (!/\.(tsx?|jsx?|css)$/.test(rel)) continue
     const content = await readFile(file, "utf8")
-    if (!rel.startsWith("packages/react/") && content.includes("@base-ui/react")) violations.push(`${rel}: importe primitivas somente através de @lexui/react`)
+    for (const rule of restricted) {
+      if (!rel.startsWith(rule.owner) && content.includes(rule.name)) violations.push(`${rel}: ${rule.hint}`)
+    }
     if (!rel.includes("tokens/") && !rel.includes("storybook/") && /#[0-9a-f]{3,8}\b/i.test(content)) violations.push(`${rel}: cor hexadecimal fora do pacote de tokens`)
     if (/\b(?:p|m|gap|w|h)-\[[^\]]+\]/.test(content)) violations.push(`${rel}: valor arbitrário de layout`)
   }

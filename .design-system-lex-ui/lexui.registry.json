@@ -1,6 +1,6 @@
 {
   "$schema": "https://lexui.dev/schema/registry.json",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "components": [
     {
       "name": "accordion",
@@ -276,6 +276,29 @@
         "Figure",
         "FigureImage",
         "FigureCaption"
+      ]
+    },
+    {
+      "name": "flow",
+      "package": "@lexui/flow",
+      "category": "layout",
+      "exports": [
+        "Flow",
+        "FlowProvider",
+        "FlowBackground",
+        "FlowControls",
+        "FlowMiniMap",
+        "FlowNode",
+        "FlowEdge",
+        "flowNodeTypes"
+      ],
+      "keywords": [
+        "fluxo",
+        "diagrama",
+        "processo",
+        "organograma",
+        "grafo",
+        "react flow"
       ]
     },
     {

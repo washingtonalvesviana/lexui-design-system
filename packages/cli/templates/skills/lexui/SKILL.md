@@ -1,6 +1,6 @@
 ---
 name: lexui
-description: Build, review, or refactor React and Next.js interfaces that use the LexUI design system. Use whenever a project contains `.design-system-lex-ui`, imports `@lexui/react` or `@lexui/charts`, or the user asks for LexUI screens, components, dashboards, CRUD, forms, charts, chat, theming, accessibility, responsive UI, or design-system compliance.
+description: Build, review, or refactor React and Next.js interfaces that use the LexUI design system. Use whenever a project contains `.design-system-lex-ui`, imports `@lexui/react`, `@lexui/charts` or `@lexui/flow`, or the user asks for LexUI screens, components, dashboards, CRUD, forms, charts, chat, theming, accessibility, responsive UI, or design-system compliance.
 ---
 
 # LexUI
@@ -14,7 +14,7 @@ Use LexUI as the single UI vocabulary for the project. Discover the installed co
 3. Search before creating: run `npx @lexui/cli search <need>` and inspect candidates with `npx @lexui/cli view <component>`.
 4. Read only the relevant project references. Use `references/component-selection.md` for selection rules, `references/implementation.md` for code rules, and `references/verification.md` before handoff.
 5. Prefer patterns already indexed in `.design-system-lex-ui/examples/index.json`. Preserve current project conventions and user changes.
-6. Implement with public exports from `@lexui/react`, charts from `@lexui/charts`, tokens from `@lexui/tokens`, and icons from `lucide-react`.
+6. Implement with public exports from `@lexui/react`, charts from `@lexui/charts`, flows and diagrams from `@lexui/flow`, tokens from `@lexui/tokens`, and icons from `lucide-react`.
 7. Run `npx @lexui/cli check` and the project typecheck/tests. Resolve violations before completion.
 
 ## Non-negotiable rules
