@@ -166,9 +166,9 @@ export function ComponentExample({ slug }: { slug: string }) {
       <ExampleFrame title="Ação somente com ícone" description="aria-label é obrigatório; o Button expõe o nome como tooltip nativo no hover.">
         <div className="demo-example-row"><Button variant="outline" size="icon" aria-label="Buscar"><Search size={16} /></Button><Button variant="outline" size="icon" aria-label="Configurações"><Settings size={16} /></Button><Button variant="outline" size="icon" aria-label="Excluir item"><Trash2 size={16} /></Button><Text size="sm" tone="muted">Pessoas usam Avatar, nunca um ícone genérico.</Text></div>
       </ExampleFrame>
-      <ExampleFrame title={`Referência de ícones em uso (${iconsReference.length})`} description="Escaneado do repositório; regenere com pnpm icons:reference. O número é a quantidade de arquivos que utilizam o ícone.">
+      <ExampleFrame title={`Referência de ícones (${iconsReference.length})`} description="Em uso no repositório e vocabulário aprovado do design system; regenere com pnpm icons:reference. O número indica em quantos arquivos o ícone aparece.">
         <div className="demo-icon-ref-grid">
-          {iconsReference.map(({ icon: Icon, name, uses }) => <div key={name} className="demo-icon-ref" title={`${name} · ${uses} arquivo${uses > 1 ? "s" : ""}`}><Icon size={16} aria-hidden="true" /><span>{name}</span><small>{uses}</small></div>)}
+          {iconsReference.map(({ icon: Icon, name, uses, concept, use }) => <div key={name} className="demo-icon-ref" title={`${name}${concept ? ` · ${concept}` : ""} · ${uses ? `${uses} arquivo${uses > 1 ? "s" : ""}` : "aprovado, sem uso"}${use ? ` · ${use}` : ""}`}><Icon size={16} aria-hidden="true" /><span>{name}</span><small>{uses || "aprovado"}</small></div>)}
         </div>
       </ExampleFrame>
     </>

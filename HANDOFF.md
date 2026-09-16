@@ -1,6 +1,6 @@
 # Handoff — LexUI (dw-lex-ui)
 
-Última atualização: 2026-09-16 03:35 UTC. Documento de memória para retomar em outra sessão.
+Última atualização: 2026-09-16 03:52 UTC. Documento de memória para retomar em outra sessão.
 
 ## 1. Estado geral
 
@@ -8,14 +8,13 @@
   Pacotes: `@lexui/tokens`, `@lexui/react`, `@lexui/charts`, `@lexui/cli` · Apps: `demo-saas` (Next.js) e `storybook`.
 - Ciclo do mapeamento Bootstrap→LexUI **concluído** (tokens z-index/gutter, 7 módulos novos, Grid, Navbar, ListGroup, Figure/Image, CloseButton, Offcanvas/Drawer, ScrollSpy, FloatingLabel, utilities `lex-utility-*`, docs, stories, registry CLI). Tarballs 0.2.0 em `artifacts/npm/`.
 - Nesta sessão foram corrigidos 11 defeitos visuais do demo/catalogo (lista em §5).
-- **Sessão seguinte (03:15–03:35)**: working tree commitado (§2) + varredura preventiva de classes concluída (§7).
-- Última validação verde: typecheck 9/9 · build 6/6 · lexui:check 199 arquivos, 0 violações + 183 classes demo-* conferidas.
+- **Sessão seguinte (03:15–03:52)**: working tree commitado (§2), varredura preventiva de classes concluída (§7) e biblioteca de ícones ampliada com vocabulário jurídico aprovado (§6).
+- Última validação verde: typecheck 9/9 · build 6/6 · lexui:check 202 arquivos, 0 violações + 183 classes demo-* conferidas.
 - Componentes novos do pacote 0.2.0: `packages/react/src/components/{grid,navbar,list-group,figure,image,close-button}.tsx`, `scrollspy.ts`.
 
 ## 2. ✅ RESOLVIDO — working tree commitado
 
-- `35f1840` launch → `662d75f` (feat: bootstrap coverage 0.2.0 + demo fixes, 100 arquivos) → `8739057` (fix(demo): demo-chart-card + demo-chat-toolbar-spacer).
-- **Push pendente**: `main` estava à frente de `origin/main`; conferir com `git status -sb` (ver §9).
+- `35f1840` launch → `662d75f` (feat: bootstrap coverage 0.2.0 + demo fixes, 100 arquivos) → `8739057` (fix(demo): demo-chart-card + demo-chat-toolbar-spacer) → `b0b8cd3` (chore: guarda de classes no lexui:check). Todos já em `origin/main`.
 - Único item fora do git: `.agents/skills/lexui/` — cópia byte-idêntica de `packages/cli/templates/skills/lexui` (regenerável); decisão sobre versionar ou ignorar segue aberta.
 
 ## 3. Ambiente — armadilhas que já derrubaram sessões
@@ -25,7 +24,8 @@
 - **Produção**: Next.js em `127.0.0.1:3100` (build estático em `apps/demo-saas/.next`), nginx proxy em `/etc/nginx/sites-available/lexui.datawiseservice.com`, site público **https://lexui.datawiseservice.com**.
 - **Reiniciar produção** (se a porta 3100 estiver parada):
   `ss -tln | grep 3100` → **matar o pid antes** (um `next start` novo falha em silêncio se a porta estiver ocupada; várias tentativas de background já morreram assim) → depois iniciar como processo persistente:
-  `cd apps/demo-saas && PATH=/root/.nvm/versions/node/v24.21.0/bin:$PATH node_modules/.bin/next start -p 3100` (background persistente, com ready na porta 3100). Estado atual: pid 4167113.
+  `cd apps/demo-saas && PATH=/root/.nvm/versions/node/v24.21.0/bin:$PATH node_modules/.bin/next start -p 3100` (background persistente, com ready na porta 3100).
+- **Armadilha do background**: o tool às vezes reporta `status: failed` (last_output `}` ou "Ready port is already in use") **mas o servidor subiu** — o `next-server` fica órfão (PPID 1). Sempre confirmar com `ss -tlnp | grep 3100` + `curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3100/dashboard` antes de concluir que falhou. Última instância em produção: pid 4192558.
 - **Chrome/CDP travado**: se um script CDP pendurar, é o `close()` não encerrando — usar `process.exit(0)` no fim; se der `Promise was collected`, a navegação foi reusada e a promise da página se perdeu (reavaliar sem `awaitPromise`).
 - **Storybook** (só local): `export PATH=...node24... && pnpm storybook` → http://127.0.0.1:6006.
 - Verificação visual rápida via Chrome headless + CDP: `google-chrome --headless=new --no-sandbox --remote-debugging-port=9333 --user-data-dir=/tmp/chrome-prof about:blank` + Node ≥22 (WebSocket nativo). `--force-dark-mode` ou `Emulation.setEmulatedMedia` para dark.
@@ -54,11 +54,15 @@ Depois: rebuild mudou → reiniciar o next (item 3). Usuário precisa de **hard 
 10. **Item**: botão "⋯" inerte → virou `DropdownMenu` (Visualizar/Editar/Excluir + toasts). Novo prop público `align?: "start"|"center"|"end"` em `DropdownMenuContent` (mesmo padrão do PopoverContent); demo usa `align="end"`; doc + story atualizados.
 11. **Figure**: exemplo exibia `BarChart` dentro de `FigureImage` (semântica errada) → agora `Image` + figcaption.
 
-## 6. Biblioteca de ícones (última entrega)
+## 6. Biblioteca de ícones
 
-- **Lucide-react 1.27.0** é a família oficial (regras em `foundations/iconography.md`, live+template).
-- Página `/design-system/components/iconography` (Fundamentos): tamanhos, semântica, ações-only e **referência dos 98 ícones em uso** (glifo + nome + nº de arquivos).
-- Referência é **gerada**: `pnpm icons:reference` (→ `scripts/collect-icons.mjs` → `apps/demo-saas/components/design-system/icons-reference.ts`). Rodar sempre que importarem novo ícone.
+- **Lucide-react 1.27.0** é a família oficial (2.007 ícones; regras em `foundations/iconography.md`, live+template). Não misturar famílias — Bootstrap Icons foi avaliado e descartado: o caminho para um glifo ausente é equivalente Lucide, composição com componentes existentes ou vendorizar um ícone próprio no `@lexui/react`.
+- Página `/design-system/components/iconography` (Fundamentos): tamanhos, semântica, ações-only e a **referência única e alfabética** com **121 ícones** — 101 em uso e 20 do vocabulário aprovado (marcados `aprovado`, com conceito e orientação no tooltip).
+- Duas fontes, manifesto **gerado** por `pnpm icons:reference` (→ `scripts/collect-icons.mjs` → `apps/demo-saas/components/design-system/icons-reference.ts`), nunca editado à mão:
+  1. imports de `lucide-react` no repositório (contagem por arquivo);
+  2. `.design-system-lex-ui/foundations/icon-vocabulary.json` (live + template do CLI em par) — vocabulário jurídico aprovado: 24 entradas com `concept` e `use`.
+- **Correção no gerador**: o arquivo `icons-reference.ts` era escaneado por ele mesmo, inflando todo contador em +1 (Landmark aparecia como 2). Agora o gerador ignora o próprio artefato, e ícones só-vocabulário ficam em `uses: 0` (sem loop de auto-contagem).
+- Uso real no demo: `/calendar` usa `Gavel` (audiência), `Hourglass` (prazo) e `Handshake` (acordo) dentro do `Badge`, junto de cor e texto.
 - Story `Iconografia` em `apps/storybook/stories/foundations.stories.tsx`.
 
 ## 7. ✅ RESOLVIDO — classes órfãs do demo (guarda automática)
@@ -79,8 +83,9 @@ Depois: rebuild mudou → reiniciar o next (item 3). Usuário precisa de **hard 
 
 ## 9. Próximos passos sugeridos
 
-1. `git push` (§2) — os 3 commits locais ainda não subiram para `origin/main`.
-2. Decidir sobre `.agents/` (§2): versionar ou adicionar ao `.gitignore`.
-3. Se houver novos componentes (ex.: outros do mapeamento Bootstrap), seguir o checklist do AGENTS.md: componente + tokens + docs (live/template CLI em par) + story + exemplo no demo + registry do CLI.
-4. Tarballs: `pnpm pack` / `node scripts/pack-packages.mjs` quando a API mudar de novo (bump de versão + `artifacts/npm/`).
-5. Antes de concluir qualquer mudança de UI: `pnpm typecheck && pnpm build && pnpm lexui:check` (agora inclui a guarda de classes) e, se o build mudou, reiniciar o next (§3).
+1. Decidir sobre `.agents/` (§2): versionar ou adicionar ao `.gitignore`.
+2. Aprovar mais ícones do domínio jurídico conforme a necessidade aparecer: basta acrescentar a entrada em `icon-vocabulary.json` (live + template em par) com `concept` e `use` e rodar `pnpm icons:reference`. Antes de aprovar, confira se o conceito já não tem ícone — a lista única existe justamente para evitar sinônimos.
+3. Uso real do vocabulário novo nas telas (hoje só `/calendar` usa `Gavel`/`Hourglass`/`Handshake`): candidatos naturais são carteira de processos, autos sigilosos e honorários, quando essas telas existirem.
+4. Se houver novos componentes (ex.: outros do mapeamento Bootstrap), seguir o checklist do AGENTS.md: componente + tokens + docs (live/template CLI em par) + story + exemplo no demo + registry do CLI.
+5. Tarballs: `pnpm pack` / `node scripts/pack-packages.mjs` quando a API mudar de novo (bump de versão + `artifacts/npm/`).
+6. Antes de concluir qualquer mudança de UI: `pnpm typecheck && pnpm build && pnpm lexui:check` (agora inclui a guarda de classes) e, se o build mudou, reiniciar o next (§3).

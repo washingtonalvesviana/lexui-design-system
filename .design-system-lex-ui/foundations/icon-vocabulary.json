@@ -1,0 +1,30 @@
+{
+  "$comment": "Vocabulário aprovado de ícones do LexUI para o domínio jurídico. Fonte do manifesto gerado por `pnpm icons:reference` (scripts/collect-icons.mjs). Cada conceito tem um único ícone: não crie sinônimos para o mesmo conceito.",
+  "version": "0.2.0",
+  "icons": [
+    { "name": "Scale", "concept": "Processo e justiça", "use": "Visão de processo, jurimetria e indicadores de decisão." },
+    { "name": "Gavel", "concept": "Audiência e decisão", "use": "Audiências, despachos, sentenças e atos decisórios." },
+    { "name": "Landmark", "concept": "Tribunal e órgão público", "use": "Varas, tribunais e órgãos públicos." },
+    { "name": "ScrollText", "concept": "Lei e norma", "use": "Legislação, súmulas e normativos citados na peça." },
+    { "name": "FileSignature", "concept": "Documento assinado", "use": "Procurações, contratos e peças já assinadas." },
+    { "name": "FilePenLine", "concept": "Peça em elaboração", "use": "Minutas e petições em redação, ainda não protocoladas." },
+    { "name": "Signature", "concept": "Assinatura e aceite", "use": "Campos e fluxos de assinatura; use FileSignature para o documento final." },
+    { "name": "Stamp", "concept": "Protocolo e autenticação", "use": "Protocolo, carimbo e autenticação de cópia." },
+    { "name": "Handshake", "concept": "Acordo e conciliação", "use": "Acordos, conciliações e negociações encerradas." },
+    { "name": "UserCheck", "concept": "Parte qualificada", "use": "Cliente ou parte com cadastro e qualificação confirmados." },
+    { "name": "IdCard", "concept": "Cadastro de parte", "use": "Ficha cadastral, identificação e habilitação." },
+    { "name": "FingerprintPattern", "concept": "Assinatura digital", "use": "Autenticação e assinatura eletrônica com validade jurídica." },
+    { "name": "ShieldUser", "concept": "Representação e sigilo", "use": "Atuação sob procuração e proteção dos dados da parte." },
+    { "name": "BriefcaseBusiness", "concept": "Carteira de casos", "use": "Carteira, área de atuação e visão do escritório." },
+    { "name": "ClipboardList", "concept": "Andamento processual", "use": "Checklist de atos, andamentos e movimentações." },
+    { "name": "Archive", "concept": "Arquivamento", "use": "Processos e documentos arquivados ou encerrados." },
+    { "name": "FolderLock", "concept": "Autos sigilosos", "use": "Pastas e autos com acesso restrito." },
+    { "name": "LockKeyhole", "concept": "Segredo de justiça", "use": "Restrição de acesso e sigilo processual." },
+    { "name": "CalendarClock", "concept": "Prazo datado", "use": "Prazos com data e hora, intimações e compromissos agendados." },
+    { "name": "Hourglass", "concept": "Decurso de prazo", "use": "Contagem de prazo em andamento." },
+    { "name": "Banknote", "concept": "Honorários e custas", "use": "Honorários, custas e depósitos judiciais." },
+    { "name": "BadgeCheck", "concept": "Certidão válida", "use": "Certidões, documentos válidos e verificação concluída." },
+    { "name": "Library", "concept": "Acervo jurídico", "use": "Biblioteca de peças, modelos e jurisprudência." },
+    { "name": "NotebookPen", "concept": "Ata e anotação", "use": "Atas de audiência e anotações de atendimento." }
+  ]
+}
