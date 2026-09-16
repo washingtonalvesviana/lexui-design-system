@@ -55,6 +55,7 @@
 .demo-positive { color: var(--lex-success); }.demo-negative { color: var(--lex-danger); }
 .demo-dashboard-grid { display: grid; gap: var(--lex-space-4); grid-template-columns: minmax(0, 1.6fr) minmax(18rem, .8fr); margin-bottom: var(--lex-space-4); }
 .demo-chart-gallery { display: grid; gap: var(--lex-space-4); grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: var(--lex-space-4); }.demo-chart-gallery .lex-card, .demo-chart-gallery .lex-card__content { min-width: 0; }.demo-chart-gallery__wide { grid-column: 1 / -1; }
+.demo-chart-card, .demo-chart-card .lex-card__content { min-width: 0; }
 .demo-activity { display: grid; }
 .demo-activity__item { align-items: center; border-bottom: 1px solid var(--lex-border); display: grid; gap: var(--lex-space-3); grid-template-columns: auto 1fr auto; padding: var(--lex-space-3) 0; }
 .demo-activity__item div { display: grid; font-size: var(--lex-text-sm); }.demo-activity__item span, .demo-activity__item time { color: var(--lex-muted); font-size: var(--lex-text-xs); }
@@ -138,6 +139,7 @@
 .demo-chat-rich-grid .lex-radial-chart { grid-template-columns: minmax(10rem, 14rem) minmax(10rem, 1fr); }
 .demo-chat-input-row .lex-textarea { max-height: 14rem; min-height: 8rem; overflow-y: auto; padding-block: var(--lex-space-3); }
 .demo-chat-input-actions { align-self: flex-end; }
+.demo-chat-toolbar-spacer { flex: 1 1 auto; }
 
 @media (max-width: 64rem) {
   .demo-chat-context { display: flex; flex-direction: column; overflow: hidden; }
