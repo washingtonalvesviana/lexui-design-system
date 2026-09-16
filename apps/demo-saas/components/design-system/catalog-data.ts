@@ -11,6 +11,7 @@ export type CatalogComponent = {
 
 export const catalogComponents: CatalogComponent[] = [
   { name: "Typography", slug: "typography", category: "Fundamentos", description: "Hierarquia tipográfica para títulos, textos e conteúdo auxiliar.", usage: "import { Heading, Text, Lead } from \"@lexui/react\"", interactive: false },
+  { name: "Paleta de cores", slug: "palette", category: "Fundamentos", description: "Tokens de cor por família, com o valor resolvido nos temas claro e escuro lado a lado.", usage: "color: var(--lex-foreground); background: var(--lex-surface-1)", interactive: false },
   { name: "ThemeToggle", slug: "theme-toggle", category: "Fundamentos", description: "Alterna o tema global claro e escuro com preferência persistida.", usage: "import { ThemeToggle } from \"@lexui/react\"", interactive: true },
   { name: "Field", slug: "field", category: "Entradas", description: "Agrupa label, descrição, controle e mensagem de erro acessível.", usage: "import { Field, Input } from \"@lexui/react\"", interactive: true },
   { name: "FloatingLabel", slug: "floating-label", category: "Entradas", description: "Rótulo flutuante, fieldset e campo horizontal para formulários densos.", usage: "import { FloatingLabel, Fieldset, Field } from \"@lexui/react\"", interactive: true },

@@ -26,7 +26,7 @@
 }
 
 @layer lexui.tokens {
-  :root {
+  :root, [data-theme="light"] {
     color-scheme: light;
 
     /* Brand colors sampled from the supplied LexUI reference. */

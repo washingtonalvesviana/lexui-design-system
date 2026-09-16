@@ -8,6 +8,8 @@ Todos os tokens vivem em `@lexui/tokens` (arquivo CSS único, camadas `lexui.tok
 - Laranja oficial: `#F45E41`.
 - Base dark: `#1A1A1A`, nunca preto puro.
 
+A paleta completa por família, o valor de cada token nos dois temas e as regras de contraste estão em `foundations/colors.md` (referência viva em `/design-system/components/palette`).
+
 Componentes não consomem essas cores diretamente. Eles usam tokens semânticos como `--lex-primary`, `--lex-accent`, `--lex-background`, `--lex-surface-1`, `--lex-border`, `--lex-muted` e `--lex-danger`.
 
 Azul representa ação principal, navegação ativa e foco. Laranja representa identidade e destaque. Verde, vermelho e amarelo permanecem reservados para sucesso, erro e aviso.
@@ -30,7 +32,7 @@ Os valores semânticos mudam entre os temas claro e escuro para preservar contra
 
 ## Tema
 
-- Clássico claro/escuro via `data-theme="light" | "dark"` no `<html>`.
+- Clássico claro/escuro via `data-theme="light" | "dark"` no `<html>`. O atributo é escopável em qualquer elemento (`:root, [data-theme="light"]` carrega os valores claros), o que permite renderizar um bloco no tema oposto — usado na página de paleta e em previews embutidos.
 - `ThemeProvider` (`@lexui/react`) gerencia a preferência (`light`, `dark` ou `system`), persiste em `localStorage` (`lexui-theme`) e reage a `prefers-color-scheme`.
 - `themePreloadScript` (export do `@lexui/react`) é o script inline para o `<head>` que aplica o tema **antes da primeira pintura** e elimina o flash. Use uma única vez, no layout raiz.
 - `ThemeToggle` funciona dentro ou fora do provider; `useTheme()` exige provider.

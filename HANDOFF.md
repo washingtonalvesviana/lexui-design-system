@@ -8,8 +8,8 @@
   Pacotes: `@lexui/tokens`, `@lexui/react`, `@lexui/charts`, `@lexui/cli` · Apps: `demo-saas` (Next.js) e `storybook`.
 - Ciclo do mapeamento Bootstrap→LexUI **concluído** (tokens z-index/gutter, 7 módulos novos, Grid, Navbar, ListGroup, Figure/Image, CloseButton, Offcanvas/Drawer, ScrollSpy, FloatingLabel, utilities `lex-utility-*`, docs, stories, registry CLI). Tarballs 0.2.0 em `artifacts/npm/`.
 - Nesta sessão foram corrigidos 11 defeitos visuais do demo/catalogo (lista em §5).
-- **Sessão seguinte (03:15–03:52)**: working tree commitado (§2), varredura preventiva de classes concluída (§7) e biblioteca de ícones ampliada com vocabulário jurídico aprovado (§6).
-- Última validação verde: typecheck 9/9 · build 6/6 · lexui:check 203 arquivos, 0 violações + 184 classes demo-* conferidas + 118 ícones sem alias duplicado.
+- **Sessão seguinte (03:15–04:15)**: working tree commitado (§2), varredura preventiva de classes concluída (§7), biblioteca de ícones ampliada com vocabulário jurídico aprovado (§6) e fundamentos completados com tipografia variável (pesos + itálico real) e **paleta de cores viva** (`/design-system/components/palette`, doc `foundations/colors.md` live + template).
+- Última validação verde: typecheck 9/9 · build 6/6 · lexui:check 206 arquivos, 0 violações + 197 classes demo-* conferidas + 118 ícones sem alias duplicado.
 - Componentes novos do pacote 0.2.0: `packages/react/src/components/{grid,navbar,list-group,figure,image,close-button}.tsx`, `scrollspy.ts`.
 
 ## 2. ✅ RESOLVIDO — working tree commitado
@@ -80,6 +80,7 @@ Depois: rebuild mudou → reiniciar o next (item 3). Usuário precisa de **hard 
 - Drawer/Sheet: uma primitiva (Sheet é alias), `bottom` é default; mobile <640px colapsa tudo para bottom sheet (media query no `packages/react/src/styles.css`).
 - Ícones: Lucide; 16/18/20px; Avatar para pessoas; `aria-label` obrigatório em ação-only; mesma ícone = mesmo conceito.
 - Tokens: nada de hex/spaços arbitrários em apps demo; variantes tintadas usam `color-mix()` com tokens.
+- Paleta: três níveis (marca → semântico → consumo), documentados em `foundations/colors.md`. O tema claro são os valores de `:root, [data-theme="light"]` e o escuro de `[data-theme="dark"]` — como o seletor casa **qualquer** elemento (não só o `<html>`), um bloco pode ser renderizado no tema oposto: é o que a página de paleta usa para mostrar claro e escuro lado a lado, e o que previews embutidos devem fazer. Não redefinir tokens semânticos na aplicação; cor nova entra primeiro em `@lexui/tokens`.
 - Tipografia: uma única família variável (Inter) com pesos `light` 300, `regular` 400, `medium` 500, `semibold` 650, `bold` 750 e `black` 900 expostos por `weight` em `Text`/`Heading`, e `italic` para o estilo. `@lexui/tokens` publica a face **itálica** self-hosted (`inter-latin-italic.woff2`, OFL já coberto pelo `inter.LICENSE`), então light itálico é real — nunca oblíquo sintetizado. Não ajustar `font-weight`/`font-style` por CSS na aplicação.
 - Ícones (reforço): um nome por glifo. Nomes que são alias no Lucide (`AlertTriangle`, `CheckCircle2`, `FileSignature`…) não entram — a guarda de `collect-icons.mjs --check` falha.
 
@@ -88,6 +89,7 @@ Depois: rebuild mudou → reiniciar o next (item 3). Usuário precisa de **hard 
 1. Decidir sobre `.agents/` (§2): versionar ou adicionar ao `.gitignore`.
 2. Aprovar mais ícones do domínio jurídico conforme a necessidade aparecer: basta acrescentar a entrada em `icon-vocabulary.json` (live + template em par) com `concept` e `use` e rodar `pnpm icons:reference`. Antes de aprovar, confira se o conceito já não tem ícone — a lista única existe justamente para evitar sinônimos.
 3. Uso real do vocabulário novo nas telas (hoje só `/calendar` usa `Gavel`/`Hourglass`/`Handshake`): candidatos naturais são carteira de processos, autos sigilosos e honorários, quando essas telas existirem.
-4. Se houver novos componentes (ex.: outros do mapeamento Bootstrap), seguir o checklist do AGENTS.md: componente + tokens + docs (live/template CLI em par) + story + exemplo no demo + registry do CLI.
-5. Tarballs: `pnpm pack` / `node scripts/pack-packages.mjs` quando a API mudar de novo (bump de versão + `artifacts/npm/`).
-6. Antes de concluir qualquer mudança de UI: `pnpm typecheck && pnpm build && pnpm lexui:check` (agora inclui a guarda de classes e a de aliases de ícone) e, se o build mudou, reiniciar o next (§3).
+4. Paleta: se algum valor for ajustado, atualize `foundations/colors.md` junto e confira contraste (4.5:1 texto, 3:1 limites) nos dois temas pela página `/design-system/components/palette`, que lê os valores do CSS em tempo real.
+5. Se houver novos componentes (ex.: outros do mapeamento Bootstrap), seguir o checklist do AGENTS.md: componente + tokens + docs (live/template CLI em par) + story + exemplo no demo + registry do CLI.
+6. Tarballs: `pnpm pack` / `node scripts/pack-packages.mjs` quando a API mudar de novo (bump de versão + `artifacts/npm/`).
+7. Antes de concluir qualquer mudança de UI: `pnpm typecheck && pnpm build && pnpm lexui:check` (agora inclui a guarda de classes e a de aliases de ícone) e, se o build mudou, reiniciar o next (§3).
