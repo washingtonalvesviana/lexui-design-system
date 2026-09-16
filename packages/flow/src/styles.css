@@ -42,6 +42,7 @@
     --xy-background-pattern-lines-color-default: var(--lex-border);
     --xy-background-pattern-cross-color-default: var(--lex-border);
     --lex-flow-edge-dash: .375rem;
+    --lex-flow-edge-active-stroke: var(--lex-primary);
     --lex-flow-edge-duration: var(--lex-duration-spin);
     background: var(--lex-surface-1);
     border: 1px solid var(--lex-border);
@@ -70,7 +71,7 @@
   .lex-flow .react-flow__edge-textbg { fill: var(--xy-edge-label-background-color); }
   .lex-flow .react-flow__arrowhead polyline { stroke: var(--xy-edge-stroke); fill: var(--xy-edge-stroke); }
   .lex-flow .react-flow__arrowhead polyline.arrowclosed { fill: var(--xy-edge-stroke); }
-  .lex-flow .react-flow__edge.animated path { animation-duration: var(--lex-flow-edge-duration); stroke-dasharray: var(--lex-flow-edge-dash); }
+  .lex-flow .react-flow__edge.animated path { animation: lex-flow-dash var(--lex-flow-edge-duration) linear infinite; stroke: var(--lex-flow-edge-active-stroke); stroke-dasharray: var(--lex-flow-edge-dash); }
   .lex-flow .react-flow__connection-path { stroke: var(--xy-connectionline-stroke); stroke-width: var(--xy-connectionline-stroke-width); }
 
   .lex-flow .react-flow__controls { border: 1px solid var(--lex-border); border-radius: var(--lex-radius-md); box-shadow: var(--xy-controls-box-shadow); overflow: hidden; }
@@ -115,7 +116,12 @@
   50% { opacity: .3; }
 }
 
+/* Um deslocamento por ciclo (dash + gap) para o tracejado correr sem emenda, no sentido origem → destino. */
+@keyframes lex-flow-dash {
+  to { stroke-dashoffset: calc(var(--lex-flow-edge-dash) * -2); }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .lex-flow .react-flow__edge.animated path { animation: none; stroke-dasharray: var(--lex-flow-edge-dash); }
+  .lex-flow .react-flow__edge.animated path { animation: none; stroke: var(--lex-flow-edge-active-stroke); stroke-dasharray: var(--lex-flow-edge-dash); }
   .lex-flow-node__pulse { animation: none; }
 }

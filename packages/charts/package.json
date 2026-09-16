@@ -1,6 +1,6 @@
 {
   "name": "@lexui/charts",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Accessible chart components for the LexUI design system",
   "license": "MIT",
   "type": "module",

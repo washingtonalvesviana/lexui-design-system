@@ -20,24 +20,25 @@ const initialNodes: Node[] = [
   { id: "citacao", type: "lex", position: { x: 230, y: 120 }, data: { title: "Citação", meta: "Prazo 15 dias" } },
   { id: "audiencia", type: "lex", position: { x: 460, y: 20 }, data: { title: "Audiência de conciliação", description: "Ana Lima", tone: "accent" } },
   { id: "acordo", type: "lex", position: { x: 730, y: -60 }, data: { title: "Acordo", meta: "Homologado", tone: "success" } },
-  { id: "instrucao", type: "lex", position: { x: 730, y: 130 }, data: { title: "Instrução", description: "Provas e testemunhas", tone: "warning" } },
+  { id: "instrucao", type: "lex", position: { x: 730, y: 130 }, data: { title: "Instrução", description: "Provas e testemunhas", tone: "warning", activity: "active" } },
   { id: "sentenca", type: "lex", position: { x: 990, y: 40 }, data: { title: "Sentença", description: "Publicação em 48h", tone: "danger" } },
 ]
 
-const edge = (source: string, target: string, label?: string): Edge => ({
+const edge = (source: string, target: string, options: { label?: string; animated?: boolean } = {}): Edge => ({
   id: `${source}-${target}`,
   source,
   target,
-  label,
+  label: options.label,
+  animated: options.animated,
   markerEnd: { type: MarkerType.ArrowClosed },
 })
 
 const initialEdges: Edge[] = [
   edge("distribuicao", "citacao"),
   edge("citacao", "audiencia"),
-  edge("audiencia", "acordo", "acordo"),
-  edge("audiencia", "instrucao", "sem acordo"),
-  edge("instrucao", "sentenca"),
+  edge("audiencia", "acordo", { label: "acordo" }),
+  edge("audiencia", "instrucao", { label: "sem acordo", animated: true }),
+  edge("instrucao", "sentenca", { animated: true }),
 ]
 
 export function FlowDemo() {
@@ -58,6 +59,6 @@ export function FlowDemo() {
         <FlowMiniMap />
       </Flow>
     </div>
-    <Text size="sm" tone="muted">Arraste os nós, role o canvas para navegar e use o teclado: cada nó é focável, e Tab percorre nós e arestas.</Text>
+    <Text size="sm" tone="muted">Arraste os nós, role o canvas para navegar e use o teclado: cada nó é focável, e Tab percorre nós e arestas. Arestas com <code>animated</code> correm no sentido origem → destino e o nó com <code>activity: "active"</code> fica em execução.</Text>
   </>
 }

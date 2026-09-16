@@ -55,12 +55,12 @@ function buildNodes(activeId: string | null): Node[] {
   return [hub, ...ring]
 }
 
-function buildEdges(activeId: string | null): Edge[] {
+function buildEdges(recentIds: string[]): Edge[] {
   return sources.map((source) => ({
     id: `${source.id}-consultas`,
     source: source.id,
     target: "consultas",
-    animated: source.id === activeId,
+    animated: recentIds.includes(source.id),
     markerEnd: { type: MarkerType.ArrowClosed },
   }))
 }
@@ -72,8 +72,9 @@ export function ActivityMonitor() {
   const [query, setQuery] = React.useState("")
   const [calls, setCalls] = React.useState<Call[]>([])
   const [active, setActive] = React.useState<string | null>(null)
+  const [recent, setRecent] = React.useState<string[]>([])
   const [nodes, setNodes, onNodesChange] = useNodesState(buildNodes(null))
-  const [edges, setEdges, onEdgesChange] = useEdgesState(buildEdges(null))
+  const [edges, setEdges, onEdgesChange] = useEdgesState(buildEdges([]))
   const sequence = React.useRef(0)
 
   React.useEffect(() => setMounted(true), [])
@@ -90,6 +91,7 @@ export function ActivityMonitor() {
       const window_ = callWindows[index]
       sequence.current += 1
       setActive(source.id)
+      setRecent((current) => [source.id, ...current.filter((id) => id !== source.id)].slice(0, 3))
       setCalls((current) => [{ id: sequence.current, source: source.id, operation: window_.operation, latency: window_.latency, at: new Date().toLocaleTimeString("pt-BR", { hour12: false }) }, ...current].slice(0, 40))
     }, 1200)
     return () => window.clearInterval(timer)
@@ -97,8 +99,8 @@ export function ActivityMonitor() {
 
   React.useEffect(() => {
     setNodes(buildNodes(active))
-    setEdges(buildEdges(active))
-  }, [active, setEdges, setNodes])
+    setEdges(buildEdges(recent))
+  }, [active, recent, setEdges, setNodes])
 
   const visible = calls.filter((call) => (filter === "todas" || call.operation === filter) && (query === "" || call.source.toLowerCase().includes(query.toLowerCase())))
   const perSecond = (calls.length / 60 * 4).toFixed(2)
